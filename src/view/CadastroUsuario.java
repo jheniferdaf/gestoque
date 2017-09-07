@@ -23,6 +23,9 @@ public class CadastroUsuario extends javax.swing.JPanel {
         imagemCampoInválido.setVisible(false);
         UIManager.put("ToolTip.background", Color.RED);
     }
+    private void verificaCamposValidos(){
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,34 +36,57 @@ public class CadastroUsuario extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSeparator1 = new javax.swing.JSeparator();
+        nome = new javax.swing.JTextField();
+        separadorNome = new javax.swing.JSeparator();
+        separadorCpf = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jSeparator5 = new javax.swing.JSeparator();
-        jTextField3 = new javax.swing.JTextField();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jTextField1 = new javax.swing.JTextField();
+        separadorTelefone = new javax.swing.JSeparator();
+        email = new javax.swing.JTextField();
+        cpf = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
-        jSeparator4 = new javax.swing.JSeparator();
-        jTextField4 = new javax.swing.JTextField();
-        jSeparator3 = new javax.swing.JSeparator();
+        telefone = new javax.swing.JTextField();
+        separadorEmail = new javax.swing.JSeparator();
         nomeInvalido = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        senha = new javax.swing.JTextField();
         jRadioButton1 = new javax.swing.JRadioButton();
         imagemCampoInválido = new javax.swing.JLabel();
         jRadioButton2 = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
         botaoConfirmar = new javax.swing.JPanel();
         labelConfirmar = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
+        separadorSenha = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jSeparator1.setForeground(new java.awt.Color(51, 51, 51));
-        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 260, 10));
+        nome.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        nome.setForeground(new java.awt.Color(51, 51, 51));
+        nome.setBorder(null);
+        nome.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                nomeFocusLost(evt);
+            }
+        });
+        nome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeActionPerformed(evt);
+            }
+        });
+        nome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nomeKeyTyped(evt);
+            }
+        });
+        add(nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 260, 20));
+
+        separadorNome.setForeground(new java.awt.Color(51, 51, 51));
+        add(separadorNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 260, 10));
+
+        separadorCpf.setForeground(new java.awt.Color(51, 51, 51));
+        add(separadorCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 260, 10));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
@@ -71,53 +97,35 @@ public class CadastroUsuario extends javax.swing.JPanel {
         jLabel7.setText("Função:");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, -1, -1));
 
-        jSeparator5.setForeground(new java.awt.Color(51, 51, 51));
-        add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, 260, 10));
+        separadorTelefone.setForeground(new java.awt.Color(51, 51, 51));
+        add(separadorTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, 260, 10));
 
-        jTextField3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField3.setBorder(null);
-        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 260, 20));
+        email.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        email.setForeground(new java.awt.Color(51, 51, 51));
+        email.setBorder(null);
+        add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 260, 20));
 
-        jFormattedTextField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        cpf.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 260, -1));
-
-        jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField1.setBorder(null);
-        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField1FocusLost(evt);
-            }
-        });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
-            }
-        });
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 260, 20));
+        cpf.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        add(cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 260, -1));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("CPF:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, -1, -1));
 
-        jSeparator4.setForeground(new java.awt.Color(51, 51, 51));
-        add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 260, 10));
+        telefone.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        telefone.setForeground(new java.awt.Color(51, 51, 51));
+        telefone.setBorder(null);
+        add(telefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 260, 20));
 
-        jTextField4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField4.setBorder(null);
-        add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 260, 20));
-
-        jSeparator3.setForeground(new java.awt.Color(51, 51, 51));
-        add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 260, 10));
+        separadorEmail.setForeground(new java.awt.Color(51, 51, 51));
+        add(separadorEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 260, 10));
 
         nomeInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         add(nomeInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 410, 10));
@@ -132,10 +140,10 @@ public class CadastroUsuario extends javax.swing.JPanel {
         jLabel6.setText("Telefone:");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, -1, -1));
 
-        jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField2.setBorder(null);
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 260, 20));
+        senha.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        senha.setForeground(new java.awt.Color(51, 51, 51));
+        senha.setBorder(null);
+        add(senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 260, 20));
 
         jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
         jRadioButton1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -147,6 +155,7 @@ public class CadastroUsuario extends javax.swing.JPanel {
         });
         add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, -1, -1));
 
+        imagemCampoInválido.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         imagemCampoInválido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/Warning -WF.png"))); // NOI18N
         imagemCampoInválido.setToolTipText("Nome não pode conter números ou sinais de pontuação");
         add(imagemCampoInválido, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
@@ -196,11 +205,11 @@ public class CadastroUsuario extends javax.swing.JPanel {
 
         add(botaoConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 490, 80, 30));
 
-        jSeparator2.setForeground(new java.awt.Color(51, 51, 51));
-        add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 260, 10));
+        separadorSenha.setForeground(new java.awt.Color(51, 51, 51));
+        add(separadorSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 260, 10));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+    private void nomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nomeFocusLost
         //        String conteudo = jTextField1.getText();
         //        String conteudoAvaliado = conteudo.replaceAll("[^ A-z]", "");
         //        System.out.println(conteudoAvaliado);
@@ -213,19 +222,24 @@ public class CadastroUsuario extends javax.swing.JPanel {
             //            nomeInvalido.setText("");
             //            imagemCampoInválido.setVisible(false);
             //        }
-        if (jTextField1.getText().matches("[^ a-zA-ZéúíóáÉÚÍÓÁèùìòàçÇÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ]+")==true){
+        if (nome.getText().matches("[ a-zA-ZéúíóáÉÚÍÓÁèùìòàçÇÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ]") == true){
+            nomeInvalido.setText("");
+            imagemCampoInválido.setVisible(false);
+        } else {
+            if(nome.getText().length() < 3){
+                imagemCampoInválido.setToolTipText("Quantidade de caracteres inválida");
+            } else {
+                imagemCampoInválido.setToolTipText("Nome não pode conter números ou sinais de pontuação");
+            }
             nomeInvalido.setText("Nome não pode conter números ou sinais de pontuação");
             nomeInvalido.setForeground(Color.red);
             imagemCampoInválido.setVisible(true);
-        } else {
-            nomeInvalido.setText("");
-            imagemCampoInválido.setVisible(false);
         }
-    }//GEN-LAST:event_jTextField1FocusLost
+    }//GEN-LAST:event_nomeFocusLost
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+    private void nomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomeKeyTyped
 
-    }//GEN-LAST:event_jTextField1KeyTyped
+    }//GEN-LAST:event_nomeKeyTyped
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
@@ -264,11 +278,16 @@ public class CadastroUsuario extends javax.swing.JPanel {
         labelConfirmar.setForeground(Color.black);
     }//GEN-LAST:event_botaoConfirmarMouseExited
 
+    private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel botaoConfirmar;
+    private javax.swing.JFormattedTextField cpf;
+    private javax.swing.JTextField email;
     private javax.swing.JLabel imagemCampoInválido;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -277,16 +296,15 @@ public class CadastroUsuario extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JLabel labelConfirmar;
+    private javax.swing.JTextField nome;
     private javax.swing.JLabel nomeInvalido;
+    private javax.swing.JTextField senha;
+    private javax.swing.JSeparator separadorCpf;
+    private javax.swing.JSeparator separadorEmail;
+    private javax.swing.JSeparator separadorNome;
+    private javax.swing.JSeparator separadorSenha;
+    private javax.swing.JSeparator separadorTelefone;
+    private javax.swing.JTextField telefone;
     // End of variables declaration//GEN-END:variables
 }
