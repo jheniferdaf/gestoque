@@ -157,7 +157,7 @@ public class CadastroUsuario extends javax.swing.JPanel {
 
         imagemCampoInválido.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         imagemCampoInválido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/Warning -WF.png"))); // NOI18N
-        imagemCampoInválido.setToolTipText("Nome não pode conter números ou sinais de pontuação");
+        imagemCampoInválido.setToolTipText("<html>\n<head>\n<style type=\"text/css\">\n\t\n</style>\n</head>\n<body>\n<p style=\"backgound-color: red\">AAAAA</p>\n</body>\n</html>");
         add(imagemCampoInválido, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
 
         jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
