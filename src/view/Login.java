@@ -5,17 +5,24 @@
  */
 package view;
 
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Jheni
  */
 public class Login extends javax.swing.JPanel {
-
+    JFrame frame;
+    int xx;
+    int yy;
     /**
      * Creates new form Login
      */
-    public Login() {
+    public Login(JFrame frame) {
         initComponents();
+        this.frame = frame;
     }
 
     /**
@@ -28,55 +35,50 @@ public class Login extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
-        separadorNome = new javax.swing.JSeparator();
+        separadorSenha = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
-        nome1 = new javax.swing.JTextField();
-        separadorNome1 = new javax.swing.JSeparator();
+        senha = new javax.swing.JTextField();
         cpf = new javax.swing.JFormattedTextField();
+        separadorCpf = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        fechar = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setMaximumSize(new java.awt.Dimension(700, 430));
+        setMinimumSize(new java.awt.Dimension(700, 430));
+        setPreferredSize(new java.awt.Dimension(700, 430));
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Login");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
 
-        separadorNome.setForeground(new java.awt.Color(51, 51, 51));
-        add(separadorNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 260, 10));
+        separadorSenha.setForeground(new java.awt.Color(51, 51, 51));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("Senha:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, -1, -1));
 
-        nome1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        nome1.setForeground(new java.awt.Color(51, 51, 51));
-        nome1.setBorder(null);
-        nome1.addFocusListener(new java.awt.event.FocusAdapter() {
+        senha.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        senha.setForeground(new java.awt.Color(51, 51, 51));
+        senha.setBorder(null);
+        senha.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                nome1FocusLost(evt);
+                senhaFocusLost(evt);
             }
         });
-        nome1.addActionListener(new java.awt.event.ActionListener() {
+        senha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome1ActionPerformed(evt);
+                senhaActionPerformed(evt);
             }
         });
-        nome1.addKeyListener(new java.awt.event.KeyAdapter() {
+        senha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                nome1KeyTyped(evt);
+                senhaKeyTyped(evt);
             }
         });
-        add(nome1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, 260, 20));
-
-        separadorNome1.setForeground(new java.awt.Color(51, 51, 51));
-        add(separadorNome1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 260, 10));
 
         cpf.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         try {
@@ -85,8 +87,14 @@ public class Login extends javax.swing.JPanel {
             ex.printStackTrace();
         }
         cpf.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        add(cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 260, -1));
 
+        separadorCpf.setForeground(new java.awt.Color(51, 51, 51));
+
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -94,32 +102,124 @@ public class Login extends javax.swing.JPanel {
         jLabel1.setText("Entrar");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 40));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, 100, 40));
-
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel2.setText("Esqueci minha senha");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 280, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setPreferredSize(new java.awt.Dimension(350, 430));
+        jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel2MouseDragged(evt);
+            }
+        });
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel2MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jPanel2MouseReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 350, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+            .addGap(0, 430, Short.MAX_VALUE)
         );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 420));
+        fechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar.png"))); // NOI18N
+        fechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        fechar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fecharMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                fecharMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                fecharMouseExited(evt);
+            }
+        });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/usuario.png"))); // NOI18N
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 60, 60));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(separadorCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(separadorSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(120, 120, 120)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(80, 80, 80)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(33, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(fechar))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel5))
+                    .addComponent(fechar))
+                .addGap(75, 75, 75)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(separadorCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(40, 40, 40)
+                .addComponent(jLabel6)
+                .addGap(7, 7, 7)
+                .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(separadorSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel2)
+                .addGap(41, 41, 41)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nome1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nome1FocusLost
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        frame.getContentPane().removeAll();
+
+        TelaAdministrador principal = new TelaAdministrador();
+        frame.getContentPane().add(principal, BorderLayout.CENTER);
+        frame.setSize(principal.getPreferredSize());
+        frame.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void senhaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_senhaKeyTyped
+
+    }//GEN-LAST:event_senhaKeyTyped
+
+    private void senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_senhaActionPerformed
+
+    private void senhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_senhaFocusLost
         //        String conteudo = jTextField1.getText();
         //        String conteudoAvaliado = conteudo.replaceAll("[^ A-z]", "");
         //        System.out.println(conteudoAvaliado);
@@ -132,29 +232,48 @@ public class Login extends javax.swing.JPanel {
             //            nomeInvalido.setText("");
             //            imagemCampoInválido.setVisible(false);
             //        }
-      
-    }//GEN-LAST:event_nome1FocusLost
+    }//GEN-LAST:event_senhaFocusLost
 
-    private void nome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome1ActionPerformed
+    private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        frame.setLocation(x - xx, y - yy);
+    }//GEN-LAST:event_jPanel2MouseDragged
+
+    private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
+        frame.setOpacity((float) 0.8);
+        xx = evt.getX();
+        yy = evt.getY();
+    }//GEN-LAST:event_jPanel2MousePressed
+
+    private void jPanel2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseReleased
+        frame.setOpacity((float)1.0);
+    }//GEN-LAST:event_jPanel2MouseReleased
+
+    private void fecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fecharMouseEntered
+
+    }//GEN-LAST:event_fecharMouseEntered
+
+    private void fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fecharMouseClicked
+        
+    }//GEN-LAST:event_fecharMouseClicked
+
+    private void fecharMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fecharMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_nome1ActionPerformed
-
-    private void nome1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nome1KeyTyped
-
-    }//GEN-LAST:event_nome1KeyTyped
+    }//GEN-LAST:event_fecharMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField cpf;
+    private javax.swing.JLabel fechar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField nome1;
-    private javax.swing.JSeparator separadorNome;
-    private javax.swing.JSeparator separadorNome1;
+    private javax.swing.JTextField senha;
+    private javax.swing.JSeparator separadorCpf;
+    private javax.swing.JSeparator separadorSenha;
     // End of variables declaration//GEN-END:variables
 }

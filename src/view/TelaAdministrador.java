@@ -5,17 +5,90 @@
  */
 package view;
 
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Jheni
  */
 public class TelaAdministrador extends javax.swing.JPanel {
 
+    java.util.List<JPanel> botoesLaterais;
+    List<JLabel> labelsLaterais;
+    JPanel botaoAtivo;
+    Color corPadraoBotao = new Color(102, 102, 102);
+    Color corOverBotao = new Color(204, 204, 204);
+    Color corBotaoAtivo = new Color(255, 255, 255);
+
+    Color corPadraoLabel = new Color(249, 249, 249);
+    Color corOverLabel = new Color(204, 204, 204);
+    Color corLabelAtivo = new Color(51, 51, 51);
+
     /**
-     * Creates new form TelaAdministrador
+     * Creates new form TelaPrincipal
      */
     public TelaAdministrador() {
         initComponents();
+
+        paineis.add(new Movimentacoes(paineis), "movimentacoes");
+        paineis.add(new Entrada(paineis), "entrada");
+        paineis.add(new Baixa(paineis), "baixa");
+        paineis.add(new Devolucao(paineis), "devolucao");
+
+        paineis.add(new GerenciarProdutos(paineis), "gerenciarProdutos");
+        paineis.add(new CadastroProduto(paineis), "cadastroProduto");
+        paineis.add(new ConsultaProduto(paineis), "consultaProduto");
+        paineis.add(new EditaProduto(paineis), "editaProduto");
+        paineis.add(new ProdutosEstoqueMinimo(paineis),"produtosEstoqueMinimo");
+
+        paineis.add(new GerenciarFornecedores(paineis), "gerenciarFornecedores");
+        paineis.add(new CadastroFornecedor(paineis), "cadastroFornecedor");
+        paineis.add(new ConsultaFornecedor(paineis), "consultaFornecedor");
+        paineis.add(new EditaFornecedor(paineis), "editaFornecedor");
+
+        paineis.add(new Relatorios(paineis), "relatorios");
+
+        paineis.add(new GerenciarUsuarios(paineis), "gerenciarUsuarios");
+        paineis.add(new CadastroUsuario(paineis), "cadastroUsuario");
+        paineis.add(new ConsultaUsuario(paineis), "consultaUsuario");
+        paineis.add(new EditaUsuario(paineis), "editaUsuario");
+
+        paineis.add(new Opcoes(paineis), "opcoes");
+
+        botoesLaterais = new ArrayList<JPanel>();
+        botoesLaterais.add(botaoMovimentacoes);
+        botoesLaterais.add(botaoProdutos);
+        botoesLaterais.add(botaoFornecedores);
+        botoesLaterais.add(botaoRelatorios);
+        botoesLaterais.add(botaoUsuarios);
+        botoesLaterais.add(botaoOpcoes);
+
+        labelsLaterais = new ArrayList<>();
+        labelsLaterais.add(labelMovimentacoes);
+        labelsLaterais.add(labelProdutos);
+        labelsLaterais.add(labelFornecedores);
+        labelsLaterais.add(labelRelatorios);
+        labelsLaterais.add(labelUsuarios);
+        labelsLaterais.add(labelOpcoes);
+
+    }
+
+    public void resetaBotoes() {
+        for (JPanel b : botoesLaterais) {
+            b.setBackground(corPadraoBotao);
+        }
+    }
+
+    public void resetaLabels() {
+        for (JLabel l : labelsLaterais) {
+            l.setForeground(corPadraoLabel);
+        }
     }
 
     /**
@@ -27,32 +100,436 @@ public class TelaAdministrador extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        barraLateral = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        botaoMovimentacoes = new javax.swing.JPanel();
+        labelMovimentacoes = new javax.swing.JLabel();
+        botaoOpcoes = new javax.swing.JPanel();
+        labelOpcoes = new javax.swing.JLabel();
+        botaoUsuarios = new javax.swing.JPanel();
+        labelUsuarios = new javax.swing.JLabel();
+        botaoRelatorios = new javax.swing.JPanel();
+        labelRelatorios = new javax.swing.JLabel();
+        botaoProdutos = new javax.swing.JPanel();
+        labelProdutos = new javax.swing.JLabel();
+        botaoLogoff = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        botaoFornecedores = new javax.swing.JPanel();
+        labelFornecedores = new javax.swing.JLabel();
+        paineis = new javax.swing.JPanel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(51, 51, 51));
+        setMaximumSize(new java.awt.Dimension(1080, 650));
+        setMinimumSize(new java.awt.Dimension(1080, 650));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        barraLateral.setBackground(new java.awt.Color(51, 51, 51));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel7.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel17.setBackground(new java.awt.Color(231, 243, 239));
+        jLabel17.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(249, 249, 249));
+        jLabel17.setText("Administrador");
+        jPanel7.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        jLabel18.setBackground(new java.awt.Color(231, 243, 239));
+        jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(249, 249, 249));
+        jLabel18.setText("~nome");
+        jPanel7.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
+
+        botaoMovimentacoes.setBackground(new java.awt.Color(102, 102, 102));
+        botaoMovimentacoes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoMovimentacoes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoMovimentacoesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botaoMovimentacoesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botaoMovimentacoesMouseExited(evt);
+            }
+        });
+        botaoMovimentacoes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelMovimentacoes.setBackground(new java.awt.Color(231, 243, 239));
+        labelMovimentacoes.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        labelMovimentacoes.setForeground(new java.awt.Color(249, 249, 249));
+        labelMovimentacoes.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelMovimentacoes.setText("Movimentações");
+        botaoMovimentacoes.add(labelMovimentacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 200, 34));
+
+        botaoOpcoes.setBackground(new java.awt.Color(102, 102, 102));
+        botaoOpcoes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoOpcoes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoOpcoesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botaoOpcoesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botaoOpcoesMouseExited(evt);
+            }
+        });
+        botaoOpcoes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelOpcoes.setBackground(new java.awt.Color(231, 243, 239));
+        labelOpcoes.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        labelOpcoes.setForeground(new java.awt.Color(249, 249, 249));
+        labelOpcoes.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelOpcoes.setText("Opções");
+        botaoOpcoes.add(labelOpcoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 170, 34));
+
+        botaoUsuarios.setBackground(new java.awt.Color(102, 102, 102));
+        botaoUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoUsuariosMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botaoUsuariosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botaoUsuariosMouseExited(evt);
+            }
+        });
+        botaoUsuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelUsuarios.setBackground(new java.awt.Color(231, 243, 239));
+        labelUsuarios.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        labelUsuarios.setForeground(new java.awt.Color(249, 249, 249));
+        labelUsuarios.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelUsuarios.setText("Usuários");
+        botaoUsuarios.add(labelUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 170, 34));
+
+        botaoRelatorios.setBackground(new java.awt.Color(102, 102, 102));
+        botaoRelatorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoRelatorios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoRelatoriosMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botaoRelatoriosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botaoRelatoriosMouseExited(evt);
+            }
+        });
+        botaoRelatorios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelRelatorios.setBackground(new java.awt.Color(231, 243, 239));
+        labelRelatorios.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        labelRelatorios.setForeground(new java.awt.Color(249, 249, 249));
+        labelRelatorios.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelRelatorios.setText("Relatórios");
+        botaoRelatorios.add(labelRelatorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 170, 34));
+
+        botaoProdutos.setBackground(new java.awt.Color(102, 102, 102));
+        botaoProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoProdutosMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botaoProdutosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botaoProdutosMouseExited(evt);
+            }
+        });
+        botaoProdutos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelProdutos.setBackground(new java.awt.Color(231, 243, 239));
+        labelProdutos.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        labelProdutos.setForeground(new java.awt.Color(249, 249, 249));
+        labelProdutos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelProdutos.setText("Produtos");
+        botaoProdutos.add(labelProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 170, 34));
+
+        botaoLogoff.setBackground(new java.awt.Color(102, 102, 102));
+        botaoLogoff.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoLogoff.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botaoLogoffMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botaoLogoffMouseExited(evt);
+            }
+        });
+        botaoLogoff.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(231, 243, 239));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel3.setText("Logoff");
+        botaoLogoff.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 120, 34));
+
+        botaoFornecedores.setBackground(new java.awt.Color(102, 102, 102));
+        botaoFornecedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoFornecedores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoFornecedoresMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botaoFornecedoresMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botaoFornecedoresMouseExited(evt);
+            }
+        });
+        botaoFornecedores.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelFornecedores.setBackground(new java.awt.Color(231, 243, 239));
+        labelFornecedores.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        labelFornecedores.setForeground(new java.awt.Color(249, 249, 249));
+        labelFornecedores.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelFornecedores.setText("Fornecedores");
+        botaoFornecedores.add(labelFornecedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 170, 34));
+
+        javax.swing.GroupLayout barraLateralLayout = new javax.swing.GroupLayout(barraLateral);
+        barraLateral.setLayout(barraLateralLayout);
+        barraLateralLayout.setHorizontalGroup(
+            barraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 220, Short.MAX_VALUE)
+            .addGroup(barraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(barraLateralLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(barraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoMovimentacoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoFornecedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoOpcoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoLogoff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        barraLateralLayout.setVerticalGroup(
+            barraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 650, Short.MAX_VALUE)
+            .addGroup(barraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(barraLateralLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(botaoMovimentacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(botaoProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(botaoFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(botaoRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(botaoUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(botaoOpcoes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(60, 60, 60)
+                    .addComponent(botaoLogoff, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 650));
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 860, 652));
+        add(barraLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        paineis.setBackground(new java.awt.Color(249, 249, 249));
+        paineis.setLayout(new java.awt.CardLayout());
+        add(paineis, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 860, 620));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botaoMovimentacoesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMovimentacoesMouseEntered
+//        if(botaoAtivo != botaoMovimentacoes){
+        botaoMovimentacoes.setBackground(corOverBotao);
+//        }
+    }//GEN-LAST:event_botaoMovimentacoesMouseEntered
+
+    private void botaoMovimentacoesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMovimentacoesMouseExited
+        if (botaoMovimentacoes == botaoAtivo) {
+            botaoMovimentacoes.setBackground(corBotaoAtivo);
+            labelMovimentacoes.setForeground(corLabelAtivo);
+
+        } else {
+            botaoMovimentacoes.setBackground(corPadraoBotao);
+            labelMovimentacoes.setForeground(corPadraoLabel);
+
+        }
+    }//GEN-LAST:event_botaoMovimentacoesMouseExited
+
+    private void botaoOpcoesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoOpcoesMouseEntered
+        botaoOpcoes.setBackground(corOverBotao);
+    }//GEN-LAST:event_botaoOpcoesMouseEntered
+
+    private void botaoOpcoesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoOpcoesMouseExited
+        if (botaoOpcoes == botaoAtivo) {
+            botaoOpcoes.setBackground(corBotaoAtivo);
+            labelOpcoes.setForeground(corLabelAtivo);
+
+        } else {
+            botaoOpcoes.setBackground(corPadraoBotao);
+            labelOpcoes.setForeground(corPadraoLabel);
+
+        }
+
+    }//GEN-LAST:event_botaoOpcoesMouseExited
+
+    private void botaoUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoUsuariosMouseClicked
+        CardLayout cartoes = (CardLayout) paineis.getLayout();
+        cartoes.show(paineis, "gerenciarUsuarios");
+
+        resetaBotoes();
+        botaoUsuarios.setBackground(corBotaoAtivo);
+        resetaLabels();
+        labelUsuarios.setForeground(corLabelAtivo);
+        botaoAtivo = botaoUsuarios;
+    }//GEN-LAST:event_botaoUsuariosMouseClicked
+
+    private void botaoUsuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoUsuariosMouseEntered
+        botaoUsuarios.setBackground(corOverBotao);
+    }//GEN-LAST:event_botaoUsuariosMouseEntered
+
+    private void botaoUsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoUsuariosMouseExited
+        if (botaoUsuarios == botaoAtivo) {
+            botaoUsuarios.setBackground(corBotaoAtivo);
+            labelUsuarios.setForeground(corLabelAtivo);
+
+        } else {
+            botaoUsuarios.setBackground(corPadraoBotao);
+            labelUsuarios.setForeground(corPadraoLabel);
+
+        }
+    }//GEN-LAST:event_botaoUsuariosMouseExited
+
+    private void botaoRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoRelatoriosMouseClicked
+        CardLayout cartoes = (CardLayout) paineis.getLayout();
+        cartoes.show(paineis, "relatorios");
+
+        resetaBotoes();
+        botaoRelatorios.setBackground(corBotaoAtivo);
+        resetaLabels();
+        labelRelatorios.setForeground(corLabelAtivo);
+        botaoAtivo = botaoRelatorios;
+    }//GEN-LAST:event_botaoRelatoriosMouseClicked
+
+    private void botaoRelatoriosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoRelatoriosMouseEntered
+        botaoRelatorios.setBackground(corOverBotao);
+    }//GEN-LAST:event_botaoRelatoriosMouseEntered
+
+    private void botaoRelatoriosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoRelatoriosMouseExited
+        if (botaoRelatorios == botaoAtivo) {
+            botaoRelatorios.setBackground(corBotaoAtivo);
+            labelRelatorios.setForeground(corLabelAtivo);
+        } else {
+            botaoRelatorios.setBackground(corPadraoBotao);
+            labelRelatorios.setForeground(corPadraoLabel);
+        }
+    }//GEN-LAST:event_botaoRelatoriosMouseExited
+
+    private void botaoProdutosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoProdutosMouseEntered
+        botaoProdutos.setBackground(corOverBotao);
+    }//GEN-LAST:event_botaoProdutosMouseEntered
+
+    private void botaoProdutosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoProdutosMouseExited
+        if (botaoProdutos == botaoAtivo) {
+            botaoProdutos.setBackground(corBotaoAtivo);
+            labelProdutos.setForeground(corLabelAtivo);
+        } else {
+            botaoProdutos.setBackground(corPadraoBotao);
+            labelProdutos.setForeground(corPadraoLabel);
+        }
+    }//GEN-LAST:event_botaoProdutosMouseExited
+
+    private void botaoLogoffMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoLogoffMouseEntered
+        botaoLogoff.setBackground(corOverBotao);
+    }//GEN-LAST:event_botaoLogoffMouseEntered
+
+    private void botaoLogoffMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoLogoffMouseExited
+        botaoLogoff.setBackground(corPadraoBotao);
+    }//GEN-LAST:event_botaoLogoffMouseExited
+
+    private void botaoFornecedoresMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoFornecedoresMouseEntered
+        botaoFornecedores.setBackground(corOverBotao);
+    }//GEN-LAST:event_botaoFornecedoresMouseEntered
+
+    private void botaoFornecedoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoFornecedoresMouseExited
+        if (botaoFornecedores == botaoAtivo) {
+            botaoFornecedores.setBackground(corBotaoAtivo);
+            labelFornecedores.setForeground(corLabelAtivo);
+        } else {
+            botaoFornecedores.setBackground(corPadraoBotao);
+            labelFornecedores.setForeground(corPadraoLabel);
+        }
+    }//GEN-LAST:event_botaoFornecedoresMouseExited
+
+    private void botaoMovimentacoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMovimentacoesMouseClicked
+        CardLayout cartoes = (CardLayout) paineis.getLayout();
+        cartoes.show(paineis, "movimentacoes");
+
+        resetaBotoes();
+        botaoMovimentacoes.setBackground(corBotaoAtivo);
+        resetaLabels();
+        labelMovimentacoes.setForeground(corLabelAtivo);
+        botaoAtivo = botaoMovimentacoes;
+    }//GEN-LAST:event_botaoMovimentacoesMouseClicked
+
+    private void botaoProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoProdutosMouseClicked
+        CardLayout cartoes = (CardLayout) paineis.getLayout();
+        cartoes.show(paineis, "gerenciarProdutos");
+
+        resetaBotoes();
+        botaoProdutos.setBackground(corBotaoAtivo);
+        resetaLabels();
+        labelProdutos.setForeground(corLabelAtivo);
+        botaoAtivo = botaoProdutos;
+    }//GEN-LAST:event_botaoProdutosMouseClicked
+
+    private void botaoFornecedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoFornecedoresMouseClicked
+        CardLayout cartoes = (CardLayout) paineis.getLayout();
+        cartoes.show(paineis, "gerenciarFornecedores");
+
+        resetaBotoes();
+        botaoFornecedores.setBackground(corBotaoAtivo);
+        resetaLabels();
+        labelFornecedores.setForeground(corLabelAtivo);
+        botaoAtivo = botaoFornecedores;
+    }//GEN-LAST:event_botaoFornecedoresMouseClicked
+
+    private void botaoOpcoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoOpcoesMouseClicked
+        CardLayout cartoes = (CardLayout) paineis.getLayout();
+        cartoes.show(paineis, "opcoes");
+
+        resetaBotoes();
+        botaoOpcoes.setBackground(corBotaoAtivo);
+        resetaLabels();
+        labelOpcoes.setForeground(corLabelAtivo);
+        botaoAtivo = botaoOpcoes;
+    }//GEN-LAST:event_botaoOpcoesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel barraLateral;
+    private javax.swing.JPanel botaoFornecedores;
+    private javax.swing.JPanel botaoLogoff;
+    private javax.swing.JPanel botaoMovimentacoes;
+    private javax.swing.JPanel botaoOpcoes;
+    private javax.swing.JPanel botaoProdutos;
+    private javax.swing.JPanel botaoRelatorios;
+    private javax.swing.JPanel botaoUsuarios;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JLabel labelFornecedores;
+    private javax.swing.JLabel labelMovimentacoes;
+    private javax.swing.JLabel labelOpcoes;
+    private javax.swing.JLabel labelProdutos;
+    private javax.swing.JLabel labelRelatorios;
+    private javax.swing.JLabel labelUsuarios;
+    private javax.swing.JPanel paineis;
     // End of variables declaration//GEN-END:variables
 }
