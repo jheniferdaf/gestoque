@@ -9,6 +9,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.Usuario;
 
 /**
  *
@@ -17,13 +18,14 @@ import javax.swing.JPanel;
 public class Devolucao extends javax.swing.JPanel {
 
     JPanel paineis;
-
+Usuario usuario;
     /**
      * Creates new form Devolucao
      */
-    public Devolucao(JPanel paineis) {
+    public Devolucao(JPanel paineis,Usuario usuario) {
         initComponents();
         this.paineis = paineis;
+        this.usuario = usuario;
     }
 
     /**

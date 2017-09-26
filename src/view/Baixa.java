@@ -9,6 +9,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.Usuario;
 
 /**
  *
@@ -17,13 +18,12 @@ import javax.swing.JPanel;
 public class Baixa extends javax.swing.JPanel {
 
     JPanel paineis;
+    Usuario usuario;
 
-    /**
-     * Creates new form Baixa
-     */
-    public Baixa(JPanel paineis) {
+    public Baixa(JPanel paineis, Usuario usuario) {
         initComponents();
         this.paineis = paineis;
+        this.usuario = usuario;
     }
 
     /**
@@ -245,13 +245,13 @@ public class Baixa extends javax.swing.JPanel {
         //        System.out.println(conteudoAvaliado);
         //        //POSSO USAR O MATCH AQUI
         //        if (conteudo.equals(conteudoAvaliado) == false){
-            //            nomeInvalido.setText("Nome não pode conter números ou sinais de pontuação");
-            //            nomeInvalido.setForeground(Color.red);
-            //            imagemCampoInválido.setVisible(true);
-            //        } else {
-            //            nomeInvalido.setText("");
-            //            imagemCampoInválido.setVisible(false);
-            //        }
+        //            nomeInvalido.setText("Nome não pode conter números ou sinais de pontuação");
+        //            nomeInvalido.setForeground(Color.red);
+        //            imagemCampoInválido.setVisible(true);
+        //        } else {
+        //            nomeInvalido.setText("");
+        //            imagemCampoInválido.setVisible(false);
+        //        }
     }//GEN-LAST:event_nomeFocusLost
 
     private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
@@ -272,7 +272,7 @@ public class Baixa extends javax.swing.JPanel {
     }//GEN-LAST:event_labelConfirmarMouseEntered
 
     private void labelConfirmarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseExited
-        confirmar.setBackground(new Color(240,240,240));
+        confirmar.setBackground(new Color(240, 240, 240));
         labelConfirmar.setForeground(Color.black);
     }//GEN-LAST:event_labelConfirmarMouseExited
 
@@ -291,7 +291,7 @@ public class Baixa extends javax.swing.JPanel {
     }//GEN-LAST:event_confirmarMouseEntered
 
     private void confirmarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmarMouseExited
-        confirmar.setBackground(new Color(240,240,240));
+        confirmar.setBackground(new Color(240, 240, 240));
         labelConfirmar.setForeground(Color.black);
     }//GEN-LAST:event_confirmarMouseExited
 

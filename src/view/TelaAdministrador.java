@@ -12,6 +12,7 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.Usuario;
 
 /**
  *
@@ -19,6 +20,7 @@ import javax.swing.JPanel;
  */
 public class TelaAdministrador extends javax.swing.JPanel {
 
+    Usuario usuario;
     java.util.List<JPanel> botoesLaterais;
     List<JLabel> labelsLaterais;
     JPanel botaoAtivo;
@@ -33,19 +35,20 @@ public class TelaAdministrador extends javax.swing.JPanel {
     /**
      * Creates new form TelaPrincipal
      */
-    public TelaAdministrador() {
+    public TelaAdministrador(Usuario usuario) {
         initComponents();
-
+        this.usuario = usuario;
+        nomeUsuario.setText(usuario.getNome());
         paineis.add(new Movimentacoes(paineis), "movimentacoes");
-        paineis.add(new Entrada(paineis), "entrada");
-        paineis.add(new Baixa(paineis), "baixa");
-        paineis.add(new Devolucao(paineis), "devolucao");
+        paineis.add(new Entrada(paineis, usuario), "entrada");
+        paineis.add(new Baixa(paineis, usuario), "baixa");
+        paineis.add(new Devolucao(paineis, usuario), "devolucao");
 
         paineis.add(new GerenciarProdutos(paineis), "gerenciarProdutos");
         paineis.add(new CadastroProduto(paineis), "cadastroProduto");
         paineis.add(new ConsultaProduto(paineis), "consultaProduto");
         paineis.add(new EditaProduto(paineis), "editaProduto");
-        paineis.add(new ProdutosEstoqueMinimo(paineis),"produtosEstoqueMinimo");
+        paineis.add(new ProdutosEstoqueMinimo(paineis), "produtosEstoqueMinimo");
 
         paineis.add(new GerenciarFornecedores(paineis), "gerenciarFornecedores");
         paineis.add(new CadastroFornecedor(paineis), "cadastroFornecedor");
@@ -103,7 +106,7 @@ public class TelaAdministrador extends javax.swing.JPanel {
         barraLateral = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        nomeUsuario = new javax.swing.JLabel();
         botaoMovimentacoes = new javax.swing.JPanel();
         labelMovimentacoes = new javax.swing.JLabel();
         botaoOpcoes = new javax.swing.JPanel();
@@ -136,11 +139,11 @@ public class TelaAdministrador extends javax.swing.JPanel {
         jLabel17.setText("Administrador");
         jPanel7.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        jLabel18.setBackground(new java.awt.Color(231, 243, 239));
-        jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(249, 249, 249));
-        jLabel18.setText("~nome");
-        jPanel7.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
+        nomeUsuario.setBackground(new java.awt.Color(231, 243, 239));
+        nomeUsuario.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        nomeUsuario.setForeground(new java.awt.Color(249, 249, 249));
+        nomeUsuario.setText("~nome");
+        jPanel7.add(nomeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
 
         botaoMovimentacoes.setBackground(new java.awt.Color(102, 102, 102));
         botaoMovimentacoes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -521,7 +524,6 @@ public class TelaAdministrador extends javax.swing.JPanel {
     private javax.swing.JPanel botaoRelatorios;
     private javax.swing.JPanel botaoUsuarios;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JLabel labelFornecedores;
@@ -530,6 +532,7 @@ public class TelaAdministrador extends javax.swing.JPanel {
     private javax.swing.JLabel labelProdutos;
     private javax.swing.JLabel labelRelatorios;
     private javax.swing.JLabel labelUsuarios;
+    private javax.swing.JLabel nomeUsuario;
     private javax.swing.JPanel paineis;
     // End of variables declaration//GEN-END:variables
 }

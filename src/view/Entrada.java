@@ -7,6 +7,7 @@ package view;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import model.Usuario;
 
 /**
  *
@@ -14,12 +15,14 @@ import javax.swing.JPanel;
  */
 public class Entrada extends javax.swing.JPanel {
 JPanel paineis;
+    Usuario usuario;
     /**
      * Creates new form Inclusao
      */
-    public Entrada(JPanel paineis) {
+    public Entrada(JPanel paineis, Usuario usuario) {
         initComponents();
         this.paineis = paineis;
+        this.usuario = usuario;
     }
 
     /**

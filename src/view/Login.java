@@ -5,24 +5,36 @@
  */
 package view;
 
+import controler.UsuarioService;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import model.Usuario;
 
 /**
  *
  * @author Jheni
  */
 public class Login extends javax.swing.JPanel {
+
     JFrame frame;
     int xx;
     int yy;
+
     /**
      * Creates new form Login
      */
     public Login(JFrame frame) {
         initComponents();
         this.frame = frame;
+        cpfInvalido.setVisible(false);
+        senhaInvalida.setVisible(false);
+    }
+
+    public void resetaTudo() {
+        cpfInvalido.setVisible(false);
+        senhaInvalida.setVisible(false);
+        erros.setText("");
     }
 
     /**
@@ -37,48 +49,39 @@ public class Login extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         separadorSenha = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
-        senha = new javax.swing.JTextField();
-        cpf = new javax.swing.JFormattedTextField();
         separadorCpf = new javax.swing.JSeparator();
-        jPanel1 = new javax.swing.JPanel();
+        cpf = new javax.swing.JFormattedTextField();
+        entrar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         fechar = new javax.swing.JLabel();
+        senhaInvalida = new javax.swing.JLabel();
+        cpfInvalido = new javax.swing.JLabel();
+        senha = new javax.swing.JPasswordField();
+        erros = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(700, 430));
         setMinimumSize(new java.awt.Dimension(700, 430));
         setPreferredSize(new java.awt.Dimension(700, 430));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Login");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, -1, -1));
 
         separadorSenha.setForeground(new java.awt.Color(51, 51, 51));
+        add(separadorSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, 260, 10));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("Senha:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, -1, -1));
 
-        senha.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        senha.setForeground(new java.awt.Color(51, 51, 51));
-        senha.setBorder(null);
-        senha.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                senhaFocusLost(evt);
-            }
-        });
-        senha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                senhaActionPerformed(evt);
-            }
-        });
-        senha.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                senhaKeyTyped(evt);
-            }
-        });
+        separadorCpf.setForeground(new java.awt.Color(51, 51, 51));
+        add(separadorCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 260, 10));
 
         cpf.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         try {
@@ -87,23 +90,30 @@ public class Login extends javax.swing.JPanel {
             ex.printStackTrace();
         }
         cpf.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-
-        separadorCpf.setForeground(new java.awt.Color(51, 51, 51));
-
-        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel1MouseClicked(evt);
+        cpf.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cpfFocusLost(evt);
             }
         });
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        add(cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, 260, -1));
+
+        entrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                entrarMouseClicked(evt);
+            }
+        });
+        entrar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Entrar");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 40));
+        entrar.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 40));
+
+        add(entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel2.setText("Esqueci minha senha");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 270, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setPreferredSize(new java.awt.Dimension(350, 430));
@@ -132,6 +142,8 @@ public class Login extends javax.swing.JPanel {
             .addGap(0, 430, Short.MAX_VALUE)
         );
 
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         fechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar.png"))); // NOI18N
         fechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         fechar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -145,94 +157,69 @@ public class Login extends javax.swing.JPanel {
                 fecharMouseExited(evt);
             }
         });
+        add(fechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(652, 0, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(separadorCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
-                            .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(separadorSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(120, 120, 120)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(80, 80, 80)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(33, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(fechar))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel5))
-                    .addComponent(fechar))
-                .addGap(75, 75, 75)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(separadorCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(40, 40, 40)
-                .addComponent(jLabel6)
-                .addGap(7, 7, 7)
-                .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(separadorSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jLabel2)
-                .addGap(41, 41, 41)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        senhaInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        senhaInvalida.setToolTipText("Senha não informada");
+        add(senhaInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 230, 30, 30));
+
+        cpfInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        cpfInvalido.setToolTipText("CPF inválido");
+        add(cpfInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 30, 30));
+
+        senha.setBorder(null);
+        senha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                senhaFocusLost(evt);
+            }
+        });
+        add(senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, 260, 20));
+
+        erros.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        erros.setForeground(new java.awt.Color(204, 0, 0));
+        erros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        add(erros, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 380, 270, 20));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        frame.getContentPane().removeAll();
+    private void entrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entrarMouseClicked
+        boolean tudoCerto = true;
+        resetaTudo();
+        if (cpf.getText().replace(" ", "").length() < 14) {
+            cpfInvalido.setVisible(true);
+            tudoCerto = false;
+        }
 
-        TelaAdministrador principal = new TelaAdministrador();
-        frame.getContentPane().add(principal, BorderLayout.CENTER);
-        frame.setSize(principal.getPreferredSize());
-        frame.setLocationRelativeTo(null);
-    }//GEN-LAST:event_jPanel1MouseClicked
+        if (senha.getPassword().length < 1) {
+            senhaInvalida.setVisible(true);
+            tudoCerto = false;
+        }
 
-    private void senhaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_senhaKeyTyped
+        if (tudoCerto) {
+            Usuario usuario = UsuarioService.buscaUsuarioCpf(cpf.getText());
+            if (usuario == null) {
+                erros.setText("Usuário não cadastrado.");
+            } else {
+                if (new String(senha.getPassword()).equals(usuario.getSenha())) {
+                    if (usuario.isAtivo()) {
+                        frame.getContentPane().removeAll();
 
-    }//GEN-LAST:event_senhaKeyTyped
-
-    private void senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_senhaActionPerformed
-
-    private void senhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_senhaFocusLost
-        //        String conteudo = jTextField1.getText();
-        //        String conteudoAvaliado = conteudo.replaceAll("[^ A-z]", "");
-        //        System.out.println(conteudoAvaliado);
-        //        //POSSO USAR O MATCH AQUI
-        //        if (conteudo.equals(conteudoAvaliado) == false){
-            //            nomeInvalido.setText("Nome não pode conter números ou sinais de pontuação");
-            //            nomeInvalido.setForeground(Color.red);
-            //            imagemCampoInválido.setVisible(true);
-            //        } else {
-            //            nomeInvalido.setText("");
-            //            imagemCampoInválido.setVisible(false);
-            //        }
-    }//GEN-LAST:event_senhaFocusLost
+                        if (usuario.isAdministrador()) {
+                            TelaAdministrador principal = new TelaAdministrador(usuario);
+                            frame.getContentPane().add(principal, BorderLayout.CENTER);
+                            frame.setSize(principal.getPreferredSize());
+                            frame.setLocationRelativeTo(null);
+                        } else {
+                            //colaborador
+                        }
+                    } else {
+                        erros.setText("Usuário não está ativo.");
+                    }
+                } else {
+                    erros.setText("Senha incorreta.");
+                }
+            }
+        }
+    }//GEN-LAST:event_entrarMouseClicked
 
     private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
         int x = evt.getXOnScreen();
@@ -247,7 +234,7 @@ public class Login extends javax.swing.JPanel {
     }//GEN-LAST:event_jPanel2MousePressed
 
     private void jPanel2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseReleased
-        frame.setOpacity((float)1.0);
+        frame.setOpacity((float) 1.0);
     }//GEN-LAST:event_jPanel2MouseReleased
 
     private void fecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fecharMouseEntered
@@ -255,24 +242,43 @@ public class Login extends javax.swing.JPanel {
     }//GEN-LAST:event_fecharMouseEntered
 
     private void fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fecharMouseClicked
-        
+
     }//GEN-LAST:event_fecharMouseClicked
 
     private void fecharMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fecharMouseExited
         // TODO add your handling code here:
     }//GEN-LAST:event_fecharMouseExited
 
+    private void cpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cpfFocusLost
+        if (cpf.getText().replace(" ", "").length() < 14) {
+            cpfInvalido.setVisible(true);
+        } else {
+            cpfInvalido.setVisible(false);
+        }
+    }//GEN-LAST:event_cpfFocusLost
+
+    private void senhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_senhaFocusLost
+        if (senha.getPassword().length < 1) {
+            senhaInvalida.setVisible(true);
+        } else {
+            senhaInvalida.setVisible(false);
+        }
+    }//GEN-LAST:event_senhaFocusLost
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField cpf;
+    private javax.swing.JLabel cpfInvalido;
+    private javax.swing.JPanel entrar;
+    private javax.swing.JLabel erros;
     private javax.swing.JLabel fechar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField senha;
+    private javax.swing.JPasswordField senha;
+    private javax.swing.JLabel senhaInvalida;
     private javax.swing.JSeparator separadorCpf;
     private javax.swing.JSeparator separadorSenha;
     // End of variables declaration//GEN-END:variables
