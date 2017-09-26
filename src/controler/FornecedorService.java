@@ -15,7 +15,7 @@ import model.Fornecedor;
  */
 public class FornecedorService {
     
-    public static boolean cadastrFornecedor(Fornecedor f){
+    public static boolean cadastrarFornecedor(Fornecedor f){
         return FornecedorDao.cadastraFornecedor(f);
     }
     

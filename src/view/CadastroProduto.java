@@ -5,10 +5,18 @@
  */
 package view;
 
+import controler.FornecedorService;
+import controler.ProdutoService;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.Fornecedor;
+import model.Produto;
 
 /**
  *
@@ -16,14 +24,53 @@ import javax.swing.JPanel;
  */
 public class CadastroProduto extends javax.swing.JPanel {
     JPanel paineis;
+    private List<JLabel> labelsInvalidas;
+    List<Fornecedor> fornecedores;
     /**
      * Creates new form CadastroProduto
      */
     public CadastroProduto(JPanel paineis) {
         initComponents();
         this.paineis = paineis;
-    }
+        
+        labelsInvalidas = new ArrayList<>();
+        labelsInvalidas.add(descricaoInvalida);
+        labelsInvalidas.add(categoriaInvalida);
+        labelsInvalidas.add(precoCustoInvalido);
+        labelsInvalidas.add(precoVendaInvalido);
+        labelsInvalidas.add(estoqueMinimoInvalido);  
+        labelsInvalidas.add(fornecedorInvalida);  
+        
+        resetaCamposInvalidos();
+        
+        fornecedores = FornecedorService.recuperaTodosFornecedoresAtivos();
+        DefaultComboBoxModel<String> padraoFornecedor = new DefaultComboBoxModel<>();
+        padraoFornecedor.addElement(null);
+        for (Fornecedor f : fornecedores) {
+            padraoFornecedor.addElement(f.getRazaoSocial());
+        }
+        fornecedores.add(0, null);
+        
+        fornecedor.setModel(padraoFornecedor);
 
+        
+
+    }
+    
+    private void resetaCamposInvalidos(){
+        for (JLabel l : labelsInvalidas){
+            l.setVisible(false);
+        }
+    }
+    
+    private void resetaTudo(){
+        descricao.setText("");
+        categoria.setSelectedIndex(0);
+        precoCusto.setText("");
+        precoVenda.setText("");
+        estoqueMinimo.setText("");
+        fornecedor.setSelectedIndex(0);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,25 +83,30 @@ public class CadastroProduto extends javax.swing.JPanel {
         voltar = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         descricao = new javax.swing.JTextField();
-        separadorNome = new javax.swing.JSeparator();
-        nomeInvalido = new javax.swing.JLabel();
+        separadorDescricao = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
-        separadorCpf = new javax.swing.JSeparator();
-        cpf = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
-        senha = new javax.swing.JTextField();
-        separadorSenha = new javax.swing.JSeparator();
+        separadorPrecoCusto = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
-        email = new javax.swing.JTextField();
         separadorEmail = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
-        telefone = new javax.swing.JTextField();
         separadorTelefone = new javax.swing.JSeparator();
-        jLabel7 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
         botaoConfirmar = new javax.swing.JPanel();
         labelConfirmar = new javax.swing.JLabel();
+        categoria = new javax.swing.JComboBox<>();
+        estoqueMinimo = new javax.swing.JFormattedTextField();
+        jLabel1 = new javax.swing.JLabel();
+        precoVenda = new javax.swing.JFormattedTextField();
+        precoCusto = new javax.swing.JFormattedTextField();
+        jLabel7 = new javax.swing.JLabel();
+        categoriaInvalida = new javax.swing.JLabel();
+        precoCustoInvalido = new javax.swing.JLabel();
+        precoVendaInvalido = new javax.swing.JLabel();
+        estoqueMinimoInvalido = new javax.swing.JLabel();
+        descricaoInvalida = new javax.swing.JLabel();
+        fornecedor = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        fornecedorInvalida = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -92,86 +144,37 @@ public class CadastroProduto extends javax.swing.JPanel {
         });
         add(descricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 260, 20));
 
-        separadorNome.setForeground(new java.awt.Color(51, 51, 51));
-        add(separadorNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 260, 10));
-
-        nomeInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        add(nomeInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 410, 10));
+        separadorDescricao.setForeground(new java.awt.Color(51, 51, 51));
+        add(separadorDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 260, 10));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("CPF:");
+        jLabel4.setText("Categoria:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, -1, -1));
-
-        separadorCpf.setForeground(new java.awt.Color(51, 51, 51));
-        add(separadorCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 260, 10));
-
-        cpf.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        try {
-            cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        cpf.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        add(cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 260, -1));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setText("Senha:");
+        jLabel2.setText("Preço de Custo:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, -1, -1));
 
-        senha.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        senha.setForeground(new java.awt.Color(51, 51, 51));
-        senha.setBorder(null);
-        add(senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 260, 20));
-
-        separadorSenha.setForeground(new java.awt.Color(51, 51, 51));
-        add(separadorSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 260, 10));
+        separadorPrecoCusto.setForeground(new java.awt.Color(51, 51, 51));
+        add(separadorPrecoCusto, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 260, 10));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("E-mail:");
+        jLabel3.setText("Preço de Venda:");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, -1));
-
-        email.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        email.setForeground(new java.awt.Color(51, 51, 51));
-        email.setBorder(null);
-        add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 260, 20));
 
         separadorEmail.setForeground(new java.awt.Color(51, 51, 51));
         add(separadorEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 260, 10));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel6.setText("Telefone:");
+        jLabel6.setText("Estoque Mínimo:");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, -1, -1));
-
-        telefone.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        telefone.setForeground(new java.awt.Color(51, 51, 51));
-        telefone.setBorder(null);
-        add(telefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 260, 20));
 
         separadorTelefone.setForeground(new java.awt.Color(51, 51, 51));
         add(separadorTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 420, 260, 10));
-
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel7.setText("Função:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 450, -1, -1));
-
-        jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jRadioButton1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jRadioButton1.setText("Administrador");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
-        add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 480, -1, -1));
-
-        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jRadioButton2.setText("Colaborador");
-        add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 480, -1, -1));
 
         botaoConfirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -206,7 +209,65 @@ public class CadastroProduto extends javax.swing.JPanel {
         });
         botaoConfirmar.add(labelConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
 
-        add(botaoConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 530, 80, 30));
+        add(botaoConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 540, 80, 30));
+
+        categoria.setBackground(new java.awt.Color(242, 242, 242));
+        categoria.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Açougue", "Bebidas", "Frios/Laticínios", "Higiene Pessoal", "Hortifrutigranjeiros", "Mercearia", "Limpeza", "Outros", "Padaria" }));
+        categoria.setBorder(null);
+        add(categoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 260, 30));
+
+        estoqueMinimo.setBorder(null);
+        estoqueMinimo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        add(estoqueMinimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 260, 20));
+
+        jLabel1.setText("R$");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, -1, 20));
+
+        precoVenda.setBorder(null);
+        precoVenda.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        add(precoVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 240, 20));
+
+        precoCusto.setBorder(null);
+        precoCusto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        add(precoCusto, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 240, 20));
+
+        jLabel7.setText("R$");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, -1, 20));
+
+        categoriaInvalida.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        categoriaInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        add(categoriaInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 30, 30));
+
+        precoCustoInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        precoCustoInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        add(precoCustoInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 30, 30));
+
+        precoVendaInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        precoVendaInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        add(precoVendaInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 310, 30, 30));
+
+        estoqueMinimoInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        estoqueMinimoInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        add(estoqueMinimoInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 30, 30));
+
+        descricaoInvalida.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        descricaoInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        add(descricaoInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 30, 30));
+
+        fornecedor.setBackground(new java.awt.Color(242, 242, 242));
+        fornecedor.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        fornecedor.setBorder(null);
+        add(fornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 480, 260, 30));
+
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel8.setText("Fornecedor:");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 450, -1, -1));
+
+        fornecedorInvalida.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        fornecedorInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        add(fornecedorInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 480, 30, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarMouseClicked
@@ -215,18 +276,6 @@ public class CadastroProduto extends javax.swing.JPanel {
     }//GEN-LAST:event_voltarMouseClicked
 
     private void descricaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_descricaoFocusLost
-        //        String conteudo = jTextField1.getText();
-        //        String conteudoAvaliado = conteudo.replaceAll("[^ A-z]", "");
-        //        System.out.println(conteudoAvaliado);
-        //        //POSSO USAR O MATCH AQUI
-        //        if (conteudo.equals(conteudoAvaliado) == false){
-            //            nomeInvalido.setText("Nome não pode conter números ou sinais de pontuação");
-            //            nomeInvalido.setForeground(Color.red);
-            //            imagemCampoInválido.setVisible(true);
-            //        } else {
-            //            nomeInvalido.setText("");
-            //            imagemCampoInválido.setVisible(false);
-            //        }
 
     }//GEN-LAST:event_descricaoFocusLost
 
@@ -238,12 +287,51 @@ public class CadastroProduto extends javax.swing.JPanel {
 
     }//GEN-LAST:event_descricaoKeyTyped
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
     private void labelConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseClicked
-        JOptionPane.showMessageDialog(this, "clicou");
+        resetaCamposInvalidos();
+        boolean tudoCerto = true;
+        
+        if (descricao.getText().isEmpty()){
+            tudoCerto = false;
+            descricaoInvalida.setVisible(true);
+        }
+
+        if (categoria.getSelectedIndex() == 0){
+            tudoCerto = false;
+            categoriaInvalida.setVisible(true);
+        }
+        System.out.println(fornecedor.getSelectedIndex());//***********************************************ARRUMAAAAA
+        if (fornecedor.getSelectedIndex() < 1){
+            tudoCerto = false;
+            fornecedorInvalida.setVisible(true);
+        }
+        
+        if (precoCusto.getText().length() < 1){
+            tudoCerto = false;
+            precoCustoInvalido.setVisible(true);
+        }
+                
+        if (precoVenda.getText().length() < 1){
+            tudoCerto = false;
+            precoVendaInvalido.setVisible(true);
+        }
+
+        if (estoqueMinimo.getText().length() < 1){
+            tudoCerto = false;
+            estoqueMinimoInvalido.setVisible(true);
+        }
+        
+        if (tudoCerto){
+            Produto produto = new Produto(descricao.getText(), (String)categoria.getSelectedItem(), Double.parseDouble(precoCusto.getText().replace(",", ".")), Double.parseDouble(precoVenda.getText().replace(",", ".")), Integer.parseInt(estoqueMinimo.getText()), fornecedores.get(fornecedor.getSelectedIndex()).getCnpj());
+            if (ProdutoService.cadastraProduto(produto) == true){
+                JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso.");
+                resetaTudo();
+                descricao.requestFocus();
+                
+//                CardLayout cartoes = (CardLayout) paineis.getLayout();
+//                cartoes.show(paineis, "gerenciarUsuarios");
+            }
+        }
     }//GEN-LAST:event_labelConfirmarMouseClicked
 
     private void labelConfirmarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseEntered
@@ -278,26 +366,31 @@ public class CadastroProduto extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel botaoConfirmar;
-    private javax.swing.JFormattedTextField cpf;
+    private javax.swing.JComboBox<String> categoria;
+    private javax.swing.JLabel categoriaInvalida;
     private javax.swing.JTextField descricao;
-    private javax.swing.JTextField email;
+    private javax.swing.JLabel descricaoInvalida;
+    private javax.swing.JFormattedTextField estoqueMinimo;
+    private javax.swing.JLabel estoqueMinimoInvalido;
+    private javax.swing.JComboBox<String> fornecedor;
+    private javax.swing.JLabel fornecedorInvalida;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel labelConfirmar;
-    private javax.swing.JLabel nomeInvalido;
-    private javax.swing.JTextField senha;
-    private javax.swing.JSeparator separadorCpf;
+    private javax.swing.JFormattedTextField precoCusto;
+    private javax.swing.JLabel precoCustoInvalido;
+    private javax.swing.JFormattedTextField precoVenda;
+    private javax.swing.JLabel precoVendaInvalido;
+    private javax.swing.JSeparator separadorDescricao;
     private javax.swing.JSeparator separadorEmail;
-    private javax.swing.JSeparator separadorNome;
-    private javax.swing.JSeparator separadorSenha;
+    private javax.swing.JSeparator separadorPrecoCusto;
     private javax.swing.JSeparator separadorTelefone;
-    private javax.swing.JTextField telefone;
     private javax.swing.JLabel voltar;
     // End of variables declaration//GEN-END:variables
 }

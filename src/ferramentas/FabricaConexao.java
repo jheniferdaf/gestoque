@@ -28,7 +28,7 @@ public class FabricaConexao {
         int tentativas = 0;
         while(conectado == false && tentativas <= 4){
             try {
-                con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/TutorVirtual", "postgres", "8888");
+                con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/GEstoque", "postgres", "8888");
                 conectado = true;
             } catch (SQLException ex) {
                 tentativas++;

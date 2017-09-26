@@ -37,6 +37,15 @@ public class Produto {
         this.ativo = ativo;
     }
 
+    public Produto(String descricao, String categoria, double pCusto, double pVenda, int estoqueMinimo, String cnpjFornec) {
+        this.descricao = descricao;
+        this.categoria = categoria;
+        this.pCusto = pCusto;
+        this.pVenda = pVenda;
+        this.estoqueMinimo = estoqueMinimo;
+        this.cnpjFornec = cnpjFornec;
+    }
+
     public Produto(String descricao, String categoria, int quantidade, double pCusto, double pVenda, int estoqueMinimo, String cnpjFornec, boolean ativo) {
         this.descricao = descricao;
         this.categoria = categoria;

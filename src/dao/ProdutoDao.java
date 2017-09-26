@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import model.Produto;
 
 /**
@@ -26,29 +27,28 @@ public class ProdutoDao {
 
     public static boolean cadastraProduto(Produto novoProduto) {
         try (Connection con = FabricaConexao.criaConexao()) {
-            String sql = "insert into produto(descricao,categoria,quantidade,preco_custo,preco_venda"
-                    + "values (?,?,?,?,?,?,?,?)";
+            String sql = "insert into produto(descricao,categoria,preco_custo,preco_venda,estoque_minimo,ativo,cnpj_fornecedor) values (?,?,?,?,?,?,?)";
             PreparedStatement x = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             x.setString(1, novoProduto.getDescricao());
             x.setString(2, novoProduto.getCategoria());
-            x.setInt(3, novoProduto.getQuantidade());
-            x.setDouble(4, novoProduto.getpCusto());
-            x.setDouble(5, novoProduto.getpVenda());
-            x.setInt(6, novoProduto.getEstoqueMinimo());
+            x.setDouble(3, novoProduto.getpCusto());
+            x.setDouble(4, novoProduto.getpVenda());
+            x.setInt(5, novoProduto.getEstoqueMinimo());
+            x.setBoolean(6, true);
             x.setString(7, novoProduto.getCnpjFornec());
-            x.setBoolean(8, true);
 
             x.execute();
+            
             ResultSet codGerados = x.getGeneratedKeys();
             while (codGerados.next()) {
                 int novoCodigo = codGerados.getInt("codigo");
                 novoProduto.setCodigo(novoCodigo);
-
             }
+            
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.err.println("Problema de SQL");
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar o produto.");
             return false;
         }
 

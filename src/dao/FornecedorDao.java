@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Fornecedor;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,7 +42,8 @@ public class FornecedorDao {
             return true;
 
         } catch (SQLException ex) {
-            System.err.println("Erro na execução da SQL- cadastra funcionário");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar fornecedor.");
             return false;
         }
     }
@@ -61,8 +63,9 @@ public class FornecedorDao {
             xx.execute();
             return true;
 
-        } catch (Exception e) {
-            System.err.println("Erro na execução da sql-atualizaFornecedor");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar fornecedor.");
             return false;
         }
     }
@@ -89,7 +92,8 @@ public class FornecedorDao {
             }
 
         } catch (SQLException ex) {
-            System.err.println("Erro na execução da sql-ConsultaForncedorCnpj");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao consultar fornecedor por CNPJ.");
         }
         return retorno;
     }
@@ -109,14 +113,14 @@ public class FornecedorDao {
                        resultado.getString("endereco"),
                        resultado.getString("email"),
                        resultado.getString("razao_social"),
-                       resultado.getBoolean("true")));
+                       resultado.getBoolean("ativo")));
             }
-        } catch (Exception e) {
-            System.err.println("Erro na execução da sql- recuperaTodosFornecedoresAtivos.");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao recuperar todos fornecedores ativos.");
         }
         return retorno;
     }
-    
     
     public static List<Fornecedor> ruperaTodosFornecedoresInativos() {
         List<Fornecedor> retorno = new ArrayList<>();
@@ -133,10 +137,11 @@ public class FornecedorDao {
                        resultado.getString("endereco"),
                        resultado.getString("email"),
                        resultado.getString("razao_social"),
-                       resultado.getBoolean("false")));
+                       resultado.getBoolean("ativo")));
             }
-        } catch (Exception e) {
-            System.err.println("Erro na execução da sql- recuperaTodosFornecedoresInativos.");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao recuperar todos fornecedores inativos.");
         }
         return retorno;
     }
