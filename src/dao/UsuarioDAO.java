@@ -6,9 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import model.Usuario;
-import org.postgresql.util.PSQLException;
 
 /**
  *
@@ -104,6 +105,54 @@ public class UsuarioDAO {
             ex.printStackTrace();
         }
         return usuario;
+    }
+    
+    public static List<Usuario> ruperaTodosUsuariosAtivos() {
+        List<Usuario> retorno = new ArrayList<>();
+
+        try (Connection con = FabricaConexao.criaConexao()) {
+            String sql = "select * from usuario where ativo = true order by nome";
+            PreparedStatement xx = con.prepareStatement(sql);
+            ResultSet resultado = xx.executeQuery();
+            
+            while(resultado.next()){
+               retorno.add(new Usuario(resultado.getString("cpf"),
+                       resultado.getString("nome"),
+                       resultado.getString("senha"),
+                       resultado.getString("email"),
+                       resultado.getString("telefone"),
+                       resultado.getBoolean("admin"),
+                       resultado.getBoolean("ativo")));
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao recuperar todos usuários ativos.");
+        }
+        return retorno;
+    }
+    
+    public static List<Usuario> ruperaTodosUsuariosInativos() {
+        List<Usuario> retorno = new ArrayList<>();
+
+        try (Connection con = FabricaConexao.criaConexao()) {
+            String sql = "select * from usuario where ativo = false order by nome";
+            PreparedStatement xx = con.prepareStatement(sql);
+            ResultSet resultado = xx.executeQuery();
+            
+            while(resultado.next()){
+               retorno.add(new Usuario(resultado.getString("cpf"),
+                       resultado.getString("nome"),
+                       resultado.getString("senha"),
+                       resultado.getString("email"),
+                       resultado.getString("telefone"),
+                       resultado.getBoolean("admin"),
+                       resultado.getBoolean("ativo")));
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao recuperar todos usuários inativos.");
+        }
+        return retorno;
     }
 
 }

@@ -27,7 +27,7 @@ public class ProdutoDao {
 
     public static boolean cadastraProduto(Produto novoProduto) {
         try (Connection con = FabricaConexao.criaConexao()) {
-            String sql = "insert into produto(descricao,categoria,preco_custo,preco_venda,estoque_minimo,ativo,cnpj_fornecedor) values (?,?,?,?,?,?,?)";
+            String sql = "insert into produto(descricao,categoria,preco_custo,preco_venda,estoque_minimo,ativo,cnpj_fornecedor, estoque_atual) values (?,?,?,?,?,?,?,?)";
             PreparedStatement x = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             x.setString(1, novoProduto.getDescricao());
             x.setString(2, novoProduto.getCategoria());
@@ -36,6 +36,7 @@ public class ProdutoDao {
             x.setInt(5, novoProduto.getEstoqueMinimo());
             x.setBoolean(6, true);
             x.setString(7, novoProduto.getCnpjFornec());
+            x.setInt(8, 0);
 
             x.execute();
             
@@ -57,7 +58,7 @@ public class ProdutoDao {
     public static Produto consultaProdutoCod(int codigo) {
         Produto retorno = null;
         try (Connection con = FabricaConexao.criaConexao()) {
-            String sql = "select *produto where codigo = ?";
+            String sql = "select * produto where codigo = ?";
             PreparedStatement x = con.prepareStatement(sql);
             x.setInt(1, codigo);
             ResultSet pesquisaBD = x.executeQuery();
@@ -74,8 +75,8 @@ public class ProdutoDao {
                         pesquisaBD.getBoolean("ativo"));
 
             }
-
         } catch (SQLException ex) {
+            ex.printStackTrace();
         }
         return retorno;
     }

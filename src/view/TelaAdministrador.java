@@ -59,7 +59,7 @@ public class TelaAdministrador extends javax.swing.JPanel {
 
         paineis.add(new GerenciarUsuarios(paineis), "gerenciarUsuarios");
         paineis.add(new CadastroUsuario(paineis), "cadastroUsuario");
-        paineis.add(new ConsultaUsuario(paineis), "consultaUsuario");
+        paineis.add(new ConsultaUsuarioAtivo(paineis), "consultaUsuarioAtivo");
         paineis.add(new EditaUsuario(paineis), "editaUsuario");
 
         paineis.add(new Opcoes(paineis), "opcoes");
@@ -129,6 +129,7 @@ public class TelaAdministrador extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         barraLateral.setBackground(new java.awt.Color(51, 51, 51));
+        barraLateral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel7.setBackground(new java.awt.Color(102, 102, 102));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -144,6 +145,8 @@ public class TelaAdministrador extends javax.swing.JPanel {
         nomeUsuario.setForeground(new java.awt.Color(249, 249, 249));
         nomeUsuario.setText("~nome");
         jPanel7.add(nomeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
+
+        barraLateral.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 100));
 
         botaoMovimentacoes.setBackground(new java.awt.Color(102, 102, 102));
         botaoMovimentacoes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -167,6 +170,8 @@ public class TelaAdministrador extends javax.swing.JPanel {
         labelMovimentacoes.setText("Movimentações");
         botaoMovimentacoes.add(labelMovimentacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 200, 34));
 
+        barraLateral.add(botaoMovimentacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 220, 70));
+
         botaoOpcoes.setBackground(new java.awt.Color(102, 102, 102));
         botaoOpcoes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoOpcoes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -188,6 +193,8 @@ public class TelaAdministrador extends javax.swing.JPanel {
         labelOpcoes.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelOpcoes.setText("Opções");
         botaoOpcoes.add(labelOpcoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 170, 34));
+
+        barraLateral.add(botaoOpcoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 220, 70));
 
         botaoUsuarios.setBackground(new java.awt.Color(102, 102, 102));
         botaoUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -211,6 +218,8 @@ public class TelaAdministrador extends javax.swing.JPanel {
         labelUsuarios.setText("Usuários");
         botaoUsuarios.add(labelUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 170, 34));
 
+        barraLateral.add(botaoUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 220, 70));
+
         botaoRelatorios.setBackground(new java.awt.Color(102, 102, 102));
         botaoRelatorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoRelatorios.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -232,6 +241,8 @@ public class TelaAdministrador extends javax.swing.JPanel {
         labelRelatorios.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelRelatorios.setText("Relatórios");
         botaoRelatorios.add(labelRelatorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 170, 34));
+
+        barraLateral.add(botaoRelatorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 220, 70));
 
         botaoProdutos.setBackground(new java.awt.Color(102, 102, 102));
         botaoProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -255,6 +266,8 @@ public class TelaAdministrador extends javax.swing.JPanel {
         labelProdutos.setText("Produtos");
         botaoProdutos.add(labelProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 170, 34));
 
+        barraLateral.add(botaoProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 220, 70));
+
         botaoLogoff.setBackground(new java.awt.Color(102, 102, 102));
         botaoLogoff.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoLogoff.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -273,6 +286,8 @@ public class TelaAdministrador extends javax.swing.JPanel {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Logoff");
         botaoLogoff.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 120, 34));
+
+        barraLateral.add(botaoLogoff, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 580, -1, 70));
 
         botaoFornecedores.setBackground(new java.awt.Color(102, 102, 102));
         botaoFornecedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -296,48 +311,7 @@ public class TelaAdministrador extends javax.swing.JPanel {
         labelFornecedores.setText("Fornecedores");
         botaoFornecedores.add(labelFornecedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 170, 34));
 
-        javax.swing.GroupLayout barraLateralLayout = new javax.swing.GroupLayout(barraLateral);
-        barraLateral.setLayout(barraLateralLayout);
-        barraLateralLayout.setHorizontalGroup(
-            barraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
-            .addGroup(barraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(barraLateralLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(barraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoMovimentacoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoFornecedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoOpcoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoLogoff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        barraLateralLayout.setVerticalGroup(
-            barraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
-            .addGroup(barraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(barraLateralLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(botaoMovimentacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(botaoProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(botaoFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(botaoRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(botaoUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(botaoOpcoes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(60, 60, 60)
-                    .addComponent(botaoLogoff, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        barraLateral.add(botaoFornecedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 220, 70));
 
         add(barraLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 

@@ -38,7 +38,7 @@ public class Baixa extends javax.swing.JPanel {
         voltar = new javax.swing.JLabel();
         produtos = new javax.swing.JComboBox<>();
         separadorMovimentacao = new javax.swing.JSeparator();
-        nome = new javax.swing.JTextField();
+        descricao = new javax.swing.JTextField();
         confirmar = new javax.swing.JPanel();
         labelConfirmar = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -72,26 +72,26 @@ public class Baixa extends javax.swing.JPanel {
         separadorMovimentacao.setForeground(new java.awt.Color(51, 51, 51));
         add(separadorMovimentacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 130, 10));
 
-        nome.setBackground(new java.awt.Color(242, 242, 242));
-        nome.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        nome.setForeground(new java.awt.Color(51, 51, 51));
-        nome.setBorder(null);
-        nome.addFocusListener(new java.awt.event.FocusAdapter() {
+        descricao.setBackground(new java.awt.Color(242, 242, 242));
+        descricao.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        descricao.setForeground(new java.awt.Color(51, 51, 51));
+        descricao.setBorder(null);
+        descricao.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                nomeFocusLost(evt);
+                descricaoFocusLost(evt);
             }
         });
-        nome.addActionListener(new java.awt.event.ActionListener() {
+        descricao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nomeActionPerformed(evt);
+                descricaoActionPerformed(evt);
             }
         });
-        nome.addKeyListener(new java.awt.event.KeyAdapter() {
+        descricao.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                nomeKeyTyped(evt);
+                descricaoKeyTyped(evt);
             }
         });
-        add(nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 600, 70));
+        add(descricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 600, 70));
 
         confirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         confirmar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -239,7 +239,7 @@ public class Baixa extends javax.swing.JPanel {
         cartoes.show(paineis, "movimentacoes");
     }//GEN-LAST:event_voltarMouseClicked
 
-    private void nomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nomeFocusLost
+    private void descricaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_descricaoFocusLost
         //        String conteudo = jTextField1.getText();
         //        String conteudoAvaliado = conteudo.replaceAll("[^ A-z]", "");
         //        System.out.println(conteudoAvaliado);
@@ -252,15 +252,15 @@ public class Baixa extends javax.swing.JPanel {
         //            nomeInvalido.setText("");
         //            imagemCampoInválido.setVisible(false);
         //        }
-    }//GEN-LAST:event_nomeFocusLost
+    }//GEN-LAST:event_descricaoFocusLost
 
-    private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
+    private void descricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descricaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nomeActionPerformed
+    }//GEN-LAST:event_descricaoActionPerformed
 
-    private void nomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomeKeyTyped
+    private void descricaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descricaoKeyTyped
 
-    }//GEN-LAST:event_nomeKeyTyped
+    }//GEN-LAST:event_descricaoKeyTyped
 
     private void labelConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseClicked
         JOptionPane.showMessageDialog(this, "clicou");
@@ -347,6 +347,7 @@ public class Baixa extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField codigoProduto;
     private javax.swing.JPanel confirmar;
+    private javax.swing.JTextField descricao;
     private javax.swing.JTextField emEstoque;
     private javax.swing.JTextField estoqueAtual;
     private javax.swing.JLabel jLabel1;
@@ -355,7 +356,6 @@ public class Baixa extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel labelConfirmar;
-    private javax.swing.JTextField nome;
     private javax.swing.JComboBox<String> produtos;
     private javax.swing.JSeparator separadorMovimentacao;
     private javax.swing.JSeparator separadorProduto;
