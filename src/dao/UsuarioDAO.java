@@ -36,7 +36,7 @@ public class UsuarioDAO {
         } catch (SQLException ex) {
 
             if (ex.getMessage().contains("duplicate key value violates unique constraint \"usuario_pkey\"")) {
-                JOptionPane.showMessageDialog(null, "CPF j cadastrado.");
+                JOptionPane.showMessageDialog(null, "CPF já cadastrado.");
                 return false;
             } else {
                 ex.printStackTrace();

@@ -213,7 +213,7 @@ public class CadastroProduto extends javax.swing.JPanel {
 
         categoria.setBackground(new java.awt.Color(242, 242, 242));
         categoria.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Açougue", "Bebidas", "Frios/Laticínios", "Higiene Pessoal", "Hortifrutigranjeiros", "Mercearia", "Limpeza", "Outros", "Padaria" }));
+        categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Açougue", "Bebidas", "Frios/Laticínios", "Higiene Pessoal", "Hortifrutigranjeiros", "Mercearia", "Mercearia Seca", "Limpeza", "Outros", "Padaria" }));
         categoria.setBorder(null);
         add(categoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 260, 30));
 

@@ -107,6 +107,7 @@ public class Login extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Entrar");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         entrar.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 40));
 
         add(entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, -1, -1));

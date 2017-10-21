@@ -34,11 +34,11 @@ public class CadastroFornecedor extends javax.swing.JPanel {
         labelsInvalidas.add(telefoneInvalido);
         labelsInvalidas.add(enderecoInvalido);
         labelsInvalidas.add(emailInvalido);
-        resetaCamposInvalidos();
+        resetaLabelsCampoInvalido();
         
     }
 
-    private void resetaCamposInvalidos(){
+    private void resetaLabelsCampoInvalido(){
         for (JLabel l : labelsInvalidas){
             l.setVisible(false);
         }
@@ -307,7 +307,7 @@ public class CadastroFornecedor extends javax.swing.JPanel {
     }//GEN-LAST:event_cnpjActionPerformed
 
     private void labelConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseClicked
-        resetaCamposInvalidos();
+        resetaLabelsCampoInvalido();
         boolean tudoCerto = true;
 
         if (razaoSocial.getText().isEmpty()){

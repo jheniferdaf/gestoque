@@ -39,6 +39,7 @@ public class TelaAdministrador extends javax.swing.JPanel {
         initComponents();
         this.usuario = usuario;
         nomeUsuario.setText(usuario.getNome());
+        
         paineis.add(new Movimentacoes(paineis), "movimentacoes");
         paineis.add(new Entrada(paineis, usuario), "entrada");
         paineis.add(new Baixa(paineis, usuario), "baixa");
@@ -46,22 +47,17 @@ public class TelaAdministrador extends javax.swing.JPanel {
 
         paineis.add(new GerenciarProdutos(paineis), "gerenciarProdutos");
         paineis.add(new CadastroProduto(paineis), "cadastroProduto");
-        paineis.add(new ConsultaProduto(paineis), "consultaProduto");
+        paineis.add(new ConsultaProdutoAtivo(paineis), "consultaProduto");
         paineis.add(new EditaProduto(paineis), "editaProduto");
         paineis.add(new ProdutosEstoqueMinimo(paineis), "produtosEstoqueMinimo");
-
-        paineis.add(new GerenciarFornecedores(paineis), "gerenciarFornecedores");
-        paineis.add(new CadastroFornecedor(paineis), "cadastroFornecedor");
-        paineis.add(new ConsultaFornecedor(paineis), "consultaFornecedor");
-        paineis.add(new EditaFornecedor(paineis), "editaFornecedor");
+        
+inicializaFornecedores();
 
         paineis.add(new Relatorios(paineis), "relatorios");
 
-        paineis.add(new GerenciarUsuarios(paineis), "gerenciarUsuarios");
-        paineis.add(new CadastroUsuario(paineis), "cadastroUsuario");
-        paineis.add(new ConsultaUsuarioAtivo(paineis), "consultaUsuarioAtivo");
-        paineis.add(new EditaUsuario(paineis), "editaUsuario");
 
+        inicializaUsuarios();
+        
         paineis.add(new Opcoes(paineis), "opcoes");
 
         botoesLaterais = new ArrayList<JPanel>();
@@ -82,6 +78,31 @@ public class TelaAdministrador extends javax.swing.JPanel {
 
     }
 
+    public void inicializaFornecedores(){
+        EditaFornecedor editaFornecedor = new EditaFornecedor(paineis);
+        
+        
+        paineis.add(new GerenciarFornecedores(paineis), "gerenciarFornecedores");
+        paineis.add(new CadastroFornecedor(paineis), "cadastroFornecedor");
+        paineis.add(new ConsultaFornecedorAtivo(paineis), "consultaFornecedor");
+        paineis.add(new EditaFornecedor(paineis), "editaFornecedor");
+    }
+    
+    public void inicializaUsuarios(){
+        EditaUsuario editaUsuario = new EditaUsuario(paineis);
+        ConsultaUsuarioAtivo consultaUsuarioAtivo = new ConsultaUsuarioAtivo(paineis,editaUsuario);
+        ConsultaUsuarioInativo consultaUsuarioInativo = new ConsultaUsuarioInativo(paineis, editaUsuario);
+
+        editaUsuario.consultaUsuarioAtivo = consultaUsuarioAtivo;
+        editaUsuario.consultaUsuarioInativo = consultaUsuarioInativo;
+        
+        paineis.add(new GerenciarUsuarios(paineis, consultaUsuarioAtivo, consultaUsuarioInativo), "gerenciarUsuarios");
+        paineis.add(new CadastroUsuario(paineis), "cadastroUsuario");
+        paineis.add(consultaUsuarioAtivo, "consultaUsuarioAtivo");
+        paineis.add(consultaUsuarioInativo, "consultaUsuarioInativo");
+        paineis.add(editaUsuario, "editaUsuario");
+    }
+    
     public void resetaBotoes() {
         for (JPanel b : botoesLaterais) {
             b.setBackground(corPadraoBotao);
@@ -284,10 +305,15 @@ public class TelaAdministrador extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(231, 243, 239));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setText("Logoff");
-        botaoLogoff.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 120, 34));
+        jLabel3.setText("Fechar");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        botaoLogoff.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 210, 70));
 
-        barraLateral.add(botaoLogoff, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 580, -1, 70));
+        barraLateral.add(botaoLogoff, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 580, 220, 70));
 
         botaoFornecedores.setBackground(new java.awt.Color(102, 102, 102));
         botaoFornecedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -486,6 +512,10 @@ public class TelaAdministrador extends javax.swing.JPanel {
         labelOpcoes.setForeground(corLabelAtivo);
         botaoAtivo = botaoOpcoes;
     }//GEN-LAST:event_botaoOpcoesMouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jLabel3MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -15,13 +15,17 @@ import javax.swing.JPanel;
  * @author Jheni
  */
 public class GerenciarUsuarios extends javax.swing.JPanel {
+    
     JPanel paineis;
-    /**
-     * Creates new form GerenciarUsuarios
-     */
-    public GerenciarUsuarios(JPanel paineis) {
+    ConsultaUsuarioAtivo consultaUsuarioAtivo;
+    ConsultaUsuarioInativo consultaUsuarioInativo;
+
+
+    public GerenciarUsuarios(JPanel paineis, ConsultaUsuarioAtivo consultaUsuarioAtivo, ConsultaUsuarioInativo consultaUsuarioInativo) {
         initComponents();
         this.paineis = paineis;
+        this.consultaUsuarioAtivo = consultaUsuarioAtivo;
+        this.consultaUsuarioInativo = consultaUsuarioInativo;
     }
 
     /**
@@ -35,9 +39,9 @@ public class GerenciarUsuarios extends javax.swing.JPanel {
 
         cadastrar = new javax.swing.JPanel();
         cadastrarUsuario = new javax.swing.JLabel();
-        consultaUsuarioInativo = new javax.swing.JPanel();
+        consultaUsuarioInativoB = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        consultaUsuarioAtivo = new javax.swing.JPanel();
+        consultaUsuarioAtivoB = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -56,52 +60,60 @@ public class GerenciarUsuarios extends javax.swing.JPanel {
 
         add(cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 200, 190));
 
-        consultaUsuarioInativo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setText("Consultar Usuário Inativo");
-        consultaUsuarioInativo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
-
-        add(consultaUsuarioInativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 200, 200, 190));
-
-        consultaUsuarioAtivo.addMouseListener(new java.awt.event.MouseAdapter() {
+        consultaUsuarioInativoB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                consultaUsuarioAtivoMouseClicked(evt);
+                consultaUsuarioInativoBMouseClicked(evt);
             }
         });
-        consultaUsuarioAtivo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        consultaUsuarioInativoB.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setText("Consultar Usuário Inativo");
+        consultaUsuarioInativoB.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+
+        add(consultaUsuarioInativoB, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 200, 200, 190));
+
+        consultaUsuarioAtivoB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                consultaUsuarioAtivoBMouseClicked(evt);
+            }
+        });
+        consultaUsuarioAtivoB.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("Consultar Usuário Ativo");
-        consultaUsuarioAtivo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+        consultaUsuarioAtivoB.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
-        add(consultaUsuarioAtivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, 200, 190));
+        add(consultaUsuarioAtivoB, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, 200, 190));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void consultaUsuarioAtivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultaUsuarioAtivoMouseClicked
+    private void consultaUsuarioAtivoBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultaUsuarioAtivoBMouseClicked
+        consultaUsuarioAtivo.atualizarUsuarios();
+        consultaUsuarioAtivo.atualizarInformacoes();
+        consultaUsuarioAtivo.editaUsuario.retornar = EditaUsuario.CONSULTA_ATIVOS;
+        
         CardLayout cartoes = (CardLayout) paineis.getLayout();
-        cartoes.show(paineis, "consultaUsuaroAtivo");
-//
-//        for (Component p : paineis.getComponents()){
-//            try{
-//                paineis.remove((ConsultaUsuarioAtivo)p);
-//                paineis.add(new ConsultaUsuarioAtivo(paineis), "consultaUsuarioAtivo");
-//                cartoes.show(paineis, "consultaUsuaroAtivo");
-//            }catch (Exception ex){
-//                System.out.println("erooou");
-//            }
-//        }
-    }//GEN-LAST:event_consultaUsuarioAtivoMouseClicked
+        cartoes.show(paineis, "consultaUsuarioAtivo");
+    }//GEN-LAST:event_consultaUsuarioAtivoBMouseClicked
 
     private void cadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastrarMouseClicked
         CardLayout cartoes = (CardLayout) paineis.getLayout();
         cartoes.show(paineis, "cadastroUsuario");
     }//GEN-LAST:event_cadastrarMouseClicked
 
+    private void consultaUsuarioInativoBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultaUsuarioInativoBMouseClicked
+        consultaUsuarioInativo.atualizarUsuarios();
+        consultaUsuarioInativo.atualizarInformacoes();
+        consultaUsuarioAtivo.editaUsuario.retornar = EditaUsuario.CONSULTA_INATIVOS;
+        
+        CardLayout cartoes = (CardLayout) paineis.getLayout();
+        cartoes.show(paineis, "consultaUsuarioInativo");
+    }//GEN-LAST:event_consultaUsuarioInativoBMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel cadastrar;
     private javax.swing.JLabel cadastrarUsuario;
-    private javax.swing.JPanel consultaUsuarioAtivo;
-    private javax.swing.JPanel consultaUsuarioInativo;
+    private javax.swing.JPanel consultaUsuarioAtivoB;
+    private javax.swing.JPanel consultaUsuarioInativoB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

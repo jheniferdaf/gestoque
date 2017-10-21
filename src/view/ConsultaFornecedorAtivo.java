@@ -12,12 +12,12 @@ import javax.swing.JPanel;
  *
  * @author Jheni
  */
-public class ConsultaFornecedor extends javax.swing.JPanel {
+public class ConsultaFornecedorAtivo extends javax.swing.JPanel {
     JPanel paineis;
     /**
      * Creates new form ConsultaFornecedores
      */
-    public ConsultaFornecedor(JPanel paineis) {
+    public ConsultaFornecedorAtivo(JPanel paineis) {
         initComponents();
         this.paineis = paineis;
     }

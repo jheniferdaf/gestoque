@@ -31,7 +31,9 @@ public class GerenciarProdutos extends javax.swing.JPanel {
 
         produtosEstoqueMinimoAtingido = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        consultarProduto = new javax.swing.JPanel();
+        consultarProdutoAtivo = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        consultarProdutoInativo = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         cadastrarProduto = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -51,21 +53,36 @@ public class GerenciarProdutos extends javax.swing.JPanel {
         jLabel3.setText("Estoque mínimo");
         produtosEstoqueMinimoAtingido.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 150, 110));
 
-        add(produtosEstoqueMinimoAtingido, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 220, 200, 200));
+        add(produtosEstoqueMinimoAtingido, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, 200, 200));
 
-        consultarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        consultarProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+        consultarProdutoAtivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        consultarProdutoAtivo.setPreferredSize(new java.awt.Dimension(100, 100));
+        consultarProdutoAtivo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                consultarProdutoMouseClicked(evt);
+                consultarProdutoAtivoMouseClicked(evt);
             }
         });
-        consultarProduto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        consultarProdutoAtivo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel4.setText("Consultar Produto Ativo");
+        consultarProdutoAtivo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, -1));
+
+        add(consultarProdutoAtivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 200, 200));
+
+        consultarProdutoInativo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        consultarProdutoInativo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                consultarProdutoInativoMouseClicked(evt);
+            }
+        });
+        consultarProdutoInativo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel2.setText("Consultar Produto");
-        consultarProduto.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+        jLabel2.setText("Consultar Produto Inativo");
+        consultarProdutoInativo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 90, -1, -1));
 
-        add(consultarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, 200, 200));
+        add(consultarProdutoInativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 200, 200));
 
         cadastrarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cadastrarProduto.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -79,7 +96,7 @@ public class GerenciarProdutos extends javax.swing.JPanel {
         jLabel1.setText("Cadastrar Produto");
         cadastrarProduto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
-        add(cadastrarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 200, 200));
+        add(cadastrarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 200, 200));
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadastrarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastrarProdutoMouseClicked
@@ -87,10 +104,10 @@ public class GerenciarProdutos extends javax.swing.JPanel {
         cartoes.show(paineis, "cadastroProduto");
     }//GEN-LAST:event_cadastrarProdutoMouseClicked
 
-    private void consultarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultarProdutoMouseClicked
+    private void consultarProdutoInativoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultarProdutoInativoMouseClicked
         CardLayout cartoes = (CardLayout) paineis.getLayout();
         cartoes.show(paineis, "consultaProduto");
-    }//GEN-LAST:event_consultarProdutoMouseClicked
+    }//GEN-LAST:event_consultarProdutoInativoMouseClicked
 
     private void produtosEstoqueMinimoAtingidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produtosEstoqueMinimoAtingidoMouseClicked
         CardLayout cartoes = (CardLayout) paineis.getLayout();
@@ -101,13 +118,19 @@ public class GerenciarProdutos extends javax.swing.JPanel {
         //ATUALIZAR A LISTA DE PRODUTOS****************************************************
     }//GEN-LAST:event_produtosEstoqueMinimoAtingidoMouseClicked
 
+    private void consultarProdutoAtivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultarProdutoAtivoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_consultarProdutoAtivoMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel cadastrarProduto;
-    private javax.swing.JPanel consultarProduto;
+    private javax.swing.JPanel consultarProdutoAtivo;
+    private javax.swing.JPanel consultarProdutoInativo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel produtosEstoqueMinimoAtingido;
     // End of variables declaration//GEN-END:variables
 }

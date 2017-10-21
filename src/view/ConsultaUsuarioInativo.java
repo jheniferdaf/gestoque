@@ -15,11 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Usuario;
 
-/**
- *
- * @author Jheni
- */
-public class ConsultaUsuarioAtivo extends javax.swing.JPanel {
+public class ConsultaUsuarioInativo extends javax.swing.JPanel {
 
     JPanel paineis;
     EditaUsuario editaUsuario;
@@ -27,7 +23,7 @@ public class ConsultaUsuarioAtivo extends javax.swing.JPanel {
     DefaultComboBoxModel padraoUsuarios;
     private ButtonGroup grupoRadioButton;
 
-    public ConsultaUsuarioAtivo(JPanel paineis, EditaUsuario editaUsuario) {
+    public ConsultaUsuarioInativo(JPanel paineis, EditaUsuario editaUsuario) {
         initComponents();
         this.paineis = paineis;
         this.editaUsuario = editaUsuario;
@@ -41,7 +37,7 @@ public class ConsultaUsuarioAtivo extends javax.swing.JPanel {
     }
 
     public void atualizarUsuarios() {
-        listaUsuarios = UsuarioService.recuperaTodosUsuariosAtivos();
+        listaUsuarios = UsuarioService.recuperaTodosUsuariosInativos();
 
         padraoUsuarios = new DefaultComboBoxModel();
         for (Usuario u : listaUsuarios) {
@@ -64,7 +60,7 @@ public class ConsultaUsuarioAtivo extends javax.swing.JPanel {
             }
         }
     }
-
+    
     public void limparInformacoes() {
         nome.setText("");
         cpfUsuario.setText("");
@@ -72,7 +68,6 @@ public class ConsultaUsuarioAtivo extends javax.swing.JPanel {
         telefone.setText("");
         grupoRadioButton.clearSelection();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,8 +95,8 @@ public class ConsultaUsuarioAtivo extends javax.swing.JPanel {
         voltar = new javax.swing.JLabel();
         editar = new javax.swing.JPanel();
         editarLabel = new javax.swing.JLabel();
-        desativar = new javax.swing.JPanel();
-        desativarLabel = new javax.swing.JLabel();
+        ativar = new javax.swing.JPanel();
+        ativarLabel = new javax.swing.JLabel();
         cpfInvalido = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -259,73 +254,30 @@ public class ConsultaUsuarioAtivo extends javax.swing.JPanel {
 
         add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 540, 80, 30));
 
-        desativar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        desativar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        ativar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ativar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        desativarLabel.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        desativarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        desativarLabel.setText("Desativar");
-        desativarLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+        ativarLabel.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        ativarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ativarLabel.setText("Ativar");
+        ativarLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                desativarLabelMouseClicked(evt);
+                ativarLabelMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                desativarLabelMouseEntered(evt);
+                ativarLabelMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                desativarLabelMouseExited(evt);
+                ativarLabelMouseExited(evt);
             }
         });
-        desativar.add(desativarLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
+        ativar.add(ativarLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
 
-        add(desativar, new org.netbeans.lib.awtextra.AbsoluteConstraints(602, 541, 80, 30));
+        add(ativar, new org.netbeans.lib.awtextra.AbsoluteConstraints(602, 541, 80, 30));
 
         cpfInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
         add(cpfInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 30, 30));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void editarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarLabelMouseClicked
-        if (usuarios.getSelectedIndex() != -1) {
-            CardLayout cartoes = (CardLayout) paineis.getLayout();
-            editaUsuario.inserirInformacoesUsuario(listaUsuarios.get(usuarios.getSelectedIndex()));
-            cartoes.show(paineis, "editaUsuario");
-        }
-    }//GEN-LAST:event_editarLabelMouseClicked
-
-    private void editarLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarLabelMouseEntered
-        editarLabel.setForeground(Color.white);
-    }//GEN-LAST:event_editarLabelMouseEntered
-
-    private void editarLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarLabelMouseExited
-        editarLabel.setForeground(Color.black);
-    }//GEN-LAST:event_editarLabelMouseExited
-
-    private void desativarLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desativarLabelMouseExited
-        desativarLabel.setForeground(Color.black);
-    }//GEN-LAST:event_desativarLabelMouseExited
-
-    private void desativarLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desativarLabelMouseEntered
-        desativarLabel.setForeground(Color.white);
-    }//GEN-LAST:event_desativarLabelMouseEntered
-
-    private void desativarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desativarLabelMouseClicked
-        if (usuarios.getSelectedIndex() != -1) {
-
-            Usuario u = listaUsuarios.get(usuarios.getSelectedIndex());
-            int resposta = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja desativar o " + u.getNome() + "?");
-            if (resposta == JOptionPane.OK_OPTION) {
-                u.setAtivo(false);
-                UsuarioService.alterarStatusUsuario(u);
-
-                limparInformacoes();
-                atualizarUsuarios();
-                atualizarInformacoes();
-
-                JOptionPane.showMessageDialog(this, u.getNome() + " foi desativado.");
-            }
-            
-        }
-    }//GEN-LAST:event_desativarLabelMouseClicked
 
     private void cpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cpfFocusLost
         String cpf2 = cpf.getText().replace(" ", "");
@@ -368,15 +320,57 @@ public class ConsultaUsuarioAtivo extends javax.swing.JPanel {
         cartoes.show(paineis, "gerenciarUsuarios");
     }//GEN-LAST:event_voltarMouseClicked
 
+    private void editarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarLabelMouseClicked
+        if (usuarios.getSelectedIndex() != -1) {
+            CardLayout cartoes = (CardLayout) paineis.getLayout();
+            editaUsuario.inserirInformacoesUsuario(listaUsuarios.get(usuarios.getSelectedIndex()));
+            cartoes.show(paineis, "editaUsuario");
+        }
+    }//GEN-LAST:event_editarLabelMouseClicked
+
+    private void editarLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarLabelMouseEntered
+        editarLabel.setForeground(Color.white);
+    }//GEN-LAST:event_editarLabelMouseEntered
+
+    private void editarLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarLabelMouseExited
+        editarLabel.setForeground(Color.black);
+    }//GEN-LAST:event_editarLabelMouseExited
+
+    private void ativarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ativarLabelMouseClicked
+        if (usuarios.getSelectedIndex() != -1) {
+
+            Usuario u = listaUsuarios.get(usuarios.getSelectedIndex());
+            int resposta = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja ativar o " + u.getNome() + "?");
+            if (resposta == JOptionPane.OK_OPTION) {
+                u.setAtivo(true);
+                UsuarioService.alterarStatusUsuario(u);
+                
+                limparInformacoes();
+                atualizarUsuarios();
+                atualizarInformacoes();
+                
+                JOptionPane.showMessageDialog(this, u.getNome() + " foi ativado.");
+            }
+        }
+    }//GEN-LAST:event_ativarLabelMouseClicked
+
+    private void ativarLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ativarLabelMouseEntered
+        ativarLabel.setForeground(Color.white);
+    }//GEN-LAST:event_ativarLabelMouseEntered
+
+    private void ativarLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ativarLabelMouseExited
+        ativarLabel.setForeground(Color.black);
+    }//GEN-LAST:event_ativarLabelMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton administrador;
+    private javax.swing.JPanel ativar;
+    private javax.swing.JLabel ativarLabel;
     private javax.swing.JRadioButton colaborador;
     private javax.swing.JFormattedTextField cpf;
     private javax.swing.JLabel cpfInvalido;
     private javax.swing.JLabel cpfUsuario;
-    private javax.swing.JPanel desativar;
-    private javax.swing.JLabel desativarLabel;
     private javax.swing.JPanel editar;
     private javax.swing.JLabel editarLabel;
     private javax.swing.JLabel email;
