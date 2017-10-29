@@ -323,6 +323,7 @@ public class ConsultaUsuarioInativo extends javax.swing.JPanel {
     private void editarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarLabelMouseClicked
         if (usuarios.getSelectedIndex() != -1) {
             CardLayout cartoes = (CardLayout) paineis.getLayout();
+            editaUsuario.resetaCamposInvalidos();
             editaUsuario.inserirInformacoesUsuario(listaUsuarios.get(usuarios.getSelectedIndex()));
             cartoes.show(paineis, "editaUsuario");
         }

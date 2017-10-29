@@ -8,6 +8,7 @@ package view;
 import controler.UsuarioService;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
@@ -26,40 +27,52 @@ public class EditaUsuario extends javax.swing.JPanel {
     private List<JLabel> labelsInvalidas;
     private ButtonGroup grupoRadioButton;
     private boolean admin;
-    int retornar;
     
+    int retornar;
     static final int CONSULTA_ATIVOS = 1;
     static final int CONSULTA_INATIVOS = 2;
-    
+
     ConsultaUsuarioAtivo consultaUsuarioAtivo;
     ConsultaUsuarioInativo consultaUsuarioInativo;
-    
+
     public EditaUsuario(JPanel paineis) {
         initComponents();
         this.paineis = paineis;
-        //this.consultaUsuarioAtivo = consultaUsuarioAtivo;
+
+        labelsInvalidas = new ArrayList<>();
+        labelsInvalidas.add(senhaInvalida);
+        labelsInvalidas.add(emailInvalido);
+        labelsInvalidas.add(telefoneInvalido);
+        resetaCamposInvalidos();
 
         grupoRadioButton = new ButtonGroup();
         grupoRadioButton.add(administrador);
         grupoRadioButton.add(colaborador);
 
     }
+ 
+    public void resetaCamposInvalidos(){
+        for (JLabel l : labelsInvalidas){
+            l.setVisible(false);
+        }
+    }
 
-    public void inserirInformacoesUsuario(Usuario u){
+    public void inserirInformacoesUsuario(Usuario u) {
         this.usuario = u;
-        
+
         nome.setText(u.getNome());
         cpf.setText(u.getCpf());
         senha.setText(u.getSenha());
         email.setText(u.getEmail());
         telefone.setText(u.getTelefone());
-        
-        if (u.isAdministrador()){
+
+        if (u.isAdministrador()) {
             administrador.setSelected(true);
         } else {
             colaborador.setSelected(true);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -247,6 +260,7 @@ public class EditaUsuario extends javax.swing.JPanel {
 
         emailInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         emailInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        emailInvalido.setToolTipText("E-mail inválido.");
         add(emailInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 310, 30, 30));
 
         telefoneInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
@@ -269,64 +283,53 @@ public class EditaUsuario extends javax.swing.JPanel {
     private void voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarMouseClicked
         CardLayout cartoes = (CardLayout) paineis.getLayout();
 
-if (retornar == CONSULTA_ATIVOS){
-        cartoes.show(paineis, "consultaUsuarioAtivo");
-} else {
-        cartoes.show(paineis, "consultaUsuarioInativo");
-}
+        if (retornar == CONSULTA_ATIVOS) {
+            cartoes.show(paineis, "consultaUsuarioAtivo");
+        } else {
+            cartoes.show(paineis, "consultaUsuarioInativo");
+        }
     }//GEN-LAST:event_voltarMouseClicked
 
     private void labelConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseClicked
-        //resetaCamposInvalidos();
+        resetaCamposInvalidos();
         boolean tudoCerto = true;
 
-//        if (nome.getText().isEmpty()){
-//            tudoCerto = false;
-//            nomeInvalido.setVisible(true);
-//        }
-//
-//        if (cpf.getText().replace(" ", "").length() < 14){
-//            tudoCerto = false;
-//            cpfInvalido.setVisible(true);
-//        }
-//
-        if (senha.getPassword().length < 1){
+        if (senha.getPassword().length < 1) {
             tudoCerto = false;
             senhaInvalida.setVisible(true);
         }
 
-        if (!email.getText().contains("@")){
+        if (!email.getText().contains("@")) {
             tudoCerto = false;
             emailInvalido.setVisible(true);
         }
 
-        if (telefone.getText().length() < 8){
+        if (telefone.getText().length() < 8) {
             tudoCerto = false;
             telefoneInvalido.setVisible(true);
         }
 
-        if (tudoCerto){
+        if (tudoCerto) {
             usuario.setSenha(new String(senha.getPassword()));
             usuario.setEmail(email.getText());
             usuario.setTelefone(telefone.getText());
             usuario.setAdministrador(admin);
-            //Usuario usuario = new Usuario(cpf.getText(), nome.getText(), new String(senha.getPassword()), email.getText(), telefone.getText(), admin, true);
-            if (UsuarioService.atualizarUsuario(usuario) == true){
+
+            if (UsuarioService.atualizarUsuario(usuario) == true) {
                 JOptionPane.showMessageDialog(null, "Usuário editado com sucesso.");
-                
+
                 consultaUsuarioAtivo.atualizarInformacoes();
-                
+
                 consultaUsuarioInativo.atualizarInformacoes();
-                
+
                 CardLayout cartoes = (CardLayout) paineis.getLayout();
 
-                if (retornar == CONSULTA_ATIVOS){
+                if (retornar == CONSULTA_ATIVOS) {
                     cartoes.show(paineis, "consultaUsuarioAtivo");
                 } else {
                     cartoes.show(paineis, "consultaUsuarioInativo");
                 }
             }
-
         }
     }//GEN-LAST:event_labelConfirmarMouseClicked
 
@@ -336,7 +339,7 @@ if (retornar == CONSULTA_ATIVOS){
     }//GEN-LAST:event_labelConfirmarMouseEntered
 
     private void labelConfirmarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseExited
-        botaoConfirmar.setBackground(new Color(240,240,240));
+        botaoConfirmar.setBackground(new Color(240, 240, 240));
         labelConfirmar.setForeground(Color.black);
     }//GEN-LAST:event_labelConfirmarMouseExited
 
@@ -355,7 +358,7 @@ if (retornar == CONSULTA_ATIVOS){
     }//GEN-LAST:event_botaoConfirmarMouseEntered
 
     private void botaoConfirmarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoConfirmarMouseExited
-        botaoConfirmar.setBackground(new Color(240,240,240));
+        botaoConfirmar.setBackground(new Color(240, 240, 240));
         labelConfirmar.setForeground(Color.black);
     }//GEN-LAST:event_botaoConfirmarMouseExited
 

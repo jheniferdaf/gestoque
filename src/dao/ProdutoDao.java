@@ -33,7 +33,7 @@ public class ProdutoDao {
             x.setString(2, novoProduto.getCategoria());
             x.setDouble(3, novoProduto.getpCusto());
             x.setDouble(4, novoProduto.getpVenda());
-            x.setInt(5, novoProduto.getEstoqueMinimo());
+            x.setDouble(5, novoProduto.getEstoqueMinimo());
             x.setBoolean(6, true);
             x.setString(7, novoProduto.getCnpjFornec());
             x.setInt(8, 0);
@@ -67,10 +67,10 @@ public class ProdutoDao {
                 retorno = new Produto(pesquisaBD.getInt("codigo"),
                         pesquisaBD.getString("descricao"),
                         pesquisaBD.getString("categoria"),
-                        pesquisaBD.getInt("quantidade"),
+                        pesquisaBD.getDouble("estoque_atual"),
                         pesquisaBD.getDouble("preco_custo"),
                         pesquisaBD.getDouble("preco_venda"),
-                        pesquisaBD.getInt("estoque_minimo"),
+                        pesquisaBD.getDouble("estoque_minimo"),
                         pesquisaBD.getString("cnpj_fornecedor"),
                         pesquisaBD.getBoolean("ativo"));
 
@@ -97,10 +97,10 @@ public class ProdutoDao {
                 Produto temp = new Produto(pesquisaBD.getInt("codigo"),
                         pesquisaBD.getString("descricao"),
                         pesquisaBD.getString("categoria"),
-                        pesquisaBD.getInt("quantidade"),
+                        pesquisaBD.getDouble("estoque_atual"),
                         pesquisaBD.getDouble("preco_custo"),
                         pesquisaBD.getDouble("preco_venda"),
-                        pesquisaBD.getInt("estoque_minimo"),
+                        pesquisaBD.getDouble("estoque_minimo"),
                         pesquisaBD.getString("cnpj_fornecedor"),
                         pesquisaBD.getBoolean("ativo"));
 
@@ -116,19 +116,19 @@ public class ProdutoDao {
     public static List<Produto> recuperaTodosProdutosAtivos() {
         List<Produto> retorno = new ArrayList<>();
         try (Connection con = FabricaConexao.criaConexao()) {
-            String sql = "select *from produto where ativo = true";
+            String sql = "select * from produto where ativo = true order by descricao";
             PreparedStatement x = con.prepareStatement(sql);
             ResultSet pesquisaBD = x.executeQuery();
             while (pesquisaBD.next()) {
                 retorno.add(new Produto(pesquisaBD.getInt("codigo"),
                         pesquisaBD.getString("descricao"),
                         pesquisaBD.getString("categoria"),
-                        pesquisaBD.getInt("quantidade"),
+                        pesquisaBD.getDouble("estoque_atual"),
                         pesquisaBD.getDouble("preco_custo"),
                         pesquisaBD.getDouble("preco_venda"),
-                        pesquisaBD.getInt("estoque_minimo"),
+                        pesquisaBD.getDouble("estoque_minimo"),
                         pesquisaBD.getString("cnpj_fornecedor"),
-                        pesquisaBD.getBoolean("true")));
+                        pesquisaBD.getBoolean("ativo")));
 
             }
 
@@ -143,19 +143,19 @@ public class ProdutoDao {
     public static List<Produto> recuperaTodosProdutosInativos() {
         List<Produto> retorno = new ArrayList<>();
         try (Connection con = FabricaConexao.criaConexao()) {
-            String sql = "select *from produto where ativo = false";
+            String sql = "select * from produto where ativo = false order by descricao";
             PreparedStatement x = con.prepareStatement(sql);
             ResultSet pesquisaBD = x.executeQuery();
             while (pesquisaBD.next()) {
                 retorno.add(new Produto(pesquisaBD.getInt("codigo"),
                         pesquisaBD.getString("descricao"),
                         pesquisaBD.getString("categoria"),
-                        pesquisaBD.getInt("quantidade"),
+                        pesquisaBD.getDouble("estoque_atual"),
                         pesquisaBD.getDouble("preco_custo"),
                         pesquisaBD.getDouble("preco_venda"),
-                        pesquisaBD.getInt("estoque_minimo"),
+                        pesquisaBD.getDouble("estoque_minimo"),
                         pesquisaBD.getString("cnpj_fornecedor"),
-                        pesquisaBD.getBoolean("false")));
+                        pesquisaBD.getBoolean("ativo")));
 
             }
 
@@ -167,6 +167,51 @@ public class ProdutoDao {
         return retorno;
     }
 
+    public static boolean atualizaProduto(Produto p){
+        try (Connection conexao = FabricaConexao.criaConexao()) {
+            String sql = "update produto set descricao = ?, categoria = ?, preco_custo = ?, preco_venda = ?, estoque_minimo = ?, ativo = ?, cnpj_fornecedor = ?, estoque_atual = ? where codigo = ?";
+
+            PreparedStatement x = conexao.prepareStatement(sql);
+
+            x.setString(1, p.getDescricao());
+            x.setString(2, p.getCategoria());
+            x.setDouble(3, p.getpCusto());
+            x.setDouble(4, p.getpVenda());
+            x.setDouble(5, p.getEstoqueMinimo());
+            x.setBoolean(6, p.isAtivo());
+            x.setString(7, p.getCnpjFornec());
+            x.setDouble(8, p.getQuantidade());
+            x.setInt(9, p.getCodigo());
+            
+            x.execute();
+
+            return true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Falha ao atualizar produto.");
+            return false;
+        }
+    }
+    
+    public static boolean alteraStatusProduto(Produto p){
+        try (Connection conexao = FabricaConexao.criaConexao()) {
+            String sql = "update produto set ativo = ? where codigo = ?";
+
+            PreparedStatement x = conexao.prepareStatement(sql);
+
+            x.setBoolean(1, p.isAtivo());
+            x.setInt(2, p.getCodigo());
+            
+            x.execute();
+
+            return true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Falha ao alterar status do produto.");
+            return false;
+        }
+    }
+    
     public static boolean atualizaPrecoCusto(int codigo, double novoPrecoCusto) {
         try (Connection con = FabricaConexao.criaConexao()) {
             String sql = "update produto set preco_custo = ? where codigo =?";

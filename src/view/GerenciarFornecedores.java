@@ -13,13 +13,17 @@ import javax.swing.JPanel;
  * @author Jheni
  */
 public class GerenciarFornecedores extends javax.swing.JPanel {
+    
     JPanel paineis;
-    /**
-     * Creates new form GerenciarFornecedores
-     */
-    public GerenciarFornecedores(JPanel paineis) {
+    ConsultaFornecedorAtivo consultaFornecedorAtivo;
+    ConsultaFornecedorInativo consultaFornecedorInativo;
+    
+    
+    public GerenciarFornecedores(JPanel paineis, ConsultaFornecedorAtivo consultaFornecedorAtivo, ConsultaFornecedorInativo consultaFornecedorInativo) {
         initComponents();
         this.paineis = paineis;
+        this.consultaFornecedorAtivo = consultaFornecedorAtivo;
+        this.consultaFornecedorInativo = consultaFornecedorInativo;
     }
 
     /**
@@ -104,12 +108,21 @@ public class GerenciarFornecedores extends javax.swing.JPanel {
     }//GEN-LAST:event_cadastrarFornecedorMouseClicked
 
     private void consultarFornecedorAtivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultarFornecedorAtivoMouseClicked
+        consultaFornecedorAtivo.atualizarFornecedores();
+        consultaFornecedorAtivo.atualizarInformacoes();
+        consultaFornecedorAtivo.editaFornecedor.retornar = EditaFornecedor.CONSULTA_ATIVOS;
+
         CardLayout cartoes = (CardLayout) paineis.getLayout();
-        cartoes.show(paineis, "consultaFornecedor");
+        cartoes.show(paineis, "consultaFornecedorAtivo");
     }//GEN-LAST:event_consultarFornecedorAtivoMouseClicked
 
     private void consultarFornecedorInativoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultarFornecedorInativoMouseClicked
-        // TODO add your handling code here:
+        consultaFornecedorInativo.atualizarFornecedores();
+        consultaFornecedorInativo.atualizarInformacoes();
+        consultaFornecedorInativo.editaFornecedor.retornar = EditaUsuario.CONSULTA_INATIVOS;
+
+        CardLayout cartoes = (CardLayout) paineis.getLayout();
+        cartoes.show(paineis, "consultaFornecedorInativo");
     }//GEN-LAST:event_consultarFornecedorInativoMouseClicked
 
 

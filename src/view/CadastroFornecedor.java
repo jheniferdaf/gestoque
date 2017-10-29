@@ -313,16 +313,37 @@ public class CadastroFornecedor extends javax.swing.JPanel {
         if (razaoSocial.getText().isEmpty()){
             tudoCerto = false;
             razaoSocialInvalida.setVisible(true);
+            razaoSocialInvalida.setToolTipText("Razão Social inválida.");
+        } else {
+            if (FornecedorService.consultaFornecedorRazaoSocial(razaoSocial.getText()) != null){
+                tudoCerto = false;
+                razaoSocialInvalida.setVisible(true);
+                razaoSocialInvalida.setToolTipText("Razão Social já cadastrada.");
+            }
         }
 
         if (cnpj.getText().replace(" ", "").length() < 18){
             tudoCerto = false;
             cnpjInvalido.setVisible(true);
+            cnpjInvalido.setToolTipText("CNPJ inválido.");
+        } else {
+            if(FornecedorService.consultaFornecedorCnpj(cnpj.getText()) != null){
+                tudoCerto = false;
+                cnpjInvalido.setVisible(true);
+                cnpjInvalido.setToolTipText("CNPJ ja cadastrado.");
+            }
         }
 
         if (inscricaoEstadual.getText().replace(" ", "").length() < 16){
             tudoCerto = false;
             inscricaoEstadualInvalida.setVisible(true);
+            inscricaoEstadualInvalida.setToolTipText("Inscrição estadual inválida.");
+        } else {
+            if (FornecedorService.consultaFornecedorInscricao(inscricaoEstadual.getText()) != null){
+                tudoCerto = false;
+                inscricaoEstadualInvalida.setVisible(true);
+                inscricaoEstadualInvalida.setToolTipText("Inscrição estadual já cadastrada.");
+            }
         }
         
         if (telefone.getText().length() < 8){

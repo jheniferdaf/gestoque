@@ -45,13 +45,9 @@ public class TelaAdministrador extends javax.swing.JPanel {
         paineis.add(new Baixa(paineis, usuario), "baixa");
         paineis.add(new Devolucao(paineis, usuario), "devolucao");
 
-        paineis.add(new GerenciarProdutos(paineis), "gerenciarProdutos");
-        paineis.add(new CadastroProduto(paineis), "cadastroProduto");
-        paineis.add(new ConsultaProdutoAtivo(paineis), "consultaProduto");
-        paineis.add(new EditaProduto(paineis), "editaProduto");
-        paineis.add(new ProdutosEstoqueMinimo(paineis), "produtosEstoqueMinimo");
+        inicializaProdutos();
         
-inicializaFornecedores();
+        inicializaFornecedores();
 
         paineis.add(new Relatorios(paineis), "relatorios");
 
@@ -78,19 +74,42 @@ inicializaFornecedores();
 
     }
 
+    public void inicializaProdutos(){
+        EditaProduto editaProduto = new EditaProduto(paineis);
+        ConsultaProdutoAtivo consultaProdutoAtivo = new ConsultaProdutoAtivo(paineis, editaProduto);
+        ConsultaProdutoInativo consultaProdutoInativo = new ConsultaProdutoInativo(paineis, editaProduto);
+        CadastroProduto cadastroProduto = new CadastroProduto(paineis);
+        
+        editaProduto.consultaProdutoAtivo = consultaProdutoAtivo;
+        editaProduto.consultaProdutoInativo = consultaProdutoInativo;
+        
+        paineis.add(new GerenciarProdutos(paineis, consultaProdutoAtivo, consultaProdutoInativo, cadastroProduto), "gerenciarProdutos");
+        paineis.add(cadastroProduto, "cadastroProduto");
+        paineis.add(consultaProdutoAtivo, "consultaProdutoAtivo");
+        paineis.add(consultaProdutoInativo, "consultaProdutoInativo");
+        paineis.add(editaProduto, "editaProduto");
+        
+        paineis.add(new ProdutosEstoqueMinimo(paineis), "produtosEstoqueMinimo");
+    }
+    
     public void inicializaFornecedores(){
         EditaFornecedor editaFornecedor = new EditaFornecedor(paineis);
+        ConsultaFornecedorAtivo consultaFornecedorAtivo = new ConsultaFornecedorAtivo(paineis, editaFornecedor);
+        ConsultaFornecedorInativo consultaFornecedorInativo = new ConsultaFornecedorInativo(paineis, editaFornecedor);
         
+        editaFornecedor.consultaFornecedorAtivo = consultaFornecedorAtivo;
+        editaFornecedor.consultaFornecedorInativo = consultaFornecedorInativo;
         
-        paineis.add(new GerenciarFornecedores(paineis), "gerenciarFornecedores");
+        paineis.add(new GerenciarFornecedores(paineis, consultaFornecedorAtivo, consultaFornecedorInativo), "gerenciarFornecedores");
         paineis.add(new CadastroFornecedor(paineis), "cadastroFornecedor");
-        paineis.add(new ConsultaFornecedorAtivo(paineis), "consultaFornecedor");
-        paineis.add(new EditaFornecedor(paineis), "editaFornecedor");
+        paineis.add(consultaFornecedorAtivo, "consultaFornecedorAtivo");
+        paineis.add(consultaFornecedorInativo, "consultaFornecedorInativo");
+        paineis.add(editaFornecedor, "editaFornecedor");
     }
     
     public void inicializaUsuarios(){
         EditaUsuario editaUsuario = new EditaUsuario(paineis);
-        ConsultaUsuarioAtivo consultaUsuarioAtivo = new ConsultaUsuarioAtivo(paineis,editaUsuario);
+        ConsultaUsuarioAtivo consultaUsuarioAtivo = new ConsultaUsuarioAtivo(paineis, editaUsuario);
         ConsultaUsuarioInativo consultaUsuarioInativo = new ConsultaUsuarioInativo(paineis, editaUsuario);
 
         editaUsuario.consultaUsuarioAtivo = consultaUsuarioAtivo;

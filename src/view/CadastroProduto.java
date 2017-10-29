@@ -25,10 +25,9 @@ import model.Produto;
 public class CadastroProduto extends javax.swing.JPanel {
     JPanel paineis;
     private List<JLabel> labelsInvalidas;
-    List<Fornecedor> fornecedores;
-    /**
-     * Creates new form CadastroProduto
-     */
+    List<Fornecedor> listaFornecedores = new ArrayList<>();
+    DefaultComboBoxModel<String> padraoFornecedores;
+
     public CadastroProduto(JPanel paineis) {
         initComponents();
         this.paineis = paineis;
@@ -43,18 +42,20 @@ public class CadastroProduto extends javax.swing.JPanel {
         
         resetaCamposInvalidos();
         
-        fornecedores = FornecedorService.recuperaTodosFornecedoresAtivos();
-        DefaultComboBoxModel<String> padraoFornecedor = new DefaultComboBoxModel<>();
-        padraoFornecedor.addElement(null);
-        for (Fornecedor f : fornecedores) {
-            padraoFornecedor.addElement(f.getRazaoSocial());
+        atualizarListaFornecedores();
+
+    }
+    
+    public void atualizarListaFornecedores(){
+        listaFornecedores = FornecedorService.recuperaTodosFornecedoresAtivos();
+
+        padraoFornecedores = new DefaultComboBoxModel();
+        padraoFornecedores.addElement(null);
+        for (Fornecedor f : listaFornecedores) {
+            padraoFornecedores.addElement(f.getRazaoSocial());
         }
-        fornecedores.add(0, null);
-        
-        fornecedor.setModel(padraoFornecedor);
-
-        
-
+        listaFornecedores.add(0, null);
+        fornecedor.setModel(padraoFornecedores);
     }
     
     private void resetaCamposInvalidos(){
@@ -71,6 +72,7 @@ public class CadastroProduto extends javax.swing.JPanel {
         estoqueMinimo.setText("");
         fornecedor.setSelectedIndex(0);
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -218,7 +220,7 @@ public class CadastroProduto extends javax.swing.JPanel {
         add(categoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 260, 30));
 
         estoqueMinimo.setBorder(null);
-        estoqueMinimo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        estoqueMinimo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.000"))));
         add(estoqueMinimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 260, 20));
 
         jLabel1.setText("R$");
@@ -322,7 +324,7 @@ public class CadastroProduto extends javax.swing.JPanel {
         }
         
         if (tudoCerto){
-            Produto produto = new Produto(descricao.getText(), (String)categoria.getSelectedItem(), Double.parseDouble(precoCusto.getText().replace(",", ".")), Double.parseDouble(precoVenda.getText().replace(",", ".")), Integer.parseInt(estoqueMinimo.getText()), fornecedores.get(fornecedor.getSelectedIndex()).getCnpj());
+            Produto produto = new Produto(descricao.getText(), (String)categoria.getSelectedItem(), Double.parseDouble(precoCusto.getText().replace(",", ".")), Double.parseDouble(precoVenda.getText().replace(",", ".")), Double.parseDouble(estoqueMinimo.getText().replace(",",".")), listaFornecedores.get(fornecedor.getSelectedIndex()).getCnpj());
             if (ProdutoService.cadastraProduto(produto) == true){
                 JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso.");
                 resetaTudo();

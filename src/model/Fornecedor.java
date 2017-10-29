@@ -81,7 +81,7 @@ public class Fornecedor {
         this.email = email;
     }
 
-    public boolean getAtivo() {
+    public boolean isAtivo() {
         return ativo;
     }
 
@@ -89,6 +89,4 @@ public class Fornecedor {
         this.ativo = ativo;
     }
     
-  
-
 }

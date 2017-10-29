@@ -5,19 +5,69 @@
  */
 package view;
 
+import controler.FornecedorService;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import model.Fornecedor;
+
 /**
  *
  * @author Jheni
  */
 public class ConsultaFornecedorInativo extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ConsultaFornecedorInativo
-     */
-    public ConsultaFornecedorInativo() {
+    JPanel paineis;
+    EditaFornecedor editaFornecedor;
+    
+    List<Fornecedor> listaFornecedores = new ArrayList<>();
+    DefaultComboBoxModel padraoFornecedores;
+    
+    public ConsultaFornecedorInativo(JPanel paineis, EditaFornecedor editaFornecedor) {
         initComponents();
+        this.paineis = paineis;
+        
+        this.editaFornecedor = editaFornecedor;
+        
+        cnpjInvalido.setVisible(false);
+        
+        atualizarFornecedores();
     }
 
+    public void atualizarFornecedores() {
+        listaFornecedores = FornecedorService.recuperaTodosFornecedoresInativos();
+
+        padraoFornecedores = new DefaultComboBoxModel();
+        for (Fornecedor f : listaFornecedores) {
+            padraoFornecedores.addElement(f.getRazaoSocial());
+        }
+        fornecedores.setModel(padraoFornecedores);
+    }
+
+    public void atualizarInformacoes() {
+        if (fornecedores.getSelectedIndex() != -1) {
+            Fornecedor f = listaFornecedores.get(fornecedores.getSelectedIndex());
+            razaoSocial.setText(f.getRazaoSocial());
+            cnpjFornecedor.setText(f.getCnpj());
+            inscricaoEstadual.setText(f.getInscricaoEstadual());
+            telefone.setText(f.getTelefone());
+            endereco.setText(f.getEndereco());
+            email.setText(f.getEmail());
+        }
+    }
+
+    private void limparInformacoes(){
+        razaoSocial.setText("");
+        cnpjFornecedor.setText("");
+        inscricaoEstadual.setText("");
+        telefone.setText("");
+        endereco.setText("");
+        email.setText("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,19 +77,329 @@ public class ConsultaFornecedorInativo extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        voltar = new javax.swing.JLabel();
+        separadorCpf = new javax.swing.JSeparator();
+        fornecedores = new javax.swing.JComboBox<>();
+        cnpj = new javax.swing.JFormattedTextField();
+        cnpjInvalido = new javax.swing.JLabel();
+        informacoes = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        razaoSocial = new javax.swing.JLabel();
+        cnpjFornecedor = new javax.swing.JLabel();
+        inscricaoEstadual = new javax.swing.JLabel();
+        telefone = new javax.swing.JLabel();
+        endereco = new javax.swing.JLabel();
+        email = new javax.swing.JLabel();
+        editar = new javax.swing.JPanel();
+        editarLabel = new javax.swing.JLabel();
+        ativar = new javax.swing.JPanel();
+        ativarLabel = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        voltar.setText("Voltar");
+        voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                voltarMouseClicked(evt);
+            }
+        });
+        add(voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        separadorCpf.setForeground(new java.awt.Color(51, 51, 51));
+        add(separadorCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 130, 10));
+
+        fornecedores.setBackground(new java.awt.Color(242, 242, 242));
+        fornecedores.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        fornecedores.setBorder(null);
+        fornecedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fornecedoresActionPerformed(evt);
+            }
+        });
+        add(fornecedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 70, 560, 30));
+
+        cnpj.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        try {
+            cnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###.####-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        cnpj.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        cnpj.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cnpjFocusLost(evt);
+            }
+        });
+        cnpj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cnpjActionPerformed(evt);
+            }
+        });
+        cnpj.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cnpjKeyReleased(evt);
+            }
+        });
+        add(cnpj, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 130, -1));
+
+        cnpjInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        add(cnpjInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 30, 30));
+
+        informacoes.setBackground(new java.awt.Color(255, 255, 255));
+        informacoes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel1.setText("Razão Social:");
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel3.setText("CNPJ:");
+
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel4.setText("Inscrição Estadual:");
+
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel5.setText("Telefone:");
+
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel6.setText("Endereço:");
+
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel7.setText("E-mail:");
+
+        razaoSocial.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        cnpjFornecedor.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        inscricaoEstadual.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        telefone.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        endereco.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        email.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        javax.swing.GroupLayout informacoesLayout = new javax.swing.GroupLayout(informacoes);
+        informacoes.setLayout(informacoesLayout);
+        informacoesLayout.setHorizontalGroup(
+            informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(informacoesLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(endereco, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+                    .addComponent(razaoSocial, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cnpjFornecedor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(inscricaoEstadual, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(telefone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        informacoesLayout.setVerticalGroup(
+            informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(informacoesLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(informacoesLayout.createSequentialGroup()
+                        .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(informacoesLayout.createSequentialGroup()
+                                .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(informacoesLayout.createSequentialGroup()
+                                        .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel1)
+                                            .addComponent(razaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel3))
+                                    .addComponent(cnpjFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4))
+                            .addComponent(inscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5))
+                    .addComponent(telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(endereco, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(informacoesLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(190, 190, 190))
         );
+
+        add(informacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 128, 780, -1));
+
+        editar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        editar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        editarLabel.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        editarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        editarLabel.setText("Editar");
+        editarLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editarLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                editarLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                editarLabelMouseExited(evt);
+            }
+        });
+        editar.add(editarLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
+
+        add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 540, 80, 30));
+
+        ativar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ativar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ativarLabel.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        ativarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ativarLabel.setText("Ativar");
+        ativarLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ativarLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ativarLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ativarLabelMouseExited(evt);
+            }
+        });
+        ativar.add(ativarLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
+
+        add(ativar, new org.netbeans.lib.awtextra.AbsoluteConstraints(602, 541, 80, 30));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarMouseClicked
+        CardLayout cartoes = (CardLayout) paineis.getLayout();
+        cartoes.show(paineis, "gerenciarFornecedores");
+    }//GEN-LAST:event_voltarMouseClicked
+
+    private void fornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fornecedoresActionPerformed
+        atualizarInformacoes();
+    }//GEN-LAST:event_fornecedoresActionPerformed
+
+    private void cnpjFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cnpjFocusLost
+        String cnpj2 = cnpj.getText().replace(" ", "");
+        boolean entrou = false;
+
+        if (cnpj2.length() == 18) {
+            cnpjInvalido.setVisible(false);
+            for (Fornecedor f : listaFornecedores) {
+                if (f.getCnpj().equals(cnpj2)) {
+                    entrou = true;
+
+                    System.out.println(f.getRazaoSocial());
+
+                    fornecedores.setSelectedIndex(listaFornecedores.indexOf(f));
+                    //padraoUsuarios.setSelectedItem(listaUsuarios.indexOf(u));
+                    break;
+                }
+            }
+            if (entrou == false) {
+                cnpjInvalido.setVisible(true);
+                cnpjInvalido.setToolTipText("Fornecedor não cadastrado.");
+            }
+        } else {
+            cnpjInvalido.setVisible(true);
+            cnpjInvalido.setToolTipText("CNPJ inválido.");
+        }
+    }//GEN-LAST:event_cnpjFocusLost
+
+    private void cnpjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cnpjActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cnpjActionPerformed
+
+    private void cnpjKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cnpjKeyReleased
+        if (evt.getKeyCode() == '\n') {
+            cnpj.transferFocus();
+        }
+    }//GEN-LAST:event_cnpjKeyReleased
+
+    private void editarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarLabelMouseClicked
+        if (fornecedores.getSelectedIndex() != -1) {
+            CardLayout cartoes = (CardLayout) paineis.getLayout();
+            editaFornecedor.resetaLabelsCampoInvalido();
+            editaFornecedor.inserirInformacoesFornecedor(listaFornecedores.get(fornecedores.getSelectedIndex()));
+            cartoes.show(paineis, "editaFornecedor");
+        }
+    }//GEN-LAST:event_editarLabelMouseClicked
+
+    private void editarLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarLabelMouseEntered
+        editarLabel.setForeground(Color.white);
+    }//GEN-LAST:event_editarLabelMouseEntered
+
+    private void editarLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarLabelMouseExited
+        editarLabel.setForeground(Color.black);
+    }//GEN-LAST:event_editarLabelMouseExited
+
+    private void ativarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ativarLabelMouseClicked
+        if (fornecedores.getSelectedIndex() != -1) {
+
+            Fornecedor f = listaFornecedores.get(fornecedores.getSelectedIndex());
+            int resposta = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja ativar o " + f.getRazaoSocial()+ "?");
+            if (resposta == JOptionPane.OK_OPTION) {
+                f.setAtivo(true);
+                FornecedorService.alterarStatusFornecedor(f);
+
+                limparInformacoes();
+                atualizarFornecedores();
+                atualizarInformacoes();
+
+                JOptionPane.showMessageDialog(this, f.getRazaoSocial()+ " foi ativado.");
+            }
+
+        }
+    }//GEN-LAST:event_ativarLabelMouseClicked
+
+    private void ativarLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ativarLabelMouseEntered
+        ativarLabel.setForeground(Color.white);
+    }//GEN-LAST:event_ativarLabelMouseEntered
+
+    private void ativarLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ativarLabelMouseExited
+        ativarLabel.setForeground(Color.black);
+    }//GEN-LAST:event_ativarLabelMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ativar;
+    private javax.swing.JLabel ativarLabel;
+    private javax.swing.JFormattedTextField cnpj;
+    private javax.swing.JLabel cnpjFornecedor;
+    private javax.swing.JLabel cnpjInvalido;
+    private javax.swing.JPanel editar;
+    private javax.swing.JLabel editarLabel;
+    private javax.swing.JLabel email;
+    private javax.swing.JLabel endereco;
+    private javax.swing.JComboBox<String> fornecedores;
+    private javax.swing.JPanel informacoes;
+    private javax.swing.JLabel inscricaoEstadual;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel razaoSocial;
+    private javax.swing.JSeparator separadorCpf;
+    private javax.swing.JLabel telefone;
+    private javax.swing.JLabel voltar;
     // End of variables declaration//GEN-END:variables
 }

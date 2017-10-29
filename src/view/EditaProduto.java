@@ -5,20 +5,81 @@
  */
 package view;
 
+import controler.FornecedorService;
+import controler.ProdutoService;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.Fornecedor;
+import model.Produto;
 
 /**
  *
  * @author Jheni
  */
 public class EditaProduto extends javax.swing.JPanel {
+
     JPanel paineis;
-    /**
-     * Creates new form EditaProduto
-     */
+    Produto produto;
+    private List<JLabel> labelsInvalidas;
+    List<Fornecedor> listaFornecedores = new ArrayList<>();
+    DefaultComboBoxModel<String> padraoFornecedores;
+    int retornar;
+
+    static final int CONSULTA_ATIVOS = 1;
+    static final int CONSULTA_INATIVOS = 2;
+
+    ConsultaProdutoAtivo consultaProdutoAtivo;
+    ConsultaProdutoInativo consultaProdutoInativo;
+    
     public EditaProduto(JPanel paineis) {
         initComponents();
         this.paineis = paineis;
+        
+        labelsInvalidas = new ArrayList<>();
+        labelsInvalidas.add(descricaoInvalida);
+        labelsInvalidas.add(categoriaInvalida);
+        labelsInvalidas.add(precoCustoInvalido);
+        labelsInvalidas.add(precoVendaInvalido);
+        labelsInvalidas.add(estoqueMinimoInvalido);  
+        labelsInvalidas.add(fornecedorInvalida);  
+        
+        resetaCamposInvalidos();
+        
+        atualizarListaFornecedores();
+
+    }
+    
+    public void atualizarListaFornecedores(){
+        listaFornecedores = FornecedorService.recuperaTodosFornecedoresAtivos();
+
+        padraoFornecedores = new DefaultComboBoxModel();
+        for (Fornecedor f : listaFornecedores) {
+            padraoFornecedores.addElement(f.getRazaoSocial());
+        }
+        fornecedor.setModel(padraoFornecedores);
+    }
+    
+    public void inserirInformacoesProduto(Produto p) {
+        this.produto = p;
+
+        descricao.setText(p.getDescricao());
+        categoria.setSelectedItem(p.getCategoria());
+        precoCusto.setText("" + p.getpCusto());
+        precoVenda.setText("" + p.getpVenda());
+        estoqueMinimo.setText("" + p.getEstoqueMinimo());
+        fornecedor.setSelectedItem(FornecedorService.consultaFornecedorCnpj(p.getCnpjFornec()).getRazaoSocial());
+    }
+    
+    public void resetaCamposInvalidos(){
+        for (JLabel l : labelsInvalidas){
+            l.setVisible(false);
+        }
     }
 
     /**
@@ -30,19 +91,325 @@ public class EditaProduto extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        voltar = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        descricao = new javax.swing.JTextField();
+        separadorDescricao = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        separadorPrecoCusto = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        separadorEmail = new javax.swing.JSeparator();
+        jLabel6 = new javax.swing.JLabel();
+        separadorTelefone = new javax.swing.JSeparator();
+        botaoConfirmar = new javax.swing.JPanel();
+        labelConfirmar = new javax.swing.JLabel();
+        categoria = new javax.swing.JComboBox<>();
+        estoqueMinimo = new javax.swing.JFormattedTextField();
+        jLabel1 = new javax.swing.JLabel();
+        precoVenda = new javax.swing.JFormattedTextField();
+        precoCusto = new javax.swing.JFormattedTextField();
+        jLabel7 = new javax.swing.JLabel();
+        categoriaInvalida = new javax.swing.JLabel();
+        precoCustoInvalido = new javax.swing.JLabel();
+        precoVendaInvalido = new javax.swing.JLabel();
+        estoqueMinimoInvalido = new javax.swing.JLabel();
+        descricaoInvalida = new javax.swing.JLabel();
+        fornecedor = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        fornecedorInvalida = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        voltar.setText("Voltar");
+        voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                voltarMouseClicked(evt);
+            }
+        });
+        add(voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel5.setText("Descrição:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, -1, -1));
+
+        descricao.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        descricao.setForeground(new java.awt.Color(51, 51, 51));
+        descricao.setBorder(null);
+        descricao.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                descricaoFocusLost(evt);
+            }
+        });
+        descricao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descricaoActionPerformed(evt);
+            }
+        });
+        descricao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                descricaoKeyTyped(evt);
+            }
+        });
+        add(descricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 260, 20));
+
+        separadorDescricao.setForeground(new java.awt.Color(51, 51, 51));
+        add(separadorDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 260, 10));
+
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel4.setText("Categoria:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel2.setText("Preço de Custo:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, -1, -1));
+
+        separadorPrecoCusto.setForeground(new java.awt.Color(51, 51, 51));
+        add(separadorPrecoCusto, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 260, 10));
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel3.setText("Preço de Venda:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, -1));
+
+        separadorEmail.setForeground(new java.awt.Color(51, 51, 51));
+        add(separadorEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 260, 10));
+
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel6.setText("Estoque Mínimo:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, -1, -1));
+
+        separadorTelefone.setForeground(new java.awt.Color(51, 51, 51));
+        add(separadorTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 420, 260, 10));
+
+        botaoConfirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoConfirmarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botaoConfirmarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botaoConfirmarMouseExited(evt);
+            }
+        });
+        botaoConfirmar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelConfirmar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelConfirmar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelConfirmar.setText("Confirmar");
+        labelConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelConfirmarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelConfirmarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelConfirmarMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labelConfirmarMousePressed(evt);
+            }
+        });
+        botaoConfirmar.add(labelConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
+
+        add(botaoConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 540, 80, 30));
+
+        categoria.setBackground(new java.awt.Color(242, 242, 242));
+        categoria.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Açougue", "Bebidas", "Frios/Laticínios", "Higiene Pessoal", "Hortifrutigranjeiros", "Mercearia", "Mercearia Seca", "Limpeza", "Outros", "Padaria" }));
+        categoria.setBorder(null);
+        add(categoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 260, 30));
+
+        estoqueMinimo.setBorder(null);
+        estoqueMinimo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.000"))));
+        add(estoqueMinimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 260, 20));
+
+        jLabel1.setText("R$");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, -1, 20));
+
+        precoVenda.setBorder(null);
+        precoVenda.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        add(precoVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 240, 20));
+
+        precoCusto.setBorder(null);
+        precoCusto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        add(precoCusto, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 240, 20));
+
+        jLabel7.setText("R$");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, -1, 20));
+
+        categoriaInvalida.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        categoriaInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        add(categoriaInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 30, 30));
+
+        precoCustoInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        precoCustoInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        add(precoCustoInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 30, 30));
+
+        precoVendaInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        precoVendaInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        add(precoVendaInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 310, 30, 30));
+
+        estoqueMinimoInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        estoqueMinimoInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        add(estoqueMinimoInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 30, 30));
+
+        descricaoInvalida.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        descricaoInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        add(descricaoInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 30, 30));
+
+        fornecedor.setBackground(new java.awt.Color(242, 242, 242));
+        fornecedor.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        fornecedor.setBorder(null);
+        add(fornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 480, 260, 30));
+
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel8.setText("Fornecedor:");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 450, -1, -1));
+
+        fornecedorInvalida.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        fornecedorInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        add(fornecedorInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 480, 30, 30));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarMouseClicked
+        CardLayout cartoes = (CardLayout) paineis.getLayout();
+
+        if (retornar == CONSULTA_ATIVOS) {
+            cartoes.show(paineis, "consultaProdutoAtivo");
+        } else {
+            cartoes.show(paineis, "consultaProdutoInativo");
+        }
+    }//GEN-LAST:event_voltarMouseClicked
+
+    private void descricaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_descricaoFocusLost
+
+    }//GEN-LAST:event_descricaoFocusLost
+
+    private void descricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descricaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_descricaoActionPerformed
+
+    private void descricaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descricaoKeyTyped
+
+    }//GEN-LAST:event_descricaoKeyTyped
+
+    private void labelConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseClicked
+        resetaCamposInvalidos();
+        boolean tudoCerto = true;
+
+        if (descricao.getText().isEmpty()){
+            tudoCerto = false;
+            descricaoInvalida.setVisible(true);
+        }
+
+        if (precoCusto.getText().length() < 1){
+            tudoCerto = false;
+            precoCustoInvalido.setVisible(true);
+        }
+
+        if (precoVenda.getText().length() < 1){
+            tudoCerto = false;
+            precoVendaInvalido.setVisible(true);
+        }
+
+        if (estoqueMinimo.getText().length() < 1){
+            tudoCerto = false;
+            estoqueMinimoInvalido.setVisible(true);
+        }
+
+        if (tudoCerto){
+            produto.setDescricao(descricao.getText());
+            produto.setCategoria((String)categoria.getSelectedItem());
+            produto.setpCusto(Double.parseDouble(precoCusto.getText().replace(",", ".")));
+            produto.setpVenda(Double.parseDouble(precoVenda.getText().replace(",", ".")));
+            produto.setEstoqueMinimo(Double.parseDouble(estoqueMinimo.getText().replace(",", ".")));
+            produto.setCnpjFornec(listaFornecedores.get(fornecedor.getSelectedIndex()).getCnpj());
+                        
+            if (ProdutoService.atualizaProduto(produto) == true){
+                JOptionPane.showMessageDialog(null, "Produto editado com sucesso.");
+                
+                consultaProdutoAtivo.atualizarInformacoes();
+                consultaProdutoInativo.atualizarInformacoes();
+                
+                CardLayout cartoes = (CardLayout) paineis.getLayout();
+                if (retornar == CONSULTA_ATIVOS) {
+                    cartoes.show(paineis, "consultaProdutoAtivo");
+                } else {
+                    cartoes.show(paineis, "consultaProdutoInativo");
+                }
+                //                CardLayout cartoes = (CardLayout) paineis.getLayout();
+                //                cartoes.show(paineis, "gerenciarUsuarios");
+            }
+        }
+    }//GEN-LAST:event_labelConfirmarMouseClicked
+
+    private void labelConfirmarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseEntered
+        botaoConfirmar.setBackground(Color.gray);
+        labelConfirmar.setForeground(Color.white);
+    }//GEN-LAST:event_labelConfirmarMouseEntered
+
+    private void labelConfirmarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseExited
+        botaoConfirmar.setBackground(new Color(240,240,240));
+        labelConfirmar.setForeground(Color.black);
+    }//GEN-LAST:event_labelConfirmarMouseExited
+
+    private void labelConfirmarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMousePressed
+        botaoConfirmar.setBackground(Color.white);
+        labelConfirmar.setForeground(Color.black);
+    }//GEN-LAST:event_labelConfirmarMousePressed
+
+    private void botaoConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoConfirmarMouseClicked
+
+    }//GEN-LAST:event_botaoConfirmarMouseClicked
+
+    private void botaoConfirmarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoConfirmarMouseEntered
+        botaoConfirmar.setBackground(Color.gray);
+        labelConfirmar.setForeground(Color.white);
+    }//GEN-LAST:event_botaoConfirmarMouseEntered
+
+    private void botaoConfirmarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoConfirmarMouseExited
+        botaoConfirmar.setBackground(new Color(240,240,240));
+        labelConfirmar.setForeground(Color.black);
+    }//GEN-LAST:event_botaoConfirmarMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel botaoConfirmar;
+    private javax.swing.JComboBox<String> categoria;
+    private javax.swing.JLabel categoriaInvalida;
+    private javax.swing.JTextField descricao;
+    private javax.swing.JLabel descricaoInvalida;
+    private javax.swing.JFormattedTextField estoqueMinimo;
+    private javax.swing.JLabel estoqueMinimoInvalido;
+    private javax.swing.JComboBox<String> fornecedor;
+    private javax.swing.JLabel fornecedorInvalida;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel labelConfirmar;
+    private javax.swing.JFormattedTextField precoCusto;
+    private javax.swing.JLabel precoCustoInvalido;
+    private javax.swing.JFormattedTextField precoVenda;
+    private javax.swing.JLabel precoVendaInvalido;
+    private javax.swing.JSeparator separadorDescricao;
+    private javax.swing.JSeparator separadorEmail;
+    private javax.swing.JSeparator separadorPrecoCusto;
+    private javax.swing.JSeparator separadorTelefone;
+    private javax.swing.JLabel voltar;
     // End of variables declaration//GEN-END:variables
 }

@@ -14,10 +14,10 @@ public class Produto {
     private int codigo;
     private String descricao;
     private String categoria;
-    private int quantidade;
+    private double quantidade;
     private double pCusto;
     private double pVenda;
-    private int estoqueMinimo;
+    private double estoqueMinimo;
     private String cnpjFornec;
     private boolean ativo;
 
@@ -25,7 +25,7 @@ public class Produto {
 
     }
 
-    public Produto(int codigo, String descricao, String categoria, int quantidade, double pCusto, double pVenda, int estoqueMinimo, String cnpjFornec, boolean ativo) {
+    public Produto(int codigo, String descricao, String categoria, double quantidade, double pCusto, double pVenda, double estoqueMinimo, String cnpjFornec, boolean ativo) {
         this.codigo = codigo;
         this.descricao = descricao;
         this.categoria = categoria;
@@ -37,7 +37,7 @@ public class Produto {
         this.ativo = ativo;
     }
 
-    public Produto(String descricao, String categoria, double pCusto, double pVenda, int estoqueMinimo, String cnpjFornec) {
+    public Produto(String descricao, String categoria, double pCusto, double pVenda, double estoqueMinimo, String cnpjFornec) {
         this.descricao = descricao;
         this.categoria = categoria;
         this.pCusto = pCusto;
@@ -46,7 +46,7 @@ public class Produto {
         this.cnpjFornec = cnpjFornec;
     }
 
-    public Produto(String descricao, String categoria, int quantidade, double pCusto, double pVenda, int estoqueMinimo, String cnpjFornec, boolean ativo) {
+    public Produto(String descricao, String categoria, double quantidade, double pCusto, double pVenda, double estoqueMinimo, String cnpjFornec, boolean ativo) {
         this.descricao = descricao;
         this.categoria = categoria;
         this.quantidade = quantidade;
@@ -82,11 +82,11 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    public int getQuantidade() {
+    public double getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(double quantidade) {
         this.quantidade = quantidade;
     }
 
@@ -106,11 +106,11 @@ public class Produto {
         this.pVenda = pVenda;
     }
 
-    public int getEstoqueMinimo() {
+    public double getEstoqueMinimo() {
         return estoqueMinimo;
     }
 
-    public void setEstoqueMinimo(int estoqueMinimo) {
+    public void setEstoqueMinimo(double estoqueMinimo) {
         this.estoqueMinimo = estoqueMinimo;
     }
 

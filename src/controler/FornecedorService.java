@@ -24,9 +24,22 @@ public class FornecedorService {
         
     }
     
+    public static boolean alterarStatusFornecedor(Fornecedor atual){
+        return FornecedorDao.alterarStatusFornecedor(atual);
+    }
+    
     public static Fornecedor consultaFornecedorCnpj(String cnpjFornecedor){
         return FornecedorDao.consultaFornecedorCnpj(cnpjFornecedor);
     }
+    
+    public static Fornecedor consultaFornecedorInscricao(String inscricaoFornecedor){
+        return FornecedorDao.consultaFornecedorInscricao(inscricaoFornecedor);
+    }
+
+    public static Fornecedor consultaFornecedorRazaoSocial(String razaoSocial){
+        return FornecedorDao.consultaFornecedorRazaoSocial(razaoSocial);
+    }
+
     
     public static List<Fornecedor> recuperaTodosFornecedoresAtivos(){
         return FornecedorDao.ruperaTodosFornecedoresAtivos();

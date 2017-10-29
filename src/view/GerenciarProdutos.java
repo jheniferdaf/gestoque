@@ -13,11 +13,18 @@ import javax.swing.JPanel;
  * @author Jheni
  */
 public class GerenciarProdutos extends javax.swing.JPanel {
+    
     JPanel paineis;
-
-    public GerenciarProdutos(JPanel paineis) {
+    ConsultaProdutoAtivo consultaProdutoAtivo;
+    ConsultaProdutoInativo consultaProdutoInativo;
+    CadastroProduto cadastroProduto;
+    
+    public GerenciarProdutos(JPanel paineis, ConsultaProdutoAtivo consultaProdutoAtivo, ConsultaProdutoInativo consultaProdutoInativo, CadastroProduto cadastroProduto) {
         initComponents();
         this.paineis = paineis;
+        this.consultaProdutoAtivo = consultaProdutoAtivo;
+        this.consultaProdutoInativo = consultaProdutoInativo;
+        this.cadastroProduto = cadastroProduto;
     }
 
     /**
@@ -101,12 +108,17 @@ public class GerenciarProdutos extends javax.swing.JPanel {
 
     private void cadastrarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastrarProdutoMouseClicked
         CardLayout cartoes = (CardLayout) paineis.getLayout();
+        cadastroProduto.atualizarListaFornecedores();
         cartoes.show(paineis, "cadastroProduto");
     }//GEN-LAST:event_cadastrarProdutoMouseClicked
 
     private void consultarProdutoInativoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultarProdutoInativoMouseClicked
+        consultaProdutoInativo.atualizarProdutos();
+        consultaProdutoInativo.atualizarInformacoes();
+        consultaProdutoInativo.editaProduto.retornar = EditaProduto.CONSULTA_INATIVOS;
+        
         CardLayout cartoes = (CardLayout) paineis.getLayout();
-        cartoes.show(paineis, "consultaProduto");
+        cartoes.show(paineis, "consultaProdutoInativo");
     }//GEN-LAST:event_consultarProdutoInativoMouseClicked
 
     private void produtosEstoqueMinimoAtingidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produtosEstoqueMinimoAtingidoMouseClicked
@@ -119,7 +131,12 @@ public class GerenciarProdutos extends javax.swing.JPanel {
     }//GEN-LAST:event_produtosEstoqueMinimoAtingidoMouseClicked
 
     private void consultarProdutoAtivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultarProdutoAtivoMouseClicked
-        // TODO add your handling code here:
+        consultaProdutoAtivo.atualizarProdutos();
+        consultaProdutoAtivo.atualizarInformacoes();
+        consultaProdutoAtivo.editaProduto.retornar = EditaProduto.CONSULTA_ATIVOS;
+        
+        CardLayout cartoes = (CardLayout) paineis.getLayout();
+        cartoes.show(paineis, "consultaProdutoAtivo");
     }//GEN-LAST:event_consultarProdutoAtivoMouseClicked
 
 

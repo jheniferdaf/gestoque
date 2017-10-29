@@ -25,28 +25,29 @@ public class EditaFornecedor extends javax.swing.JPanel {
     Fornecedor fornecedor;
     List<JLabel> labelsInvalidas;
 
+    int retornar;
+    static final int CONSULTA_ATIVOS = 1;
+    static final int CONSULTA_INATIVOS = 2;
+
     ConsultaFornecedorAtivo consultaFornecedorAtivo;
     ConsultaFornecedorInativo consultaFornecedorInativo;
 
-    /**
-     * Creates new form EditaFornecedor
-     */
     public EditaFornecedor(JPanel paineis) {
         initComponents();
         this.paineis = paineis;
 
         labelsInvalidas = new ArrayList<>();
         labelsInvalidas.add(razaoSocialInvalida);
-        labelsInvalidas.add(cnpjInvalido);
-        labelsInvalidas.add(inscricaoEstadualInvalida);
         labelsInvalidas.add(telefoneInvalido);
         labelsInvalidas.add(enderecoInvalido);
         labelsInvalidas.add(emailInvalido);
         resetaLabelsCampoInvalido();
-        
+
     }
 
     public void inserirInformacoesFornecedor(Fornecedor f) {
+        this.fornecedor = f;
+
         razaoSocial.setText(f.getRazaoSocial());
         cnpj.setText(f.getCnpj());
         inscricaoEstadual.setText(f.getInscricaoEstadual());
@@ -55,7 +56,7 @@ public class EditaFornecedor extends javax.swing.JPanel {
         email.setText(f.getEmail());
     }
 
-    private void resetaLabelsCampoInvalido() {
+    public void resetaLabelsCampoInvalido() {
         for (JLabel l : labelsInvalidas) {
             l.setVisible(false);
         }
@@ -70,7 +71,7 @@ public class EditaFornecedor extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        voltar1 = new javax.swing.JLabel();
+        voltar = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         razaoSocial = new javax.swing.JTextField();
         separadorRazaoSocial = new javax.swing.JSeparator();
@@ -81,15 +82,13 @@ public class EditaFornecedor extends javax.swing.JPanel {
         separadorInscricaoEstadual = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
+        razaoSocialInvalida = new javax.swing.JLabel();
         separadorEmail = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
         telefone = new javax.swing.JTextField();
         separadorTelefone = new javax.swing.JSeparator();
         botaoConfirmar = new javax.swing.JPanel();
         labelConfirmar = new javax.swing.JLabel();
-        razaoSocialInvalida = new javax.swing.JLabel();
-        cnpjInvalido = new javax.swing.JLabel();
-        inscricaoEstadualInvalida = new javax.swing.JLabel();
         emailInvalido = new javax.swing.JLabel();
         telefoneInvalido = new javax.swing.JLabel();
         endereco = new javax.swing.JTextField();
@@ -101,20 +100,19 @@ public class EditaFornecedor extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        voltar1.setText("Voltar");
-        voltar1.addMouseListener(new java.awt.event.MouseAdapter() {
+        voltar.setText("Voltar");
+        voltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                voltar1MouseClicked(evt);
+                voltarMouseClicked(evt);
             }
         });
-        add(voltar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        add(voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Razão Social:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, -1, -1));
 
-        razaoSocial.setEditable(false);
         razaoSocial.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         razaoSocial.setForeground(new java.awt.Color(51, 51, 51));
         razaoSocial.setBorder(null);
@@ -179,6 +177,10 @@ public class EditaFornecedor extends javax.swing.JPanel {
         email.setBorder(null);
         add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 480, 260, 20));
 
+        razaoSocialInvalida.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        razaoSocialInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        add(razaoSocialInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 30, 30));
+
         separadorEmail.setForeground(new java.awt.Color(51, 51, 51));
         add(separadorEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 500, 260, 10));
 
@@ -230,18 +232,6 @@ public class EditaFornecedor extends javax.swing.JPanel {
 
         add(botaoConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 530, 80, 30));
 
-        razaoSocialInvalida.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        razaoSocialInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
-        add(razaoSocialInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 30, 30));
-
-        cnpjInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        cnpjInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
-        add(cnpjInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 30, 30));
-
-        inscricaoEstadualInvalida.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        inscricaoEstadualInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
-        add(inscricaoEstadualInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 30, 30));
-
         emailInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         emailInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
         add(emailInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 470, 30, 30));
@@ -283,10 +273,15 @@ public class EditaFornecedor extends javax.swing.JPanel {
         add(inscricaoEstadual, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 260, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void voltar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltar1MouseClicked
+    private void voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarMouseClicked
         CardLayout cartoes = (CardLayout) paineis.getLayout();
-        cartoes.show(paineis, "gerenciarFornecedores");
-    }//GEN-LAST:event_voltar1MouseClicked
+
+        if (retornar == CONSULTA_ATIVOS) {
+            cartoes.show(paineis, "consultaFornecedorAtivo");
+        } else {
+            cartoes.show(paineis, "consultaFornecedorInativo");
+        }
+    }//GEN-LAST:event_voltarMouseClicked
 
     private void razaoSocialFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_razaoSocialFocusLost
         //        String conteudo = jTextField1.getText();
@@ -319,21 +314,19 @@ public class EditaFornecedor extends javax.swing.JPanel {
         resetaLabelsCampoInvalido();
         boolean tudoCerto = true;
 
-        if (razaoSocial.getText().isEmpty()) {
+        if (razaoSocial.getText().isEmpty()){
             tudoCerto = false;
             razaoSocialInvalida.setVisible(true);
+            razaoSocialInvalida.setToolTipText("Razão Social inválida.");
+        } else {
+            Fornecedor fornecedorComparacao = FornecedorService.consultaFornecedorRazaoSocial(razaoSocial.getText());
+            if (fornecedor.getRazaoSocial().equals(razaoSocial.getText()) == false && fornecedorComparacao != null){
+                tudoCerto = false;
+                razaoSocialInvalida.setVisible(true);
+                razaoSocialInvalida.setToolTipText("Razão Social já cadastrada.");
+            }
         }
-
-        if (cnpj.getText().replace(" ", "").length() < 18) {
-            tudoCerto = false;
-            cnpjInvalido.setVisible(true);
-        }
-
-        if (inscricaoEstadual.getText().replace(" ", "").length() < 16) {
-            tudoCerto = false;
-            inscricaoEstadualInvalida.setVisible(true);
-        }
-
+        
         if (telefone.getText().length() < 8) {
             tudoCerto = false;
             telefoneInvalido.setVisible(true);
@@ -350,18 +343,24 @@ public class EditaFornecedor extends javax.swing.JPanel {
         }
 
         if (tudoCerto) {
-            Fornecedor fornecedor = new Fornecedor(cnpj.getText(), inscricaoEstadual.getText(), telefone.getText(), endereco.getText(), email.getText(), razaoSocial.getText(), true);
+            fornecedor.setRazaoSocial(razaoSocial.getText());
+            fornecedor.setTelefone(telefone.getText());
+            fornecedor.setEndereco(endereco.getText());
+            fornecedor.setEmail(email.getText());
+            
             if (FornecedorService.atualizaFonecedor(fornecedor) == true) {
                 JOptionPane.showMessageDialog(null, "Fornecedor editado com sucesso.");
                 
-//                consultaFornecedorAtivo ;
+                consultaFornecedorAtivo.atualizarInformacoes();
 //                consultaFornecedorInativo = ;
-                
-                razaoSocial.requestFocus();
-                //                CardLayout cartoes = (CardLayout) paineis.getLayout();
-                //                cartoes.show(paineis, "gerenciarUsuarios");
-            }
 
+                CardLayout cartoes = (CardLayout) paineis.getLayout();
+                if (retornar == CONSULTA_ATIVOS) {
+                    cartoes.show(paineis, "consultaFornecedorAtivo");
+                } else {
+                    cartoes.show(paineis, "consultaFornecedorInativo");
+                }
+            }
         }
     }//GEN-LAST:event_labelConfirmarMouseClicked
 
@@ -402,13 +401,11 @@ public class EditaFornecedor extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel botaoConfirmar;
     private javax.swing.JFormattedTextField cnpj;
-    private javax.swing.JLabel cnpjInvalido;
     private javax.swing.JTextField email;
     private javax.swing.JLabel emailInvalido;
     private javax.swing.JTextField endereco;
     private javax.swing.JLabel enderecoInvalido;
     private javax.swing.JFormattedTextField inscricaoEstadual;
-    private javax.swing.JLabel inscricaoEstadualInvalida;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -426,6 +423,6 @@ public class EditaFornecedor extends javax.swing.JPanel {
     private javax.swing.JSeparator separadorTelefone;
     private javax.swing.JTextField telefone;
     private javax.swing.JLabel telefoneInvalido;
-    private javax.swing.JLabel voltar1;
+    private javax.swing.JLabel voltar;
     // End of variables declaration//GEN-END:variables
 }

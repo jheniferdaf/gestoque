@@ -4,8 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Jheni/Google%20Drive/NetBeans/GEstoque-antigo/GEstoque/src/view/TelaAdministrador.java</file>
-            <file>file:/C:/Users/Jheni/Google%20Drive/NetBeans/GEstoque-antigo/GEstoque/src/view/ConsultaFornecedorAtivo.java</file>
-            <file>file:/C:/Users/Jheni/Google%20Drive/NetBeans/GEstoque-antigo/GEstoque/src/view/ConsultaUsuarioAtivo.java</file>
+            <file>file:/C:/Users/Jheni/Google%20Drive/NetBeans/GEstoque-antigo/GEstoque/src/view/EditaFornecedor.java</file>
+            <file>file:/C:/Users/Jheni/Google%20Drive/NetBeans/GEstoque-antigo/GEstoque/src/view/EditaUsuario.java</file>
+            <file>file:/C:/Users/Jheni/Google%20Drive/NetBeans/GEstoque-antigo/GEstoque/src/view/EditaProduto.java</file>
+            <file>file:/C:/Users/Jheni/Google%20Drive/NetBeans/GEstoque-antigo/GEstoque/src/view/GerenciarProdutos.java</file>
+            <file>file:/C:/Users/Jheni/Google%20Drive/NetBeans/GEstoque-antigo/GEstoque/src/view/CadastroProduto.java</file>
+            <file>file:/C:/Users/Jheni/Google%20Drive/NetBeans/GEstoque-antigo/GEstoque/src/model/Produto.java</file>
         </group>
     </open-files>
 </project-private>

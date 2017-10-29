@@ -314,7 +314,14 @@ public class CadastroUsuario extends javax.swing.JPanel {
 
         if (cpf.getText().replace(" ", "").length() < 14){
             tudoCerto = false;
+            cpfInvalido.setToolTipText("CPF inválido.");
             cpfInvalido.setVisible(true);
+        } else {
+            if (UsuarioService.buscaUsuarioCpf(cpf.getText()) != null){
+                tudoCerto = false;
+                cpfInvalido.setToolTipText("CPF já cadastrado.");
+                cpfInvalido.setVisible(true);
+            }
         }
         
         if (senha.getPassword().length < 1){
