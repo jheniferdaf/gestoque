@@ -32,25 +32,18 @@ public class TelaAdministrador extends javax.swing.JPanel {
     Color corOverLabel = new Color(204, 204, 204);
     Color corLabelAtivo = new Color(51, 51, 51);
 
-    /**
-     * Creates new form TelaPrincipal
-     */
     public TelaAdministrador(Usuario usuario) {
         initComponents();
         this.usuario = usuario;
         nomeUsuario.setText(usuario.getNome());
         
-        paineis.add(new Movimentacoes(paineis), "movimentacoes");
-        paineis.add(new Entrada(paineis, usuario), "entrada");
-        paineis.add(new Baixa(paineis, usuario), "baixa");
-        paineis.add(new Devolucao(paineis, usuario), "devolucao");
+        inicializaMovimentacoes();
 
         inicializaProdutos();
         
         inicializaFornecedores();
 
         paineis.add(new Relatorios(paineis), "relatorios");
-
 
         inicializaUsuarios();
         
@@ -74,22 +67,35 @@ public class TelaAdministrador extends javax.swing.JPanel {
 
     }
 
+    public void inicializaMovimentacoes(){
+        Baixa baixa = new Baixa(paineis, usuario);
+        Entrada entrada = new Entrada(paineis, usuario);
+        Devolucao devolucao = new Devolucao(paineis, usuario);
+        
+        paineis.add(new Movimentacoes(paineis, baixa, entrada, devolucao), "movimentacoes");
+        paineis.add(entrada, "entrada");
+        paineis.add(baixa, "baixa");
+        paineis.add(devolucao, "devolucao");
+    }
+    
     public void inicializaProdutos(){
         EditaProduto editaProduto = new EditaProduto(paineis);
         ConsultaProdutoAtivo consultaProdutoAtivo = new ConsultaProdutoAtivo(paineis, editaProduto);
         ConsultaProdutoInativo consultaProdutoInativo = new ConsultaProdutoInativo(paineis, editaProduto);
+        
         CadastroProduto cadastroProduto = new CadastroProduto(paineis);
+        ProdutosEstoqueMinimo produtosEstoqueMinimo = new ProdutosEstoqueMinimo(paineis);
         
         editaProduto.consultaProdutoAtivo = consultaProdutoAtivo;
         editaProduto.consultaProdutoInativo = consultaProdutoInativo;
         
-        paineis.add(new GerenciarProdutos(paineis, consultaProdutoAtivo, consultaProdutoInativo, cadastroProduto), "gerenciarProdutos");
+        paineis.add(new GerenciarProdutos(paineis, consultaProdutoAtivo, consultaProdutoInativo, cadastroProduto, produtosEstoqueMinimo), "gerenciarProdutos");
         paineis.add(cadastroProduto, "cadastroProduto");
         paineis.add(consultaProdutoAtivo, "consultaProdutoAtivo");
         paineis.add(consultaProdutoInativo, "consultaProdutoInativo");
         paineis.add(editaProduto, "editaProduto");
         
-        paineis.add(new ProdutosEstoqueMinimo(paineis), "produtosEstoqueMinimo");
+        paineis.add(produtosEstoqueMinimo, "produtosEstoqueMinimo");
     }
     
     public void inicializaFornecedores(){
@@ -146,7 +152,8 @@ public class TelaAdministrador extends javax.swing.JPanel {
         barraLateral = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
-        nomeUsuario = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        nomeUsuario = new javax.swing.JTextArea();
         botaoMovimentacoes = new javax.swing.JPanel();
         labelMovimentacoes = new javax.swing.JLabel();
         botaoOpcoes = new javax.swing.JPanel();
@@ -180,11 +187,26 @@ public class TelaAdministrador extends javax.swing.JPanel {
         jLabel17.setText("Administrador");
         jPanel7.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        nomeUsuario.setBackground(new java.awt.Color(231, 243, 239));
-        nomeUsuario.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        nomeUsuario.setForeground(new java.awt.Color(249, 249, 249));
-        nomeUsuario.setText("~nome");
-        jPanel7.add(nomeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane1.setEnabled(false);
+
+        nomeUsuario.setEditable(false);
+        nomeUsuario.setBackground(new java.awt.Color(102, 102, 102));
+        nomeUsuario.setColumns(20);
+        nomeUsuario.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        nomeUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        nomeUsuario.setLineWrap(true);
+        nomeUsuario.setRows(5);
+        nomeUsuario.setWrapStyleWord(true);
+        nomeUsuario.setBorder(null);
+        nomeUsuario.setDisabledTextColor(new java.awt.Color(255, 102, 0));
+        nomeUsuario.setOpaque(false);
+        nomeUsuario.setSelectionColor(new java.awt.Color(153, 153, 153));
+        jScrollPane1.setViewportView(nomeUsuario);
+
+        jPanel7.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 200, 50));
 
         barraLateral.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 100));
 
@@ -549,13 +571,14 @@ public class TelaAdministrador extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelFornecedores;
     private javax.swing.JLabel labelMovimentacoes;
     private javax.swing.JLabel labelOpcoes;
     private javax.swing.JLabel labelProdutos;
     private javax.swing.JLabel labelRelatorios;
     private javax.swing.JLabel labelUsuarios;
-    private javax.swing.JLabel nomeUsuario;
+    private javax.swing.JTextArea nomeUsuario;
     private javax.swing.JPanel paineis;
     // End of variables declaration//GEN-END:variables
 }

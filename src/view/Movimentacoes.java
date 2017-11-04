@@ -7,7 +7,6 @@ package view;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
-import model.Usuario;
 
 /**
  *
@@ -16,10 +15,17 @@ import model.Usuario;
 public class Movimentacoes extends javax.swing.JPanel {
 
     JPanel paineis;
-
-    public Movimentacoes(JPanel paineis) {
+    Baixa baixa;
+    Entrada entrada;
+    Devolucao devolucao;
+    
+    public Movimentacoes(JPanel paineis, Baixa baixa, Entrada entrada, Devolucao devolucao) {
         initComponents();
         this.paineis = paineis;
+        this.baixa = baixa;
+        this.entrada = entrada;
+        this.devolucao = devolucao;
+        
     }
 
     /**
@@ -31,130 +37,142 @@ public class Movimentacoes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        entrada = new javax.swing.JPanel();
+        entradaB = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        baixa = new javax.swing.JPanel();
+        baixaB = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        devolucao = new javax.swing.JPanel();
+        devolucaoB = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        entrada.setBackground(new java.awt.Color(204, 204, 204));
-        entrada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        entrada.setPreferredSize(new java.awt.Dimension(230, 230));
-        entrada.addMouseListener(new java.awt.event.MouseAdapter() {
+        entradaB.setBackground(new java.awt.Color(204, 204, 204));
+        entradaB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        entradaB.setPreferredSize(new java.awt.Dimension(230, 230));
+        entradaB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                entradaMouseClicked(evt);
+                entradaBMouseClicked(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel1.setText("Entrada");
 
-        javax.swing.GroupLayout entradaLayout = new javax.swing.GroupLayout(entrada);
-        entrada.setLayout(entradaLayout);
-        entradaLayout.setHorizontalGroup(
-            entradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(entradaLayout.createSequentialGroup()
+        javax.swing.GroupLayout entradaBLayout = new javax.swing.GroupLayout(entradaB);
+        entradaB.setLayout(entradaBLayout);
+        entradaBLayout.setHorizontalGroup(
+            entradaBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(entradaBLayout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addComponent(jLabel1)
                 .addContainerGap(70, Short.MAX_VALUE))
         );
-        entradaLayout.setVerticalGroup(
-            entradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(entradaLayout.createSequentialGroup()
+        entradaBLayout.setVerticalGroup(
+            entradaBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(entradaBLayout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addComponent(jLabel1)
                 .addContainerGap(99, Short.MAX_VALUE))
         );
 
-        add(entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 230, 230));
+        add(entradaB, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 230, 230));
 
-        baixa.setBackground(new java.awt.Color(204, 204, 204));
-        baixa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        baixa.setPreferredSize(new java.awt.Dimension(230, 230));
-        baixa.addMouseListener(new java.awt.event.MouseAdapter() {
+        baixaB.setBackground(new java.awt.Color(204, 204, 204));
+        baixaB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        baixaB.setPreferredSize(new java.awt.Dimension(230, 230));
+        baixaB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                baixaMouseClicked(evt);
+                baixaBMouseClicked(evt);
             }
         });
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel4.setText("Baixa");
 
-        javax.swing.GroupLayout baixaLayout = new javax.swing.GroupLayout(baixa);
-        baixa.setLayout(baixaLayout);
-        baixaLayout.setHorizontalGroup(
-            baixaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, baixaLayout.createSequentialGroup()
+        javax.swing.GroupLayout baixaBLayout = new javax.swing.GroupLayout(baixaB);
+        baixaB.setLayout(baixaBLayout);
+        baixaBLayout.setHorizontalGroup(
+            baixaBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, baixaBLayout.createSequentialGroup()
                 .addContainerGap(85, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(81, 81, 81))
         );
-        baixaLayout.setVerticalGroup(
-            baixaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(baixaLayout.createSequentialGroup()
+        baixaBLayout.setVerticalGroup(
+            baixaBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(baixaBLayout.createSequentialGroup()
                 .addGap(97, 97, 97)
                 .addComponent(jLabel4)
                 .addContainerGap(102, Short.MAX_VALUE))
         );
 
-        add(baixa, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, -1, -1));
+        add(baixaB, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, -1, -1));
 
-        devolucao.setBackground(new java.awt.Color(204, 204, 204));
-        devolucao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        devolucao.setPreferredSize(new java.awt.Dimension(230, 230));
-        devolucao.addMouseListener(new java.awt.event.MouseAdapter() {
+        devolucaoB.setBackground(new java.awt.Color(204, 204, 204));
+        devolucaoB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        devolucaoB.setPreferredSize(new java.awt.Dimension(230, 230));
+        devolucaoB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                devolucaoMouseClicked(evt);
+                devolucaoBMouseClicked(evt);
             }
         });
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel5.setText("Devolução");
 
-        javax.swing.GroupLayout devolucaoLayout = new javax.swing.GroupLayout(devolucao);
-        devolucao.setLayout(devolucaoLayout);
-        devolucaoLayout.setHorizontalGroup(
-            devolucaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(devolucaoLayout.createSequentialGroup()
+        javax.swing.GroupLayout devolucaoBLayout = new javax.swing.GroupLayout(devolucaoB);
+        devolucaoB.setLayout(devolucaoBLayout);
+        devolucaoBLayout.setHorizontalGroup(
+            devolucaoBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(devolucaoBLayout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(jLabel5)
                 .addContainerGap(49, Short.MAX_VALUE))
         );
-        devolucaoLayout.setVerticalGroup(
-            devolucaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(devolucaoLayout.createSequentialGroup()
+        devolucaoBLayout.setVerticalGroup(
+            devolucaoBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(devolucaoBLayout.createSequentialGroup()
                 .addGap(93, 93, 93)
                 .addComponent(jLabel5)
                 .addContainerGap(106, Short.MAX_VALUE))
         );
 
-        add(devolucao, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 190, -1, -1));
+        add(devolucaoB, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 190, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void entradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entradaMouseClicked
+    private void entradaBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entradaBMouseClicked
+        entrada.atualizarProdutos();
+        entrada.atualizarInformacoes();
+        
         CardLayout cartoes = (CardLayout) paineis.getLayout();
+        
         cartoes.show(paineis, "entrada");
-    }//GEN-LAST:event_entradaMouseClicked
+    }//GEN-LAST:event_entradaBMouseClicked
 
-    private void baixaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_baixaMouseClicked
+    private void baixaBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_baixaBMouseClicked
+        baixa.atualizarProdutos();
+        baixa.atualizarInformacoes();
+        
         CardLayout cartoes = (CardLayout) paineis.getLayout();
+        
         cartoes.show(paineis, "baixa");
-    }//GEN-LAST:event_baixaMouseClicked
+    }//GEN-LAST:event_baixaBMouseClicked
 
-    private void devolucaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_devolucaoMouseClicked
+    private void devolucaoBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_devolucaoBMouseClicked
+        devolucao.atualizarProdutos();
+        devolucao.atualizarInformacoes();
+        
         CardLayout cartoes = (CardLayout) paineis.getLayout();
+        
         cartoes.show(paineis, "devolucao");
-    }//GEN-LAST:event_devolucaoMouseClicked
+    }//GEN-LAST:event_devolucaoBMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel baixa;
-    private javax.swing.JPanel devolucao;
-    private javax.swing.JPanel entrada;
+    private javax.swing.JPanel baixaB;
+    private javax.swing.JPanel devolucaoB;
+    private javax.swing.JPanel entradaB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

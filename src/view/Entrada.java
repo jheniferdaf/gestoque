@@ -5,8 +5,19 @@
  */
 package view;
 
+import controler.FornecedorService;
+import controler.MovimentacaoService;
+import controler.ProdutoService;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.util.Date;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.Fornecedor;
+import model.Movimentacao;
+import model.Produto;
 import model.Usuario;
 
 /**
@@ -14,17 +25,62 @@ import model.Usuario;
  * @author Jheni
  */
 public class Entrada extends javax.swing.JPanel {
-JPanel paineis;
+    JPanel paineis;
     Usuario usuario;
-    /**
-     * Creates new form Inclusao
-     */
+    Produto produto;
+
+    List<Produto> listaProdutos;
+    DefaultComboBoxModel padraoProdutos;
+    
     public Entrada(JPanel paineis, Usuario usuario) {
         initComponents();
         this.paineis = paineis;
         this.usuario = usuario;
+        
+        codigoInvalido.setVisible(false);
+        movimentacaoInvalida.setVisible(false);
     }
 
+    public void atualizarProdutos() {
+        listaProdutos = ProdutoService.pesquisaProdutosAtivos();
+
+        padraoProdutos = new DefaultComboBoxModel();
+        for (Produto p : listaProdutos) {
+            padraoProdutos.addElement(p.getDescricao());
+        }
+        produtos.setModel(padraoProdutos);
+    }
+
+    public void atualizarInformacoes(){
+        valorMovimentacao.setText("");
+        emEstoque.setText("");
+        estoqueAtual.setText("");
+        if (produtos.getSelectedIndex() != -1) {
+            produto = listaProdutos.get(produtos.getSelectedIndex());
+            Fornecedor f = FornecedorService.consultaFornecedorCnpj(produto.getCnpjFornec());
+            descricao.setText(produto.getDescricao() + "\nFornecedor: " + f.getRazaoSocial());
+            emEstoque.setText(produto.getQuantidade() + "");
+        }
+    }
+    
+    public boolean verificaValorMovimentaçao(){
+        boolean entrou = false;
+        try {
+            String valor = valorMovimentacao.getText();
+            if(valor.length() > 0 && valor.equals("0") == false && valor.matches("[0-9]+(\\.[0-9]+){0,1}")){
+                movimentacaoInvalida.setVisible(false);
+                estoqueAtual.setText((produto.getQuantidade() + Double.parseDouble(valor)) + "");
+                entrou = true;
+            } else {
+                movimentacaoInvalida.setVisible(true);
+                movimentacaoInvalida.setToolTipText("Valor para movimentação inválido.");
+            }
+        } catch(NumberFormatException ex){
+            movimentacaoInvalida.setVisible(true);
+            movimentacaoInvalida.setToolTipText("Valor para movimentação inválido.");
+        }
+        return entrou;
+    }    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,6 +91,23 @@ JPanel paineis;
     private void initComponents() {
 
         voltar = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        codigo = new javax.swing.JTextField();
+        separadorProduto = new javax.swing.JSeparator();
+        produtos = new javax.swing.JComboBox<>();
+        separadorMovimentacao = new javax.swing.JSeparator();
+        confirmar = new javax.swing.JPanel();
+        labelConfirmar = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        emEstoque = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        valorMovimentacao = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        estoqueAtual = new javax.swing.JTextField();
+        movimentacaoInvalida = new javax.swing.JLabel();
+        codigoInvalido = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        descricao = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -46,6 +119,134 @@ JPanel paineis;
             }
         });
         add(voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel2.setText("Produto:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 70, -1));
+
+        codigo.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        codigo.setBorder(null);
+        codigo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                codigoFocusLost(evt);
+            }
+        });
+        codigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                codigoKeyTyped(evt);
+            }
+        });
+        add(codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 130, 30));
+
+        separadorProduto.setForeground(new java.awt.Color(51, 51, 51));
+        add(separadorProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 130, 10));
+
+        produtos.setBackground(new java.awt.Color(242, 242, 242));
+        produtos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        produtos.setBorder(null);
+        produtos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                produtosActionPerformed(evt);
+            }
+        });
+        add(produtos, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 70, 560, 30));
+
+        separadorMovimentacao.setForeground(new java.awt.Color(51, 51, 51));
+        add(separadorMovimentacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 130, 10));
+
+        confirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        confirmar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                confirmarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                confirmarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                confirmarMouseExited(evt);
+            }
+        });
+        confirmar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelConfirmar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelConfirmar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelConfirmar.setText("Confirmar");
+        labelConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelConfirmarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelConfirmarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelConfirmarMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labelConfirmarMousePressed(evt);
+            }
+        });
+        confirmar.add(labelConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
+
+        add(confirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 520, 80, 30));
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel3.setText("Estoque:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 110, 70, -1));
+
+        emEstoque.setEditable(false);
+        emEstoque.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        emEstoque.setForeground(new java.awt.Color(51, 51, 51));
+        emEstoque.setBorder(null);
+        add(emEstoque, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, 120, 30));
+
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel4.setText("Movimentação:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 120, -1));
+
+        valorMovimentacao.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        valorMovimentacao.setForeground(new java.awt.Color(51, 51, 51));
+        valorMovimentacao.setBorder(null);
+        valorMovimentacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valorMovimentacaoActionPerformed(evt);
+            }
+        });
+        valorMovimentacao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                valorMovimentacaoKeyReleased(evt);
+            }
+        });
+        add(valorMovimentacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 130, 30));
+
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel5.setText("Estoque atual:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 110, -1));
+
+        estoqueAtual.setBackground(new java.awt.Color(242, 242, 242));
+        estoqueAtual.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        estoqueAtual.setForeground(new java.awt.Color(51, 51, 51));
+        estoqueAtual.setBorder(null);
+        add(estoqueAtual, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 130, 30));
+
+        movimentacaoInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        add(movimentacaoInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 30, 30));
+
+        codigoInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        add(codigoInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 30, 30));
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        descricao.setEditable(false);
+        descricao.setColumns(20);
+        descricao.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        descricao.setLineWrap(true);
+        descricao.setRows(5);
+        descricao.setWrapStyleWord(true);
+        descricao.setBorder(null);
+        jScrollPane1.setViewportView(descricao);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 600, 70));
     }// </editor-fold>//GEN-END:initComponents
 
     private void voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarMouseClicked
@@ -53,8 +254,122 @@ JPanel paineis;
         cartoes.show(paineis, "movimentacoes");
     }//GEN-LAST:event_voltarMouseClicked
 
+    private void codigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_codigoFocusLost
+        try {
+            boolean entrou = false;
+            String codigo2 = codigo.getText();
+            if(codigo2.length() > 0 && codigo2.equals("0") == false){
+                codigoInvalido.setVisible(false);
+                for (Produto p : listaProdutos) {
+                    if (p.getCodigo() == Integer.parseInt(codigo2)) {
+                        entrou = true;
+                        produtos.setSelectedIndex(listaProdutos.indexOf(p));
+                        break;
+                    }
+                }
+                if (entrou == false) {
+                    codigoInvalido.setVisible(true);
+                    codigoInvalido.setToolTipText("Código não cadastrado.");
+                }
+
+            } else {
+                codigoInvalido.setVisible(true);
+                codigoInvalido.setToolTipText("Código inválido.");
+            }
+        } catch(NumberFormatException ex){
+            codigoInvalido.setVisible(true);
+            codigoInvalido.setToolTipText("Código inválido.");
+        }
+    }//GEN-LAST:event_codigoFocusLost
+
+    private void produtosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produtosActionPerformed
+        atualizarInformacoes();
+    }//GEN-LAST:event_produtosActionPerformed
+
+    private void labelConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseClicked
+        if (verificaValorMovimentaçao()){
+            boolean tudoCerto;
+            produto.setQuantidade(produto.getQuantidade() + Double.parseDouble(valorMovimentacao.getText()));
+            tudoCerto = ProdutoService.atualizaProduto(produto);
+
+            if(tudoCerto){
+                Movimentacao novaMovimentacao = new Movimentacao(produto.getCodigo(), Double.parseDouble(valorMovimentacao.getText()), usuario.getCpf() , Movimentacao.ENTRADA, new Date(), "");
+                tudoCerto = MovimentacaoService.cadastrarMovimentacao(novaMovimentacao);
+                if (tudoCerto){
+                    JOptionPane.showMessageDialog(this, "Entrada efetuada com sucesso.");
+
+                    codigoInvalido.setVisible(false);
+                    atualizarInformacoes();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao efetuar movimentação.");
+            }
+
+        }
+    }//GEN-LAST:event_labelConfirmarMouseClicked
+
+    private void labelConfirmarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseEntered
+        confirmar.setBackground(Color.gray);
+        labelConfirmar.setForeground(Color.white);
+    }//GEN-LAST:event_labelConfirmarMouseEntered
+
+    private void labelConfirmarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseExited
+        confirmar.setBackground(new Color(240, 240, 240));
+        labelConfirmar.setForeground(Color.black);
+    }//GEN-LAST:event_labelConfirmarMouseExited
+
+    private void labelConfirmarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMousePressed
+        confirmar.setBackground(Color.white);
+        labelConfirmar.setForeground(Color.black);
+    }//GEN-LAST:event_labelConfirmarMousePressed
+
+    private void confirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmarMouseClicked
+
+    }//GEN-LAST:event_confirmarMouseClicked
+
+    private void confirmarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmarMouseEntered
+        confirmar.setBackground(Color.gray);
+        labelConfirmar.setForeground(Color.white);
+    }//GEN-LAST:event_confirmarMouseEntered
+
+    private void confirmarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmarMouseExited
+        confirmar.setBackground(new Color(240, 240, 240));
+        labelConfirmar.setForeground(Color.black);
+    }//GEN-LAST:event_confirmarMouseExited
+
+    private void valorMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorMovimentacaoActionPerformed
+
+    }//GEN-LAST:event_valorMovimentacaoActionPerformed
+
+    private void valorMovimentacaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_valorMovimentacaoKeyReleased
+        verificaValorMovimentaçao();
+    }//GEN-LAST:event_valorMovimentacaoKeyReleased
+
+    private void codigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codigoKeyTyped
+        if(evt.getKeyChar() == '\n'){
+            codigo.transferFocus();
+        }
+    }//GEN-LAST:event_codigoKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField codigo;
+    private javax.swing.JLabel codigoInvalido;
+    private javax.swing.JPanel confirmar;
+    private javax.swing.JTextArea descricao;
+    private javax.swing.JTextField emEstoque;
+    private javax.swing.JTextField estoqueAtual;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelConfirmar;
+    private javax.swing.JLabel movimentacaoInvalida;
+    private javax.swing.JComboBox<String> produtos;
+    private javax.swing.JSeparator separadorMovimentacao;
+    private javax.swing.JSeparator separadorProduto;
+    private javax.swing.JTextField valorMovimentacao;
     private javax.swing.JLabel voltar;
     // End of variables declaration//GEN-END:variables
 }

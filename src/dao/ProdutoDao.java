@@ -39,13 +39,13 @@ public class ProdutoDao {
             x.setInt(8, 0);
 
             x.execute();
-            
+
             ResultSet codGerados = x.getGeneratedKeys();
             while (codGerados.next()) {
                 int novoCodigo = codGerados.getInt("codigo");
                 novoProduto.setCodigo(novoCodigo);
             }
-            
+
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -167,7 +167,7 @@ public class ProdutoDao {
         return retorno;
     }
 
-    public static boolean atualizaProduto(Produto p){
+    public static boolean atualizaProduto(Produto p) {
         try (Connection conexao = FabricaConexao.criaConexao()) {
             String sql = "update produto set descricao = ?, categoria = ?, preco_custo = ?, preco_venda = ?, estoque_minimo = ?, ativo = ?, cnpj_fornecedor = ?, estoque_atual = ? where codigo = ?";
 
@@ -182,7 +182,7 @@ public class ProdutoDao {
             x.setString(7, p.getCnpjFornec());
             x.setDouble(8, p.getQuantidade());
             x.setInt(9, p.getCodigo());
-            
+
             x.execute();
 
             return true;
@@ -192,8 +192,8 @@ public class ProdutoDao {
             return false;
         }
     }
-    
-    public static boolean alteraStatusProduto(Produto p){
+
+    public static boolean alteraStatusProduto(Produto p) {
         try (Connection conexao = FabricaConexao.criaConexao()) {
             String sql = "update produto set ativo = ? where codigo = ?";
 
@@ -201,7 +201,7 @@ public class ProdutoDao {
 
             x.setBoolean(1, p.isAtivo());
             x.setInt(2, p.getCodigo());
-            
+
             x.execute();
 
             return true;
@@ -211,47 +211,39 @@ public class ProdutoDao {
             return false;
         }
     }
-    
-    public static boolean atualizaPrecoCusto(int codigo, double novoPrecoCusto) {
+
+    public static List<Produto> produtosEstoqueMinimoAtingido() {
+        List<Produto> retorno = new ArrayList<>();
         try (Connection con = FabricaConexao.criaConexao()) {
-            String sql = "update produto set preco_custo = ? where codigo =?";
+            String sql = "select * from produto where ativo = true and produto.estoque_atual <= estoque_minimo order by descricao";
             PreparedStatement x = con.prepareStatement(sql);
-            x.setDouble(1, novoPrecoCusto);
-            x.setInt(2, codigo);
-            x.execute();
 
-            return true;
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            System.err.println("Erro ao executar a sql...");
-            return false;
+            ResultSet pesquisaBD = x.executeQuery();
+            while (pesquisaBD.next()) {
+                retorno.add(new Produto(pesquisaBD.getInt("codigo"),
+                        pesquisaBD.getString("descricao"),
+                        pesquisaBD.getString("categoria"),
+                        pesquisaBD.getDouble("estoque_atual"),
+                        pesquisaBD.getDouble("preco_custo"),
+                        pesquisaBD.getDouble("preco_venda"),
+                        pesquisaBD.getDouble("estoque_minimo"),
+                        pesquisaBD.getString("cnpj_fornecedor"),
+                        pesquisaBD.getBoolean("ativo")));
 
-        }
-
-    }
-
-    public static boolean atualizaPrecoVenda(int codigo, double novoPrecoVenda) {
-        try (Connection con = FabricaConexao.criaConexao()) {
-            String sql = "update produto set preco_venda =? where codigo =?";
-            PreparedStatement x = con.prepareStatement(sql);
-            x.setDouble(1, novoPrecoVenda);
-            x.setInt(2, codigo);
-            x.execute();
-            return true;
+            }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.err.println("Erro ao executar a sql...");
-            return false;
-
+            JOptionPane.showMessageDialog(null, "Falha na busca por produtos com estoque mínimo.");
         }
+        return retorno;
     }
 
     public static boolean atualizaQuantidade(int codigo, int novaQuantidade) {
         try (Connection con = FabricaConexao.criaConexao()) {
-            String sql = "update produto set quantidade = quantidade + ? where codigo= ?";
+            String sql = "update produto set estoque_atual = estoque_atual + ? where codigo = ?";
             PreparedStatement x = con.prepareStatement(sql);
-           
+
             x.setInt(1, novaQuantidade);
             x.setInt(2, codigo);
 
@@ -266,27 +258,5 @@ public class ProdutoDao {
         }
 
     }
-
-   /* public static boolean baixaEstoque(int codigo, int novoEstoque) {
-        try (Connection con = FabricaConexao.criaConexao()) {
-            String sql = "update produto set quantidade = quantidade = ? where codigo = ? and quantidade >= ?";
-            PreparedStatement x = con.prepareStatement(sql);
-            
-
-            
-                x.setInt(1, codigo);
-                x.setInt(2, novoEstoque);
-                x.execute();
-
-           
-            return true;
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            System.err.println("Erro ao executar a sql...");
-            return false;
-
-        }
-    }*/
 
 }

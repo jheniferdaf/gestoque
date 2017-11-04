@@ -21,9 +21,6 @@ public class Login extends javax.swing.JPanel {
     int xx;
     int yy;
 
-    /**
-     * Creates new form Login
-     */
     public Login(JFrame frame) {
         initComponents();
         this.frame = frame;

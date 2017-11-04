@@ -13,20 +13,20 @@ import java.util.Date;
  */
 public class Movimentacao {
     private int codigoProduto;
-    private int quantidade;
+    private double quantidade;
     private String cpfUsuario;
     private int tipoMovimentacao;
     private Date data;
     private String observacao;
     
     public static final int ENTRADA = 1;
-    public static final int SAIDA = 2;
+    public static final int BAIXA = 2;
     public static final int DEVOLUCAO = 3;
 
     public Movimentacao(){
     }
     
-    public Movimentacao(int codigoProduto, int quantidade, String cpfUsuario, int tipoMovimentacao, Date data, String observacao) {
+    public Movimentacao(int codigoProduto, double quantidade, String cpfUsuario, int tipoMovimentacao, Date data, String observacao) {
         this.codigoProduto = codigoProduto;
         this.quantidade = quantidade;
         this.cpfUsuario = cpfUsuario;
@@ -34,5 +34,55 @@ public class Movimentacao {
         this.data = data;
         this.observacao = observacao;
     }
+
+    public int getCodigoProduto() {
+        return codigoProduto;
+    }
+
+    public void setCodigoProduto(int codigoProduto) {
+        this.codigoProduto = codigoProduto;
+    }
+
+    public double getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(double quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public String getCpfUsuario() {
+        return cpfUsuario;
+    }
+
+    public void setCpfUsuario(String cpfUsuario) {
+        this.cpfUsuario = cpfUsuario;
+    }
+
+    public int getTipoMovimentacao() {
+        return tipoMovimentacao;
+    }
+
+    public void setTipoMovimentacao(int tipoMovimentacao) {
+        this.tipoMovimentacao = tipoMovimentacao;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+    
+    
     
 }

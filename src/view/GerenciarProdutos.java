@@ -18,13 +18,15 @@ public class GerenciarProdutos extends javax.swing.JPanel {
     ConsultaProdutoAtivo consultaProdutoAtivo;
     ConsultaProdutoInativo consultaProdutoInativo;
     CadastroProduto cadastroProduto;
+    ProdutosEstoqueMinimo produtosEstoqueMinimo;
     
-    public GerenciarProdutos(JPanel paineis, ConsultaProdutoAtivo consultaProdutoAtivo, ConsultaProdutoInativo consultaProdutoInativo, CadastroProduto cadastroProduto) {
+    public GerenciarProdutos(JPanel paineis, ConsultaProdutoAtivo consultaProdutoAtivo, ConsultaProdutoInativo consultaProdutoInativo, CadastroProduto cadastroProduto, ProdutosEstoqueMinimo produtosEstoqueMinimo) {
         initComponents();
         this.paineis = paineis;
         this.consultaProdutoAtivo = consultaProdutoAtivo;
         this.consultaProdutoInativo = consultaProdutoInativo;
         this.cadastroProduto = cadastroProduto;
+        this.produtosEstoqueMinimo = produtosEstoqueMinimo;
     }
 
     /**
@@ -122,11 +124,10 @@ public class GerenciarProdutos extends javax.swing.JPanel {
     }//GEN-LAST:event_consultarProdutoInativoMouseClicked
 
     private void produtosEstoqueMinimoAtingidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produtosEstoqueMinimoAtingidoMouseClicked
+        produtosEstoqueMinimo.atualizaProdutos();
+        
         CardLayout cartoes = (CardLayout) paineis.getLayout();
         cartoes.show(paineis, "produtosEstoqueMinimo");
-        
-        
-        
         //ATUALIZAR A LISTA DE PRODUTOS****************************************************
     }//GEN-LAST:event_produtosEstoqueMinimoAtingidoMouseClicked
 

@@ -5,10 +5,19 @@
  */
 package view;
 
+import controler.FornecedorService;
+import controler.MovimentacaoService;
+import controler.ProdutoService;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.util.Date;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.Fornecedor;
+import model.Movimentacao;
+import model.Produto;
 import model.Usuario;
 
 /**
@@ -18,14 +27,66 @@ import model.Usuario;
 public class Devolucao extends javax.swing.JPanel {
 
     JPanel paineis;
-Usuario usuario;
-    /**
-     * Creates new form Devolucao
-     */
-    public Devolucao(JPanel paineis,Usuario usuario) {
+    Usuario usuario;
+    Produto produto;
+
+    List<Produto> listaProdutos;
+    DefaultComboBoxModel padraoProdutos;
+    
+    public Devolucao(JPanel paineis, Usuario usuario) {
         initComponents();
         this.paineis = paineis;
         this.usuario = usuario;
+        
+                codigoInvalido.setVisible(false);
+        movimentacaoInvalida.setVisible(false);
+
+    }
+
+        public void atualizarProdutos() {
+        listaProdutos = ProdutoService.pesquisaProdutosAtivos();
+
+        padraoProdutos = new DefaultComboBoxModel();
+        for (Produto p : listaProdutos) {
+            padraoProdutos.addElement(p.getDescricao());
+        }
+        produtos.setModel(padraoProdutos);
+    }
+
+    public void atualizarInformacoes(){
+        valorMovimentacao.setText("");
+        emEstoque.setText("");
+        estoqueAtual.setText("");
+        if (produtos.getSelectedIndex() != -1) {
+            produto = listaProdutos.get(produtos.getSelectedIndex());
+            Fornecedor f = FornecedorService.consultaFornecedorCnpj(produto.getCnpjFornec());
+            descricao.setText(produto.getDescricao() + "\nFornecedor: " + f.getRazaoSocial());
+            emEstoque.setText(produto.getQuantidade() + "");
+        }
+    }
+    
+    public boolean verificaValorMovimentaçao(){
+        boolean entrou = false;
+        try {
+            String valor = valorMovimentacao.getText();
+            if(valor.length() > 0 && valor.equals("0") == false && valor.matches("[0-9]+(\\.[0-9]+){0,1}")){
+                if (Double.parseDouble(valor) > produto.getQuantidade()){
+                    movimentacaoInvalida.setVisible(true);
+                    movimentacaoInvalida.setToolTipText("Valor para movimentação acima da quantidade em estoque.");
+                } else {
+                    entrou = true;
+                    movimentacaoInvalida.setVisible(false);
+                    estoqueAtual.setText((produto.getQuantidade() - Double.parseDouble(valor)) + "");
+                }
+            } else {
+                movimentacaoInvalida.setVisible(true);
+                movimentacaoInvalida.setToolTipText("Valor para movimentação inválido.");
+            }
+        } catch(NumberFormatException ex){
+            movimentacaoInvalida.setVisible(true);
+            movimentacaoInvalida.setToolTipText("Valor para movimentação inválido.");
+        }
+        return entrou;
     }
 
     /**
@@ -38,24 +99,25 @@ Usuario usuario;
     private void initComponents() {
 
         voltar = new javax.swing.JLabel();
-        produtos = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        codigo = new javax.swing.JTextField();
         separadorProduto = new javax.swing.JSeparator();
-        descricao = new javax.swing.JTextField();
+        produtos = new javax.swing.JComboBox<>();
+        separadorMovimentacao = new javax.swing.JSeparator();
         confirmar = new javax.swing.JPanel();
         labelConfirmar = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        codigoProduto = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        estoqueAtual = new javax.swing.JTextField();
+        emEstoque = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         valorMovimentacao = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        separadorMovimentacao = new javax.swing.JSeparator();
-        jLabel7 = new javax.swing.JLabel();
-        emEstoque = new javax.swing.JTextField();
-        produtos1 = new javax.swing.JComboBox<>();
+        estoqueAtual = new javax.swing.JTextField();
+        movimentacaoInvalida = new javax.swing.JLabel();
+        codigoInvalido = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        descricao = new javax.swing.JTextArea();
+        observacao = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -68,35 +130,43 @@ Usuario usuario;
         });
         add(voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        produtos.setBackground(new java.awt.Color(242, 242, 242));
-        produtos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        produtos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Perda" }));
-        produtos.setBorder(null);
-        add(produtos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 740, 30));
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel6.setText("Observação:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 110, -1));
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel2.setText("Produto:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 70, -1));
+
+        codigo.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        codigo.setBorder(null);
+        codigo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                codigoFocusLost(evt);
+            }
+        });
+        codigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                codigoKeyTyped(evt);
+            }
+        });
+        add(codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 130, 30));
 
         separadorProduto.setForeground(new java.awt.Color(51, 51, 51));
         add(separadorProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 130, 10));
 
-        descricao.setBackground(new java.awt.Color(242, 242, 242));
-        descricao.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        descricao.setForeground(new java.awt.Color(51, 51, 51));
-        descricao.setBorder(null);
-        descricao.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                descricaoFocusLost(evt);
-            }
-        });
-        descricao.addActionListener(new java.awt.event.ActionListener() {
+        produtos.setBackground(new java.awt.Color(242, 242, 242));
+        produtos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        produtos.setBorder(null);
+        produtos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                descricaoActionPerformed(evt);
+                produtosActionPerformed(evt);
             }
         });
-        descricao.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                descricaoKeyTyped(evt);
-            }
-        });
-        add(descricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 600, 70));
+        add(produtos, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 70, 560, 30));
+
+        separadorMovimentacao.setForeground(new java.awt.Color(51, 51, 51));
+        add(separadorMovimentacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 130, 10));
 
         confirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         confirmar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -131,77 +201,33 @@ Usuario usuario;
         });
         confirmar.add(labelConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
 
-        add(confirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 520, 80, 30));
-
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel2.setText("Produto:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 70, -1));
-
-        codigoProduto.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        codigoProduto.setForeground(new java.awt.Color(51, 51, 51));
-        codigoProduto.setBorder(null);
-        codigoProduto.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                codigoProdutoFocusLost(evt);
-            }
-        });
-        codigoProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                codigoProdutoActionPerformed(evt);
-            }
-        });
-        codigoProduto.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                codigoProdutoKeyTyped(evt);
-            }
-        });
-        add(codigoProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 130, 30));
+        add(confirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 520, 80, 30));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel3.setText("Estoque:");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 110, 70, -1));
 
-        estoqueAtual.setBackground(new java.awt.Color(242, 242, 242));
-        estoqueAtual.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        estoqueAtual.setForeground(new java.awt.Color(51, 51, 51));
-        estoqueAtual.setBorder(null);
-        estoqueAtual.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                estoqueAtualFocusLost(evt);
-            }
-        });
-        estoqueAtual.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                estoqueAtualActionPerformed(evt);
-            }
-        });
-        estoqueAtual.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                estoqueAtualKeyTyped(evt);
-            }
-        });
-        add(estoqueAtual, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 100, 30));
+        emEstoque.setEditable(false);
+        emEstoque.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        emEstoque.setForeground(new java.awt.Color(51, 51, 51));
+        emEstoque.setBorder(null);
+        add(emEstoque, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, 120, 30));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel4.setText("Movimentação:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 120, -1));
 
-        valorMovimentacao.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        valorMovimentacao.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         valorMovimentacao.setForeground(new java.awt.Color(51, 51, 51));
         valorMovimentacao.setBorder(null);
-        valorMovimentacao.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                valorMovimentacaoFocusLost(evt);
-            }
-        });
         valorMovimentacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 valorMovimentacaoActionPerformed(evt);
             }
         });
         valorMovimentacao.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                valorMovimentacaoKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                valorMovimentacaoKeyReleased(evt);
             }
         });
         add(valorMovimentacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 130, 30));
@@ -210,47 +236,37 @@ Usuario usuario;
         jLabel5.setText("Estoque atual:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 110, -1));
 
-        jLabel1.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel1.setText("Produto não encontrado");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 270, -1));
+        estoqueAtual.setBackground(new java.awt.Color(242, 242, 242));
+        estoqueAtual.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        estoqueAtual.setForeground(new java.awt.Color(51, 51, 51));
+        estoqueAtual.setBorder(null);
+        add(estoqueAtual, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 130, 30));
 
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel6.setText("Observação:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 110, -1));
+        movimentacaoInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        add(movimentacaoInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 30, 30));
 
-        separadorMovimentacao.setForeground(new java.awt.Color(51, 51, 51));
-        add(separadorMovimentacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 130, 10));
+        codigoInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        add(codigoInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 30, 30));
 
-        jLabel7.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel7.setText("Produto não encontrado");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 270, -1));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        emEstoque.setBackground(new java.awt.Color(242, 242, 242));
-        emEstoque.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        emEstoque.setForeground(new java.awt.Color(51, 51, 51));
-        emEstoque.setBorder(null);
-        emEstoque.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                emEstoqueFocusLost(evt);
-            }
-        });
-        emEstoque.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emEstoqueActionPerformed(evt);
-            }
-        });
-        emEstoque.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                emEstoqueKeyTyped(evt);
-            }
-        });
-        add(emEstoque, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, 100, 30));
+        descricao.setEditable(false);
+        descricao.setColumns(20);
+        descricao.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        descricao.setLineWrap(true);
+        descricao.setRows(5);
+        descricao.setWrapStyleWord(true);
+        descricao.setBorder(null);
+        jScrollPane1.setViewportView(descricao);
 
-        produtos1.setBackground(new java.awt.Color(242, 242, 242));
-        produtos1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        produtos1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "aaaa", "aab", "baa", "caa", "abb" }));
-        produtos1.setBorder(null);
-        add(produtos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 70, 560, 30));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 600, 70));
+
+        observacao.setBackground(new java.awt.Color(242, 242, 242));
+        observacao.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        observacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Impróprio para venda", "Desacordo com o pedido" }));
+        observacao.setBorder(null);
+        add(observacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 740, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarMouseClicked
@@ -258,31 +274,58 @@ Usuario usuario;
         cartoes.show(paineis, "movimentacoes");
     }//GEN-LAST:event_voltarMouseClicked
 
-    private void descricaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_descricaoFocusLost
-        //        String conteudo = jTextField1.getText();
-        //        String conteudoAvaliado = conteudo.replaceAll("[^ A-z]", "");
-        //        System.out.println(conteudoAvaliado);
-        //        //POSSO USAR O MATCH AQUI
-        //        if (conteudo.equals(conteudoAvaliado) == false){
-        //            nomeInvalido.setText("Nome não pode conter números ou sinais de pontuação");
-        //            nomeInvalido.setForeground(Color.red);
-        //            imagemCampoInválido.setVisible(true);
-        //        } else {
-        //            nomeInvalido.setText("");
-        //            imagemCampoInválido.setVisible(false);
-        //        }
-    }//GEN-LAST:event_descricaoFocusLost
+    private void codigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_codigoFocusLost
+        try {
+            boolean entrou = false;
+            String codigo2 = codigo.getText();
+            if(codigo2.length() > 0 && codigo2.equals("0") == false){
+                codigoInvalido.setVisible(false);
+                for (Produto p : listaProdutos) {
+                    if (p.getCodigo() == Integer.parseInt(codigo2)) {
+                        entrou = true;
+                        produtos.setSelectedIndex(listaProdutos.indexOf(p));
+                        break;
+                    }
+                }
+                if (entrou == false) {
+                    codigoInvalido.setVisible(true);
+                    codigoInvalido.setToolTipText("Código não cadastrado.");
+                }
 
-    private void descricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descricaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_descricaoActionPerformed
+            } else {
+                codigoInvalido.setVisible(true);
+                codigoInvalido.setToolTipText("Código inválido.");
+            }
+        } catch(NumberFormatException ex){
+            codigoInvalido.setVisible(true);
+            codigoInvalido.setToolTipText("Código inválido.");
+        }
+    }//GEN-LAST:event_codigoFocusLost
 
-    private void descricaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descricaoKeyTyped
-
-    }//GEN-LAST:event_descricaoKeyTyped
+    private void produtosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produtosActionPerformed
+        atualizarInformacoes();
+    }//GEN-LAST:event_produtosActionPerformed
 
     private void labelConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseClicked
-        JOptionPane.showMessageDialog(this, "clicou");
+        if (verificaValorMovimentaçao()){
+            boolean tudoCerto;
+            produto.setQuantidade(produto.getQuantidade() - Double.parseDouble(valorMovimentacao.getText()));
+            tudoCerto = ProdutoService.atualizaProduto(produto);
+
+            if(tudoCerto){
+                Movimentacao novaMovimentacao = new Movimentacao(produto.getCodigo(), Double.parseDouble(valorMovimentacao.getText()), usuario.getCpf() , Movimentacao.DEVOLUCAO, new Date(), (String)observacao.getSelectedItem());
+                tudoCerto = MovimentacaoService.cadastrarMovimentacao(novaMovimentacao);
+                if (tudoCerto){
+                    JOptionPane.showMessageDialog(this, "Devolução efetuada com sucesso.");
+                    
+                    codigoInvalido.setVisible(false);
+                    atualizarInformacoes();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao efetuar movimentação.");
+            }
+
+        }
     }//GEN-LAST:event_labelConfirmarMouseClicked
 
     private void labelConfirmarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseEntered
@@ -314,71 +357,38 @@ Usuario usuario;
         labelConfirmar.setForeground(Color.black);
     }//GEN-LAST:event_confirmarMouseExited
 
-    private void codigoProdutoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_codigoProdutoFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_codigoProdutoFocusLost
-
-    private void codigoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_codigoProdutoActionPerformed
-
-    private void codigoProdutoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codigoProdutoKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_codigoProdutoKeyTyped
-
-    private void estoqueAtualFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_estoqueAtualFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_estoqueAtualFocusLost
-
-    private void estoqueAtualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoqueAtualActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_estoqueAtualActionPerformed
-
-    private void estoqueAtualKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_estoqueAtualKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_estoqueAtualKeyTyped
-
-    private void valorMovimentacaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_valorMovimentacaoFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_valorMovimentacaoFocusLost
-
     private void valorMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorMovimentacaoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_valorMovimentacaoActionPerformed
 
-    private void valorMovimentacaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_valorMovimentacaoKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_valorMovimentacaoKeyTyped
+    private void valorMovimentacaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_valorMovimentacaoKeyReleased
+        verificaValorMovimentaçao();
+    }//GEN-LAST:event_valorMovimentacaoKeyReleased
 
-    private void emEstoqueFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emEstoqueFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emEstoqueFocusLost
-
-    private void emEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emEstoqueActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emEstoqueActionPerformed
-
-    private void emEstoqueKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_emEstoqueKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emEstoqueKeyTyped
+    private void codigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codigoKeyTyped
+        if(evt.getKeyChar() == '\n'){
+            codigo.transferFocus();
+        }
+    }//GEN-LAST:event_codigoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField codigoProduto;
+    private javax.swing.JTextField codigo;
+    private javax.swing.JLabel codigoInvalido;
     private javax.swing.JPanel confirmar;
-    private javax.swing.JTextField descricao;
+    private javax.swing.JTextArea descricao;
     private javax.swing.JTextField emEstoque;
     private javax.swing.JTextField estoqueAtual;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelConfirmar;
+    private javax.swing.JLabel movimentacaoInvalida;
+    private javax.swing.JComboBox<String> observacao;
     private javax.swing.JComboBox<String> produtos;
-    private javax.swing.JComboBox<String> produtos1;
     private javax.swing.JSeparator separadorMovimentacao;
     private javax.swing.JSeparator separadorProduto;
     private javax.swing.JTextField valorMovimentacao;

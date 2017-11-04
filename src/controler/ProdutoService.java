@@ -28,13 +28,17 @@ public class ProdutoService {
         return ProdutoDao.consultaProdutoCod(codigo);
     }
 
+    //Apenas produtos ATIVOS com estoque mínimo atingido.
+    public static List<Produto> produtosEstoqueMinimoAtingido(){
+        return ProdutoDao.produtosEstoqueMinimoAtingido();
+    }
+    
     public static List<Produto> pesquisaProdutosAtivos() {
         return ProdutoDao.recuperaTodosProdutosAtivos();
     }
 
     public static List<Produto> pesquisaProdutosInativos() {
         return ProdutoDao.recuperaTodosProdutosInativos();
-
     }
 
     public static boolean atualizaProduto(Produto p){
@@ -45,14 +49,6 @@ public class ProdutoService {
         return ProdutoDao.alteraStatusProduto(p);
     }
     
-    public static boolean atualizaPrecoVenda(int codigo, double novoPrecoVenda) {
-        return ProdutoDao.atualizaPrecoVenda(codigo, novoPrecoVenda);
-    }
-
-    public static boolean atualizaPrecoCusto(int codigo, double novoPrecoCusto) {
-        return ProdutoDao.atualizaPrecoCusto(codigo, novoPrecoCusto);
-    }
-
     public static boolean modificaQuantidade(int codigo, int Novaquantidade, int opcao) {
         if (opcao == BAIXA) {
             Novaquantidade = Novaquantidade * -1;

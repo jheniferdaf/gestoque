@@ -5,8 +5,11 @@
  */
 package view;
 
+import controler.ProdutoService;
 import java.awt.CardLayout;
+import java.util.List;
 import javax.swing.JPanel;
+import model.Produto;
 
 /**
  *
@@ -14,15 +17,18 @@ import javax.swing.JPanel;
  */
 public class ProdutosEstoqueMinimo extends javax.swing.JPanel {
     JPanel paineis;
-    /**
-     * Creates new form ProdutosEstoqueMinimo
-     */
+
     public ProdutosEstoqueMinimo(JPanel paineis) {
         initComponents();
         this.paineis = paineis;
         
+        atualizaProdutos();
+        
     }
 
+    public void atualizaProdutos(){
+        tabela.setModel(new ModeloTabela(ProdutoService.produtosEstoqueMinimoAtingido()));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,6 +39,8 @@ public class ProdutosEstoqueMinimo extends javax.swing.JPanel {
     private void initComponents() {
 
         voltar = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabela = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -44,6 +52,21 @@ public class ProdutosEstoqueMinimo extends javax.swing.JPanel {
             }
         });
         add(voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tabela);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 630, 460));
     }// </editor-fold>//GEN-END:initComponents
 
     private void voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarMouseClicked
@@ -53,6 +76,8 @@ public class ProdutosEstoqueMinimo extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabela;
     private javax.swing.JLabel voltar;
     // End of variables declaration//GEN-END:variables
 }
