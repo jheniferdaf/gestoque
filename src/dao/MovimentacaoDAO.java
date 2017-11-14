@@ -4,7 +4,11 @@ package dao;
 import ferramentas.FabricaConexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
 import model.Movimentacao;
 
@@ -36,9 +40,28 @@ public class MovimentacaoDAO {
         }
     }
     
-    public static boolean buscarMovimentacao(Movimentacao m){
+    //busca movimentações a partir de certa data
+    public static List<Movimentacao> buscarMovimentacaoData(Date data){
+        List<Movimentacao> movimentacoes = new ArrayList<>();
         
-        return true;
+        try (Connection conexao = FabricaConexao.criaConexao()) {
+            String sql = "select * from movimentacao where movimentacao.data between ? and ?";
+            PreparedStatement x = conexao.prepareStatement(sql);
+
+            x.setDate(1, new java.sql.Date(data.getTime()));
+            x.setDate(2, new java.sql.Date(new Date().getTime()));
+            
+            ResultSet resultado = x.executeQuery();
+
+            while (resultado.next()){
+                movimentacoes.add(new Movimentacao(resultado.getInt("codigo_produto"), resultado.getDouble("quantidade"), resultado.getString("cpf_usuario"), resultado.getInt("tipo_movimentacao"), resultado.getDate("data"), resultado.getString("observacao")));
+            }
+
+        } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Falha ao buscas movimentações por data.");
+        }
+        return movimentacoes;
     }
     
 }

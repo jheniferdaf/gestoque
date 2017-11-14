@@ -50,37 +50,40 @@ public class Login extends javax.swing.JPanel {
         cpf = new javax.swing.JFormattedTextField();
         entrar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         fechar = new javax.swing.JLabel();
         senhaInvalida = new javax.swing.JLabel();
         cpfInvalido = new javax.swing.JLabel();
         senha = new javax.swing.JPasswordField();
         erros = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(244, 248, 250));
         setMaximumSize(new java.awt.Dimension(700, 430));
         setMinimumSize(new java.awt.Dimension(700, 430));
         setPreferredSize(new java.awt.Dimension(700, 430));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel5.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 8, 10));
         jLabel5.setText("Login");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, -1, -1));
 
         separadorSenha.setForeground(new java.awt.Color(51, 51, 51));
         add(separadorSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, 260, 10));
 
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel6.setText("Senha:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, -1, -1));
+        jLabel6.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 8, 10));
+        jLabel6.setText("CPF:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, -1, -1));
 
         separadorCpf.setForeground(new java.awt.Color(51, 51, 51));
         add(separadorCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 260, 10));
 
+        cpf.setBackground(new java.awt.Color(244, 248, 250));
         cpf.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        cpf.setForeground(new java.awt.Color(0, 8, 10));
         try {
             cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
@@ -94,6 +97,7 @@ public class Login extends javax.swing.JPanel {
         });
         add(cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, 260, -1));
 
+        entrar.setBackground(new java.awt.Color(181, 212, 222));
         entrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 entrarMouseClicked(evt);
@@ -101,7 +105,9 @@ public class Login extends javax.swing.JPanel {
         });
         entrar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel1.setBackground(new java.awt.Color(19, 90, 113));
+        jLabel1.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 8, 10));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Entrar");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -109,11 +115,7 @@ public class Login extends javax.swing.JPanel {
 
         add(entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel2.setText("Esqueci minha senha");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 270, -1, -1));
-
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(19, 90, 113));
         jPanel2.setPreferredSize(new java.awt.Dimension(350, 430));
         jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -129,15 +131,23 @@ public class Login extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/NovoGEstoque.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel2)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jLabel2)
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -157,14 +167,16 @@ public class Login extends javax.swing.JPanel {
         });
         add(fechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(652, 0, -1, -1));
 
-        senhaInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        senhaInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
         senhaInvalida.setToolTipText("Senha não informada");
         add(senhaInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 230, 30, 30));
 
-        cpfInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
+        cpfInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
         cpfInvalido.setToolTipText("CPF inválido");
         add(cpfInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 30, 30));
 
+        senha.setBackground(new java.awt.Color(244, 248, 250));
+        senha.setForeground(new java.awt.Color(0, 8, 10));
         senha.setBorder(null);
         senha.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -177,6 +189,11 @@ public class Login extends javax.swing.JPanel {
         erros.setForeground(new java.awt.Color(204, 0, 0));
         erros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         add(erros, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 380, 270, 20));
+
+        jLabel7.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 8, 10));
+        jLabel7.setText("Senha:");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void entrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entrarMouseClicked
@@ -207,7 +224,10 @@ public class Login extends javax.swing.JPanel {
                             frame.setSize(principal.getPreferredSize());
                             frame.setLocationRelativeTo(null);
                         } else {
-                            //colaborador
+                            TelaColaborador principal = new TelaColaborador(usuario);
+                            frame.getContentPane().add(principal, BorderLayout.CENTER);
+                            frame.setSize(principal.getPreferredSize());
+                            frame.setLocationRelativeTo(null);
                         }
                     } else {
                         erros.setText("Usuário não está ativo.");
@@ -274,6 +294,7 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField senha;
     private javax.swing.JLabel senhaInvalida;

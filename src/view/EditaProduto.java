@@ -119,10 +119,11 @@ public class EditaProduto extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         fornecedorInvalida = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(244, 248, 250));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        voltar.setText("Voltar");
+        voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Return_32px.png"))); // NOI18N
+        voltar.setToolTipText("Voltar");
         voltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 voltarMouseClicked(evt);
@@ -130,13 +131,14 @@ public class EditaProduto extends javax.swing.JPanel {
         });
         add(voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel5.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 8, 10));
         jLabel5.setText("Descrição:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, -1, -1));
 
-        descricao.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        descricao.setForeground(new java.awt.Color(51, 51, 51));
+        descricao.setBackground(new java.awt.Color(244, 248, 250));
+        descricao.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        descricao.setForeground(new java.awt.Color(0, 8, 10));
         descricao.setBorder(null);
         descricao.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -153,40 +155,41 @@ public class EditaProduto extends javax.swing.JPanel {
                 descricaoKeyTyped(evt);
             }
         });
-        add(descricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 260, 20));
+        add(descricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 300, 20));
 
         separadorDescricao.setForeground(new java.awt.Color(51, 51, 51));
-        add(separadorDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 260, 10));
+        add(separadorDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 300, 10));
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel4.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 8, 10));
         jLabel4.setText("Categoria:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel2.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 8, 10));
         jLabel2.setText("Preço de Custo:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, -1, -1));
 
         separadorPrecoCusto.setForeground(new java.awt.Color(51, 51, 51));
-        add(separadorPrecoCusto, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 260, 10));
+        add(separadorPrecoCusto, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 300, 10));
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel3.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 8, 10));
         jLabel3.setText("Preço de Venda:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, -1, -1));
 
         separadorEmail.setForeground(new java.awt.Color(51, 51, 51));
-        add(separadorEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 260, 10));
+        add(separadorEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, 300, 10));
 
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel6.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 8, 10));
         jLabel6.setText("Estoque Mínimo:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, -1, -1));
 
         separadorTelefone.setForeground(new java.awt.Color(51, 51, 51));
-        add(separadorTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 420, 260, 10));
+        add(separadorTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 460, 300, 10));
 
+        botaoConfirmar.setBackground(new java.awt.Color(181, 212, 222));
         botaoConfirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -201,7 +204,7 @@ public class EditaProduto extends javax.swing.JPanel {
         });
         botaoConfirmar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelConfirmar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelConfirmar.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
         labelConfirmar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelConfirmar.setText("Confirmar");
         labelConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -220,65 +223,78 @@ public class EditaProduto extends javax.swing.JPanel {
         });
         botaoConfirmar.add(labelConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
 
-        add(botaoConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 540, 80, 30));
+        add(botaoConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 560, 80, 30));
 
-        categoria.setBackground(new java.awt.Color(242, 242, 242));
-        categoria.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        categoria.setBackground(new java.awt.Color(244, 248, 250));
+        categoria.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
         categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Açougue", "Bebidas", "Frios/Laticínios", "Higiene Pessoal", "Hortifrutigranjeiros", "Mercearia", "Mercearia Seca", "Limpeza", "Outros", "Padaria" }));
         categoria.setBorder(null);
-        add(categoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 260, 30));
+        add(categoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 300, 30));
 
+        estoqueMinimo.setBackground(new java.awt.Color(244, 248, 250));
         estoqueMinimo.setBorder(null);
+        estoqueMinimo.setForeground(new java.awt.Color(0, 8, 10));
         estoqueMinimo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.000"))));
-        add(estoqueMinimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 260, 20));
+        estoqueMinimo.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        add(estoqueMinimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 440, 300, 20));
 
+        jLabel1.setFont(new java.awt.Font("Decker", 0, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 8, 10));
         jLabel1.setText("R$");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, -1, 20));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, -1, 20));
 
+        precoVenda.setBackground(new java.awt.Color(244, 248, 250));
         precoVenda.setBorder(null);
+        precoVenda.setForeground(new java.awt.Color(0, 8, 10));
         precoVenda.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        add(precoVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 240, 20));
+        precoVenda.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        add(precoVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, 280, 20));
 
+        precoCusto.setBackground(new java.awt.Color(244, 248, 250));
         precoCusto.setBorder(null);
+        precoCusto.setForeground(new java.awt.Color(0, 8, 10));
         precoCusto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        add(precoCusto, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 240, 20));
+        precoCusto.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        add(precoCusto, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 280, 20));
 
+        jLabel7.setFont(new java.awt.Font("Decker", 0, 11)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 8, 10));
         jLabel7.setText("R$");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, -1, 20));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, -1, 20));
 
         categoriaInvalida.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        categoriaInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
-        add(categoriaInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 30, 30));
+        categoriaInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
+        add(categoriaInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 200, 30, 30));
 
         precoCustoInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        precoCustoInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
-        add(precoCustoInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 30, 30));
+        precoCustoInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
+        add(precoCustoInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 270, 30, 30));
 
         precoVendaInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        precoVendaInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
-        add(precoVendaInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 310, 30, 30));
+        precoVendaInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
+        add(precoVendaInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 350, 30, 30));
 
         estoqueMinimoInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        estoqueMinimoInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
-        add(estoqueMinimoInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 30, 30));
+        estoqueMinimoInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
+        add(estoqueMinimoInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 30, 30));
 
         descricaoInvalida.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        descricaoInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
-        add(descricaoInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 30, 30));
+        descricaoInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
+        add(descricaoInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 30, 30));
 
-        fornecedor.setBackground(new java.awt.Color(242, 242, 242));
-        fornecedor.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        fornecedor.setBackground(new java.awt.Color(244, 248, 250));
+        fornecedor.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
         fornecedor.setBorder(null);
-        add(fornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 480, 260, 30));
+        add(fornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 520, 300, 30));
 
-        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel8.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 8, 10));
         jLabel8.setText("Fornecedor:");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 450, -1, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 490, -1, -1));
 
         fornecedorInvalida.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        fornecedorInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
-        add(fornecedorInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 480, 30, 30));
+        fornecedorInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
+        add(fornecedorInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 520, 30, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarMouseClicked

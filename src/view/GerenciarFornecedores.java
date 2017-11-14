@@ -38,15 +38,14 @@ public class GerenciarFornecedores extends javax.swing.JPanel {
         cadastrarFornecedor = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         consultarFornecedorAtivo = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         consultarFornecedorInativo = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(244, 248, 250));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        cadastrarFornecedor.setBackground(new java.awt.Color(244, 248, 250));
         cadastrarFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cadastrarFornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -55,12 +54,14 @@ public class GerenciarFornecedores extends javax.swing.JPanel {
         });
         cadastrarFornecedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Add User Group Man Man_100px.png"))); // NOI18N
         jLabel1.setText("Cadastrar Fornecedor");
-        cadastrarFornecedor.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, -1, -1));
+        cadastrarFornecedor.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 100));
 
-        add(cadastrarFornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 200, 200));
+        add(cadastrarFornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 470, 100));
 
+        consultarFornecedorAtivo.setBackground(new java.awt.Color(244, 248, 250));
         consultarFornecedorAtivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         consultarFornecedorAtivo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -69,18 +70,15 @@ public class GerenciarFornecedores extends javax.swing.JPanel {
         });
         consultarFornecedorAtivo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Ativo");
-        consultarFornecedorAtivo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 200, 30));
-
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Consultar Fornecedor");
-        consultarFornecedorAtivo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, 30));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Find User Male_100px.png"))); // NOI18N
+        jLabel4.setText("Consultar Fornecedor Ativo");
+        consultarFornecedorAtivo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 90));
 
-        add(consultarFornecedorAtivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, 200, 200));
+        add(consultarFornecedorAtivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 550, 90));
 
+        consultarFornecedorInativo.setBackground(new java.awt.Color(244, 248, 250));
         consultarFornecedorInativo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         consultarFornecedorInativo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -89,17 +87,13 @@ public class GerenciarFornecedores extends javax.swing.JPanel {
         });
         consultarFornecedorInativo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Inativo");
-        consultarFornecedorInativo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 200, 30));
-
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Consultar Fornecedor");
-        consultarFornecedorInativo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, 30));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Find User Male_100px.png"))); // NOI18N
+        jLabel5.setText("Consultar Fornecedor Inativo");
+        consultarFornecedorInativo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 90));
 
-        add(consultarFornecedorInativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 190, 200, 200));
+        add(consultarFornecedorInativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, 580, 90));
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadastrarFornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastrarFornecedorMouseClicked
@@ -131,8 +125,6 @@ public class GerenciarFornecedores extends javax.swing.JPanel {
     private javax.swing.JPanel consultarFornecedorAtivo;
     private javax.swing.JPanel consultarFornecedorInativo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables

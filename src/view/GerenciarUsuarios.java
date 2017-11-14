@@ -44,9 +44,10 @@ public class GerenciarUsuarios extends javax.swing.JPanel {
         consultaUsuarioAtivoB = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(244, 248, 250));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        cadastrar.setBackground(new java.awt.Color(244, 248, 250));
         cadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cadastrarMouseClicked(evt);
@@ -54,12 +55,15 @@ public class GerenciarUsuarios extends javax.swing.JPanel {
         });
         cadastrar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cadastrarUsuario.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        cadastrarUsuario.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
+        cadastrarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Add User Male_100px.png"))); // NOI18N
         cadastrarUsuario.setText("Cadastrar Usuário");
-        cadastrar.add(cadastrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
+        cadastrarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cadastrar.add(cadastrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        add(cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 200, 190));
+        add(cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 390, 100));
 
+        consultaUsuarioInativoB.setBackground(new java.awt.Color(244, 248, 250));
         consultaUsuarioInativoB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 consultaUsuarioInativoBMouseClicked(evt);
@@ -67,11 +71,15 @@ public class GerenciarUsuarios extends javax.swing.JPanel {
         });
         consultaUsuarioInativoB.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Find User Male_100px.png"))); // NOI18N
         jLabel1.setText("Consultar Usuário Inativo");
-        consultaUsuarioInativoB.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        consultaUsuarioInativoB.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        add(consultaUsuarioInativoB, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 200, 200, 190));
+        add(consultaUsuarioInativoB, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, 500, -1));
 
+        consultaUsuarioAtivoB.setBackground(new java.awt.Color(244, 248, 250));
         consultaUsuarioAtivoB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 consultaUsuarioAtivoBMouseClicked(evt);
@@ -79,10 +87,13 @@ public class GerenciarUsuarios extends javax.swing.JPanel {
         });
         consultaUsuarioAtivoB.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Find User Male_100px.png"))); // NOI18N
         jLabel2.setText("Consultar Usuário Ativo");
-        consultaUsuarioAtivoB.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        consultaUsuarioAtivoB.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        add(consultaUsuarioAtivoB, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, 200, 190));
+        add(consultaUsuarioAtivoB, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 470, 100));
     }// </editor-fold>//GEN-END:initComponents
 
     private void consultaUsuarioAtivoBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultaUsuarioAtivoBMouseClicked

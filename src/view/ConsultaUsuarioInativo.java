@@ -80,6 +80,13 @@ public class ConsultaUsuarioInativo extends javax.swing.JPanel {
         separadorCpf = new javax.swing.JSeparator();
         cpf = new javax.swing.JFormattedTextField();
         usuarios = new javax.swing.JComboBox<>();
+        voltar = new javax.swing.JLabel();
+        editar = new javax.swing.JPanel();
+        editarLabel = new javax.swing.JLabel();
+        ativar = new javax.swing.JPanel();
+        ativarLabel = new javax.swing.JLabel();
+        cpfInvalido = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         informacoes = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -92,26 +99,22 @@ public class ConsultaUsuarioInativo extends javax.swing.JPanel {
         telefone = new javax.swing.JLabel();
         administrador = new javax.swing.JRadioButton();
         colaborador = new javax.swing.JRadioButton();
-        voltar = new javax.swing.JLabel();
-        editar = new javax.swing.JPanel();
-        editarLabel = new javax.swing.JLabel();
-        ativar = new javax.swing.JPanel();
-        ativarLabel = new javax.swing.JLabel();
-        cpfInvalido = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(244, 248, 250));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         separadorCpf.setForeground(new java.awt.Color(51, 51, 51));
-        add(separadorCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 130, 10));
+        add(separadorCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 130, 10));
 
+        cpf.setBackground(new java.awt.Color(244, 248, 250));
         cpf.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        cpf.setForeground(new java.awt.Color(0, 8, 10));
         try {
             cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        cpf.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        cpf.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
         cpf.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 cpfFocusLost(evt);
@@ -122,49 +125,126 @@ public class ConsultaUsuarioInativo extends javax.swing.JPanel {
                 cpfKeyReleased(evt);
             }
         });
-        add(cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 130, -1));
+        add(cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 130, 30));
 
-        usuarios.setBackground(new java.awt.Color(242, 242, 242));
-        usuarios.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        usuarios.setBackground(new java.awt.Color(244, 248, 250));
+        usuarios.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        usuarios.setForeground(new java.awt.Color(0, 8, 10));
         usuarios.setBorder(null);
         usuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usuariosActionPerformed(evt);
             }
         });
-        add(usuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 70, 560, 30));
+        add(usuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 560, 30));
+
+        voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Return_32px.png"))); // NOI18N
+        voltar.setToolTipText("Voltar");
+        voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                voltarMouseClicked(evt);
+            }
+        });
+        add(voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        editar.setBackground(new java.awt.Color(181, 212, 222));
+        editar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        editar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        editarLabel.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        editarLabel.setForeground(new java.awt.Color(0, 8, 10));
+        editarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        editarLabel.setText("Editar");
+        editarLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editarLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                editarLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                editarLabelMouseExited(evt);
+            }
+        });
+        editar.add(editarLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
+
+        add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 560, 80, 30));
+
+        ativar.setBackground(new java.awt.Color(181, 212, 222));
+        ativar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ativar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ativarLabel.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        ativarLabel.setForeground(new java.awt.Color(0, 8, 10));
+        ativarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ativarLabel.setText("Ativar");
+        ativarLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ativarLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ativarLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ativarLabelMouseExited(evt);
+            }
+        });
+        ativar.add(ativarLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
+
+        add(ativar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 560, 80, 30));
+
+        cpfInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
+        add(cpfInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 30, 30));
+
+        jLabel2.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 8, 10));
+        jLabel2.setText("CPF:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 70, -1));
 
         informacoes.setBackground(new java.awt.Color(255, 255, 255));
         informacoes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 8, 10));
         jLabel1.setText("Nome:");
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 8, 10));
         jLabel3.setText("CPF:");
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 8, 10));
         jLabel4.setText("E-mail:");
 
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 8, 10));
         jLabel5.setText("Telefone:");
 
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 8, 10));
         jLabel6.setText("Função:");
 
-        nome.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        nome.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        nome.setForeground(new java.awt.Color(0, 8, 10));
 
-        cpfUsuario.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        cpfUsuario.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        cpfUsuario.setForeground(new java.awt.Color(0, 8, 10));
 
-        email.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        email.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        email.setForeground(new java.awt.Color(0, 8, 10));
 
-        telefone.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        telefone.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        telefone.setForeground(new java.awt.Color(0, 8, 10));
 
         administrador.setBackground(new java.awt.Color(255, 255, 255));
+        administrador.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        administrador.setForeground(new java.awt.Color(0, 8, 10));
         administrador.setText("Administrador");
         administrador.setEnabled(false);
 
         colaborador.setBackground(new java.awt.Color(255, 255, 255));
+        colaborador.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        colaborador.setForeground(new java.awt.Color(0, 8, 10));
         colaborador.setText("Colaborador");
         colaborador.setEnabled(false);
 
@@ -182,101 +262,45 @@ public class ConsultaUsuarioInativo extends javax.swing.JPanel {
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cpfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cpfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(informacoesLayout.createSequentialGroup()
                         .addComponent(administrador)
                         .addGap(10, 10, 10)
                         .addComponent(colaborador)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         informacoesLayout.setVerticalGroup(
             informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(informacoesLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(informacoesLayout.createSequentialGroup()
-                        .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(informacoesLayout.createSequentialGroup()
-                                .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(informacoesLayout.createSequentialGroup()
-                                        .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel1)
-                                            .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel3))
-                                    .addComponent(cpfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4))
-                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5))
-                    .addComponent(telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
+                .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cpfUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(telefone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addComponent(colaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
-        add(informacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 128, -1, -1));
-
-        voltar.setText("Voltar");
-        voltar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                voltarMouseClicked(evt);
-            }
-        });
-        add(voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
-
-        editar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        editar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        editarLabel.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        editarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        editarLabel.setText("Editar");
-        editarLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                editarLabelMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                editarLabelMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                editarLabelMouseExited(evt);
-            }
-        });
-        editar.add(editarLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
-
-        add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 540, 80, 30));
-
-        ativar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ativar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        ativarLabel.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        ativarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ativarLabel.setText("Ativar");
-        ativarLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ativarLabelMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ativarLabelMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                ativarLabelMouseExited(evt);
-            }
-        });
-        ativar.add(ativarLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
-
-        add(ativar, new org.netbeans.lib.awtextra.AbsoluteConstraints(602, 541, 80, 30));
-
-        cpfInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
-        add(cpfInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 30, 30));
+        add(informacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 740, 350));
     }// </editor-fold>//GEN-END:initComponents
 
     private void cpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cpfFocusLost
@@ -377,6 +401,7 @@ public class ConsultaUsuarioInativo extends javax.swing.JPanel {
     private javax.swing.JLabel email;
     private javax.swing.JPanel informacoes;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

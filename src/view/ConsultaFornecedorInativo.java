@@ -99,11 +99,13 @@ public class ConsultaFornecedorInativo extends javax.swing.JPanel {
         editarLabel = new javax.swing.JLabel();
         ativar = new javax.swing.JPanel();
         ativarLabel = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(244, 248, 250));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        voltar.setText("Voltar");
+        voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Return_32px.png"))); // NOI18N
+        voltar.setToolTipText("Voltar");
         voltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 voltarMouseClicked(evt);
@@ -112,19 +114,22 @@ public class ConsultaFornecedorInativo extends javax.swing.JPanel {
         add(voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         separadorCpf.setForeground(new java.awt.Color(51, 51, 51));
-        add(separadorCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 130, 10));
+        add(separadorCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 130, 10));
 
-        fornecedores.setBackground(new java.awt.Color(242, 242, 242));
-        fornecedores.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        fornecedores.setBackground(new java.awt.Color(244, 248, 250));
+        fornecedores.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        fornecedores.setForeground(new java.awt.Color(0, 8, 10));
         fornecedores.setBorder(null);
         fornecedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fornecedoresActionPerformed(evt);
             }
         });
-        add(fornecedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 70, 560, 30));
+        add(fornecedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 560, 30));
 
+        cnpj.setBackground(new java.awt.Color(244, 248, 250));
         cnpj.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        cnpj.setForeground(new java.awt.Color(0, 8, 10));
         try {
             cnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###.####-##")));
         } catch (java.text.ParseException ex) {
@@ -146,43 +151,55 @@ public class ConsultaFornecedorInativo extends javax.swing.JPanel {
                 cnpjKeyReleased(evt);
             }
         });
-        add(cnpj, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 130, -1));
+        add(cnpj, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 130, 30));
 
-        cnpjInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
-        add(cnpjInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 30, 30));
+        cnpjInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
+        add(cnpjInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 30, 30));
 
         informacoes.setBackground(new java.awt.Color(255, 255, 255));
         informacoes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 8, 10));
         jLabel1.setText("Razão Social:");
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 8, 10));
         jLabel3.setText("CNPJ:");
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 8, 10));
         jLabel4.setText("Inscrição Estadual:");
 
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 8, 10));
         jLabel5.setText("Telefone:");
 
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 8, 10));
         jLabel6.setText("Endereço:");
 
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 8, 10));
         jLabel7.setText("E-mail:");
 
-        razaoSocial.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        razaoSocial.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        razaoSocial.setForeground(new java.awt.Color(0, 8, 10));
 
-        cnpjFornecedor.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        cnpjFornecedor.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        cnpjFornecedor.setForeground(new java.awt.Color(0, 8, 10));
 
-        inscricaoEstadual.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        inscricaoEstadual.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        inscricaoEstadual.setForeground(new java.awt.Color(0, 8, 10));
 
-        telefone.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        telefone.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        telefone.setForeground(new java.awt.Color(0, 8, 10));
 
-        endereco.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        endereco.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        endereco.setForeground(new java.awt.Color(0, 8, 10));
 
-        email.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        email.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        email.setForeground(new java.awt.Color(0, 8, 10));
 
         javax.swing.GroupLayout informacoesLayout = new javax.swing.GroupLayout(informacoes);
         informacoes.setLayout(informacoesLayout);
@@ -199,55 +216,53 @@ public class ConsultaFornecedorInativo extends javax.swing.JPanel {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(endereco, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
-                    .addComponent(razaoSocial, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cnpjFornecedor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(inscricaoEstadual, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(telefone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addComponent(cnpjFornecedor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+                    .addComponent(inscricaoEstadual, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+                    .addComponent(telefone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+                    .addComponent(endereco, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+                    .addComponent(email, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+                    .addComponent(razaoSocial, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         informacoesLayout.setVerticalGroup(
             informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(informacoesLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(informacoesLayout.createSequentialGroup()
-                        .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(informacoesLayout.createSequentialGroup()
-                                .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(informacoesLayout.createSequentialGroup()
-                                        .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel1)
-                                            .addComponent(razaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel3))
-                                    .addComponent(cnpjFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4))
-                            .addComponent(inscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5))
-                    .addComponent(telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
                 .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(endereco, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel1)
+                    .addComponent(razaoSocial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cnpjFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(inscricaoEstadual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(telefone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(endereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(informacoesLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(190, 190, 190))
         );
 
-        add(informacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 128, 780, -1));
+        add(informacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 740, 350));
 
+        editar.setBackground(new java.awt.Color(181, 212, 222));
+        editar.setForeground(new java.awt.Color(0, 8, 10));
         editar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         editar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        editarLabel.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        editarLabel.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        editarLabel.setForeground(new java.awt.Color(0, 8, 10));
         editarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         editarLabel.setText("Editar");
         editarLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -263,12 +278,15 @@ public class ConsultaFornecedorInativo extends javax.swing.JPanel {
         });
         editar.add(editarLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
 
-        add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 540, 80, 30));
+        add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 560, 80, 30));
 
+        ativar.setBackground(new java.awt.Color(181, 212, 222));
+        ativar.setForeground(new java.awt.Color(0, 8, 10));
         ativar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ativar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ativarLabel.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        ativarLabel.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        ativarLabel.setForeground(new java.awt.Color(0, 8, 10));
         ativarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ativarLabel.setText("Ativar");
         ativarLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -284,7 +302,12 @@ public class ConsultaFornecedorInativo extends javax.swing.JPanel {
         });
         ativar.add(ativarLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
 
-        add(ativar, new org.netbeans.lib.awtextra.AbsoluteConstraints(602, 541, 80, 30));
+        add(ativar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 560, 80, 30));
+
+        jLabel2.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 8, 10));
+        jLabel2.setText("CNPJ:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 70, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarMouseClicked
@@ -392,6 +415,7 @@ public class ConsultaFornecedorInativo extends javax.swing.JPanel {
     private javax.swing.JPanel informacoes;
     private javax.swing.JLabel inscricaoEstadual;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

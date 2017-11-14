@@ -44,10 +44,10 @@ public class Movimentacoes extends javax.swing.JPanel {
         devolucaoB = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(245, 249, 249));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        entradaB.setBackground(new java.awt.Color(204, 204, 204));
+        entradaB.setBackground(new java.awt.Color(244, 248, 250));
         entradaB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         entradaB.setPreferredSize(new java.awt.Dimension(230, 230));
         entradaB.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -56,29 +56,29 @@ public class Movimentacoes extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Login_100px.png"))); // NOI18N
         jLabel1.setText("Entrada");
+        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         javax.swing.GroupLayout entradaBLayout = new javax.swing.GroupLayout(entradaB);
         entradaB.setLayout(entradaBLayout);
         entradaBLayout.setHorizontalGroup(
             entradaBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(entradaBLayout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(jLabel1)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         entradaBLayout.setVerticalGroup(
             entradaBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(entradaBLayout.createSequentialGroup()
-                .addGap(100, 100, 100)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, entradaBLayout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        add(entradaB, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 230, 230));
+        add(entradaB, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 70, 250, 100));
 
-        baixaB.setBackground(new java.awt.Color(204, 204, 204));
+        baixaB.setBackground(new java.awt.Color(245, 249, 249));
         baixaB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         baixaB.setPreferredSize(new java.awt.Dimension(230, 230));
         baixaB.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -87,29 +87,26 @@ public class Movimentacoes extends javax.swing.JPanel {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Logout Rounded Left_100px.png"))); // NOI18N
         jLabel4.setText("Baixa");
 
         javax.swing.GroupLayout baixaBLayout = new javax.swing.GroupLayout(baixaB);
         baixaB.setLayout(baixaBLayout);
         baixaBLayout.setHorizontalGroup(
             baixaBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, baixaBLayout.createSequentialGroup()
-                .addContainerGap(85, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(81, 81, 81))
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
         );
         baixaBLayout.setVerticalGroup(
             baixaBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(baixaBLayout.createSequentialGroup()
-                .addGap(97, 97, 97)
                 .addComponent(jLabel4)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        add(baixaB, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, -1, -1));
+        add(baixaB, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 260, 200, 100));
 
-        devolucaoB.setBackground(new java.awt.Color(204, 204, 204));
+        devolucaoB.setBackground(new java.awt.Color(245, 249, 249));
         devolucaoB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         devolucaoB.setPreferredSize(new java.awt.Dimension(230, 230));
         devolucaoB.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -118,7 +115,8 @@ public class Movimentacoes extends javax.swing.JPanel {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Logout Rounded Down_100px.png"))); // NOI18N
         jLabel5.setText("Devolução");
 
         javax.swing.GroupLayout devolucaoBLayout = new javax.swing.GroupLayout(devolucaoB);
@@ -126,19 +124,17 @@ public class Movimentacoes extends javax.swing.JPanel {
         devolucaoBLayout.setHorizontalGroup(
             devolucaoBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(devolucaoBLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
                 .addComponent(jLabel5)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGap(0, 7, Short.MAX_VALUE))
         );
         devolucaoBLayout.setVerticalGroup(
             devolucaoBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(devolucaoBLayout.createSequentialGroup()
-                .addGap(93, 93, 93)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, devolucaoBLayout.createSequentialGroup()
                 .addComponent(jLabel5)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        add(devolucaoB, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 190, -1, -1));
+        add(devolucaoB, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 450, 290, 100));
     }// </editor-fold>//GEN-END:initComponents
 
     private void entradaBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entradaBMouseClicked

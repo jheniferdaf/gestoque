@@ -109,22 +109,26 @@ public class Entrada extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         descricao = new javax.swing.JTextArea();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(244, 248, 250));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        voltar.setText("Voltar");
+        voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Return_32px.png"))); // NOI18N
+        voltar.setToolTipText("Voltar");
         voltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 voltarMouseClicked(evt);
             }
         });
-        add(voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+        add(voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 8, 10));
         jLabel2.setText("Produto:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 70, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 70, -1));
 
-        codigo.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        codigo.setBackground(new java.awt.Color(244, 248, 250));
+        codigo.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        codigo.setForeground(new java.awt.Color(0, 8, 10));
         codigo.setBorder(null);
         codigo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -136,24 +140,26 @@ public class Entrada extends javax.swing.JPanel {
                 codigoKeyTyped(evt);
             }
         });
-        add(codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 130, 30));
+        add(codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 130, 30));
 
         separadorProduto.setForeground(new java.awt.Color(51, 51, 51));
-        add(separadorProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 130, 10));
+        add(separadorProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 130, 10));
 
-        produtos.setBackground(new java.awt.Color(242, 242, 242));
-        produtos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        produtos.setBackground(new java.awt.Color(244, 248, 250));
+        produtos.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        produtos.setForeground(new java.awt.Color(0, 8, 10));
         produtos.setBorder(null);
         produtos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 produtosActionPerformed(evt);
             }
         });
-        add(produtos, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 70, 560, 30));
+        add(produtos, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 560, 30));
 
         separadorMovimentacao.setForeground(new java.awt.Color(51, 51, 51));
-        add(separadorMovimentacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 130, 10));
+        add(separadorMovimentacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 130, 10));
 
+        confirmar.setBackground(new java.awt.Color(181, 212, 222));
         confirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         confirmar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -168,7 +174,8 @@ public class Entrada extends javax.swing.JPanel {
         });
         confirmar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelConfirmar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelConfirmar.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        labelConfirmar.setForeground(new java.awt.Color(0, 8, 10));
         labelConfirmar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelConfirmar.setText("Confirmar");
         labelConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -187,24 +194,28 @@ public class Entrada extends javax.swing.JPanel {
         });
         confirmar.add(labelConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
 
-        add(confirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 520, 80, 30));
+        add(confirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 560, -1, 30));
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 8, 10));
         jLabel3.setText("Estoque:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 110, 70, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 140, 70, -1));
 
         emEstoque.setEditable(false);
-        emEstoque.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        emEstoque.setForeground(new java.awt.Color(51, 51, 51));
+        emEstoque.setBackground(new java.awt.Color(244, 248, 250));
+        emEstoque.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        emEstoque.setForeground(new java.awt.Color(0, 8, 10));
         emEstoque.setBorder(null);
-        add(emEstoque, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, 120, 30));
+        add(emEstoque, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 160, 100, 30));
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 8, 10));
         jLabel4.setText("Movimentação:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 120, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 120, -1));
 
-        valorMovimentacao.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        valorMovimentacao.setForeground(new java.awt.Color(51, 51, 51));
+        valorMovimentacao.setBackground(new java.awt.Color(244, 248, 250));
+        valorMovimentacao.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        valorMovimentacao.setForeground(new java.awt.Color(0, 8, 10));
         valorMovimentacao.setBorder(null);
         valorMovimentacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,37 +227,40 @@ public class Entrada extends javax.swing.JPanel {
                 valorMovimentacaoKeyReleased(evt);
             }
         });
-        add(valorMovimentacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 130, 30));
+        add(valorMovimentacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 130, 30));
 
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 8, 10));
         jLabel5.setText("Estoque atual:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 110, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 110, -1));
 
-        estoqueAtual.setBackground(new java.awt.Color(242, 242, 242));
-        estoqueAtual.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        estoqueAtual.setForeground(new java.awt.Color(51, 51, 51));
+        estoqueAtual.setBackground(new java.awt.Color(244, 248, 250));
+        estoqueAtual.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        estoqueAtual.setForeground(new java.awt.Color(0, 8, 10));
         estoqueAtual.setBorder(null);
-        add(estoqueAtual, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 130, 30));
+        add(estoqueAtual, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 130, 30));
 
-        movimentacaoInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
-        add(movimentacaoInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 30, 30));
+        movimentacaoInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
+        add(movimentacaoInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 30, 30));
 
-        codigoInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
-        add(codigoInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 30, 30));
+        codigoInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
+        add(codigoInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 30, 30));
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         descricao.setEditable(false);
+        descricao.setBackground(new java.awt.Color(244, 248, 250));
         descricao.setColumns(20);
-        descricao.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        descricao.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        descricao.setForeground(new java.awt.Color(0, 8, 10));
         descricao.setLineWrap(true);
         descricao.setRows(5);
         descricao.setWrapStyleWord(true);
         descricao.setBorder(null);
         jScrollPane1.setViewportView(descricao);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 600, 70));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 600, 70));
     }// </editor-fold>//GEN-END:initComponents
 
     private void voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarMouseClicked

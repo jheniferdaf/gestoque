@@ -47,9 +47,10 @@ public class GerenciarProdutos extends javax.swing.JPanel {
         cadastrarProduto = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(244, 248, 250));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        produtosEstoqueMinimoAtingido.setBackground(new java.awt.Color(244, 248, 250));
         produtosEstoqueMinimoAtingido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         produtosEstoqueMinimoAtingido.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -58,12 +59,15 @@ public class GerenciarProdutos extends javax.swing.JPanel {
         });
         produtosEstoqueMinimoAtingido.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel3.setText("Estoque mínimo");
-        produtosEstoqueMinimoAtingido.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 150, 110));
+        jLabel3.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 8, 10));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Clear Shopping Cart_100px.png"))); // NOI18N
+        jLabel3.setText("Estoque Mínimo");
+        produtosEstoqueMinimoAtingido.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 90));
 
-        add(produtosEstoqueMinimoAtingido, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, 200, 200));
+        add(produtosEstoqueMinimoAtingido, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, 410, 90));
 
+        consultarProdutoAtivo.setBackground(new java.awt.Color(244, 248, 250));
         consultarProdutoAtivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         consultarProdutoAtivo.setPreferredSize(new java.awt.Dimension(100, 100));
         consultarProdutoAtivo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -73,12 +77,16 @@ public class GerenciarProdutos extends javax.swing.JPanel {
         });
         consultarProdutoAtivo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 8, 10));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Search Property_100px.png"))); // NOI18N
         jLabel4.setText("Consultar Produto Ativo");
-        consultarProdutoAtivo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, -1));
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        consultarProdutoAtivo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        add(consultarProdutoAtivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 200, 200));
+        add(consultarProdutoAtivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 490, 100));
 
+        consultarProdutoInativo.setBackground(new java.awt.Color(244, 248, 250));
         consultarProdutoInativo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         consultarProdutoInativo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -87,12 +95,15 @@ public class GerenciarProdutos extends javax.swing.JPanel {
         });
         consultarProdutoInativo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 8, 10));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Search Property_100px.png"))); // NOI18N
         jLabel2.setText("Consultar Produto Inativo");
-        consultarProdutoInativo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 90, -1, -1));
+        consultarProdutoInativo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        add(consultarProdutoInativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 200, 200));
+        add(consultarProdutoInativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, 520, 100));
 
+        cadastrarProduto.setBackground(new java.awt.Color(244, 248, 250));
         cadastrarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cadastrarProduto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -101,11 +112,13 @@ public class GerenciarProdutos extends javax.swing.JPanel {
         });
         cadastrarProduto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 8, 10));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Add Shopping Cart_100px.png"))); // NOI18N
         jLabel1.setText("Cadastrar Produto");
-        cadastrarProduto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+        cadastrarProduto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 80));
 
-        add(cadastrarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 200, 200));
+        add(cadastrarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 450, 80));
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadastrarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastrarProdutoMouseClicked

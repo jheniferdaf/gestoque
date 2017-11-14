@@ -42,10 +42,11 @@ public class ProdutosEstoqueMinimo extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(244, 248, 250));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        voltar.setText("Voltar");
+        voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Return_32px.png"))); // NOI18N
+        voltar.setToolTipText("Voltar");
         voltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 voltarMouseClicked(evt);
@@ -53,6 +54,7 @@ public class ProdutosEstoqueMinimo extends javax.swing.JPanel {
         });
         add(voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        tabela.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -66,7 +68,7 @@ public class ProdutosEstoqueMinimo extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tabela);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 630, 460));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 90, 630, 460));
     }// </editor-fold>//GEN-END:initComponents
 
     private void voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarMouseClicked

@@ -3,9 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Jheni/Google%20Drive/NetBeans/GEstoque%20(1)/src/view/GerenciarProdutos.java</file>
-            <file>file:/C:/Users/Jheni/Google%20Drive/NetBeans/GEstoque%20(1)/src/view/TelaAdministrador.java</file>
-            <file>file:/C:/Users/Jheni/Google%20Drive/NetBeans/GEstoque%20(1)/src/view/ProdutosEstoqueMinimo.java</file>
+            <file>file:/C:/Users/Jheni/Google%20Drive/NetBeans/GEstoque/src/view/ConsultaProdutoInativo.java</file>
+            <file>file:/C:/Users/Jheni/Google%20Drive/NetBeans/GEstoque/src/view/ConsultaProdutoAtivo.java</file>
         </group>
     </open-files>
 </project-private>

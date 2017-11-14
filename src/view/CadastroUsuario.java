@@ -97,16 +97,17 @@ public class CadastroUsuario extends javax.swing.JPanel {
         emailInvalido = new javax.swing.JLabel();
         telefoneInvalido = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(244, 248, 250));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel5.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 8, 10));
         jLabel5.setText("Nome:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, -1, -1));
 
-        nome.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        nome.setForeground(new java.awt.Color(51, 51, 51));
+        nome.setBackground(new java.awt.Color(244, 248, 250));
+        nome.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        nome.setForeground(new java.awt.Color(0, 8, 10));
         nome.setBorder(null);
         nome.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -123,96 +124,105 @@ public class CadastroUsuario extends javax.swing.JPanel {
                 nomeKeyTyped(evt);
             }
         });
-        add(nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 260, 20));
+        add(nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 300, 20));
 
         separadorNome.setForeground(new java.awt.Color(51, 51, 51));
-        add(separadorNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 260, 10));
+        add(separadorNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 300, 10));
 
         funcaoInvalida.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        funcaoInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
-        add(funcaoInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 450, 30, 30));
+        funcaoInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
+        funcaoInvalida.setToolTipText("Função não selecionada.");
+        add(funcaoInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 490, 30, 30));
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel4.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 8, 10));
         jLabel4.setText("CPF:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, -1));
 
         separadorCpf.setForeground(new java.awt.Color(51, 51, 51));
-        add(separadorCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 260, 10));
+        add(separadorCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 300, 10));
 
+        cpf.setBackground(new java.awt.Color(244, 248, 250));
         cpf.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        cpf.setForeground(new java.awt.Color(0, 8, 10));
         try {
             cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        cpf.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        cpf.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
         cpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cpfActionPerformed(evt);
             }
         });
-        add(cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 260, -1));
+        add(cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 300, -1));
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel2.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 8, 10));
         jLabel2.setText("Senha:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, -1, -1));
 
         separadorSenha.setForeground(new java.awt.Color(51, 51, 51));
-        add(separadorSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 260, 10));
+        add(separadorSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 300, 10));
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel3.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 8, 10));
         jLabel3.setText("E-mail:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, -1, -1));
 
-        email.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        email.setForeground(new java.awt.Color(51, 51, 51));
+        email.setBackground(new java.awt.Color(244, 248, 250));
+        email.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        email.setForeground(new java.awt.Color(0, 8, 10));
         email.setBorder(null);
-        add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 260, 20));
+        add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, 300, 20));
 
         separadorEmail.setForeground(new java.awt.Color(51, 51, 51));
-        add(separadorEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 260, 10));
+        add(separadorEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, 300, 10));
 
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel6.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 8, 10));
         jLabel6.setText("Telefone:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, -1, -1));
 
-        telefone.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        telefone.setForeground(new java.awt.Color(51, 51, 51));
+        telefone.setBackground(new java.awt.Color(244, 248, 250));
+        telefone.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        telefone.setForeground(new java.awt.Color(0, 8, 10));
         telefone.setBorder(null);
-        add(telefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 260, 20));
+        add(telefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 440, 300, 20));
 
         separadorTelefone.setForeground(new java.awt.Color(51, 51, 51));
-        add(separadorTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 420, 260, 10));
+        add(separadorTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 460, 300, 10));
 
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 8, 10));
         jLabel7.setText("Função:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 450, -1, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 490, -1, -1));
 
-        administrador.setBackground(new java.awt.Color(255, 255, 255));
-        administrador.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        administrador.setBackground(new java.awt.Color(244, 248, 250));
+        administrador.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        administrador.setForeground(new java.awt.Color(0, 8, 10));
         administrador.setText("Administrador");
         administrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 administradorActionPerformed(evt);
             }
         });
-        add(administrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 480, -1, -1));
+        add(administrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 520, -1, -1));
 
-        colaborador.setBackground(new java.awt.Color(255, 255, 255));
-        colaborador.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        colaborador.setBackground(new java.awt.Color(244, 248, 250));
+        colaborador.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        colaborador.setForeground(new java.awt.Color(0, 8, 10));
         colaborador.setText("Colaborador");
         colaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 colaboradorActionPerformed(evt);
             }
         });
-        add(colaborador, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 480, -1, -1));
+        add(colaborador, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 520, -1, -1));
 
-        voltar.setText("Voltar");
+        voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Return_32px.png"))); // NOI18N
+        voltar.setToolTipText("Voltar");
         voltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 voltarMouseClicked(evt);
@@ -220,6 +230,7 @@ public class CadastroUsuario extends javax.swing.JPanel {
         });
         add(voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        botaoConfirmar.setBackground(new java.awt.Color(181, 212, 222));
         botaoConfirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -234,49 +245,46 @@ public class CadastroUsuario extends javax.swing.JPanel {
         });
         botaoConfirmar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelConfirmar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelConfirmar.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        labelConfirmar.setForeground(new java.awt.Color(0, 8, 10));
         labelConfirmar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelConfirmar.setText("Confirmar");
         labelConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelConfirmarMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                labelConfirmarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                labelConfirmarMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                labelConfirmarMousePressed(evt);
-            }
         });
         botaoConfirmar.add(labelConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
 
-        add(botaoConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 530, 80, 30));
+        add(botaoConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 560, 80, 30));
 
+        senha.setBackground(new java.awt.Color(244, 248, 250));
+        senha.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        senha.setForeground(new java.awt.Color(0, 8, 10));
         senha.setBorder(null);
-        add(senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 260, 20));
+        add(senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 300, 20));
 
         nomeInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        nomeInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
-        add(nomeInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 30, 30));
+        nomeInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
+        nomeInvalido.setToolTipText("");
+        add(nomeInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 30, 30));
 
         cpfInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        cpfInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
-        add(cpfInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 30, 30));
+        cpfInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
+        add(cpfInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 190, 30, 30));
 
         senhaInvalida.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        senhaInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
-        add(senhaInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 30, 30));
+        senhaInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
+        add(senhaInvalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 270, 30, 30));
 
         emailInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        emailInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
-        add(emailInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 310, 30, 30));
+        emailInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
+        add(emailInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 350, 30, 30));
 
         telefoneInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        telefoneInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar-mouse.png"))); // NOI18N
-        add(telefoneInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 30, 30));
+        telefoneInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
+        telefoneInvalido.setToolTipText("");
+        add(telefoneInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 30, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void nomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nomeFocusLost
@@ -357,32 +365,15 @@ public class CadastroUsuario extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_labelConfirmarMouseClicked
 
-    private void labelConfirmarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseEntered
-        botaoConfirmar.setBackground(Color.gray);
-        labelConfirmar.setForeground(Color.white);
-    }//GEN-LAST:event_labelConfirmarMouseEntered
-
-    private void labelConfirmarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseExited
-        botaoConfirmar.setBackground(new Color(240,240,240));
-        labelConfirmar.setForeground(Color.black);
-    }//GEN-LAST:event_labelConfirmarMouseExited
-
-    private void labelConfirmarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMousePressed
-        botaoConfirmar.setBackground(Color.white);
-        labelConfirmar.setForeground(Color.black);
-    }//GEN-LAST:event_labelConfirmarMousePressed
-
     private void botaoConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoConfirmarMouseClicked
 
     }//GEN-LAST:event_botaoConfirmarMouseClicked
 
     private void botaoConfirmarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoConfirmarMouseEntered
-        botaoConfirmar.setBackground(Color.gray);
         labelConfirmar.setForeground(Color.white);
     }//GEN-LAST:event_botaoConfirmarMouseEntered
 
     private void botaoConfirmarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoConfirmarMouseExited
-        botaoConfirmar.setBackground(new Color(240,240,240));
         labelConfirmar.setForeground(Color.black);
     }//GEN-LAST:event_botaoConfirmarMouseExited
 
