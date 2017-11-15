@@ -2,6 +2,7 @@
 package controler;
 
 import dao.MovimentacaoDAO;
+import java.sql.ResultSet;
 import java.util.Date;
 import java.util.List;
 import model.Movimentacao;
@@ -16,8 +17,8 @@ public class MovimentacaoService {
         return MovimentacaoDAO.cadastrarMovimentacao(m);
     }
     
-    public static List<Movimentacao> buscarMovimentacaoData(Date data){
-        return null;
+    public static ResultSet buscarMovimentacaoData(Date data1, Date data2){
+        return MovimentacaoDAO.buscarMovimentacaoData(data1, data2);
     }
     
 }

@@ -41,27 +41,23 @@ public class MovimentacaoDAO {
     }
     
     //busca movimentações a partir de certa data
-    public static List<Movimentacao> buscarMovimentacaoData(Date data){
-        List<Movimentacao> movimentacoes = new ArrayList<>();
-        
+    public static ResultSet buscarMovimentacaoData(Date data1, Date data2){
+        //List<Movimentacao> movimentacoes = new ArrayList<>();
+        ResultSet retorno = null;
         try (Connection conexao = FabricaConexao.criaConexao()) {
-            String sql = "select * from movimentacao where movimentacao.data between ? and ?";
+            String sql = "select * from produto inner join movimentacao on movimentacao.codigo_produto = produto.codigo where produto.codigo in (select codigo_produto from movimentacao where movimentacao.data between ? and ?)";
             PreparedStatement x = conexao.prepareStatement(sql);
 
-            x.setDate(1, new java.sql.Date(data.getTime()));
-            x.setDate(2, new java.sql.Date(new Date().getTime()));
+            x.setDate(1, new java.sql.Date(data1.getTime()));
+            x.setDate(2, new java.sql.Date(data2.getTime()));
             
-            ResultSet resultado = x.executeQuery();
-
-            while (resultado.next()){
-                movimentacoes.add(new Movimentacao(resultado.getInt("codigo_produto"), resultado.getDouble("quantidade"), resultado.getString("cpf_usuario"), resultado.getInt("tipo_movimentacao"), resultado.getDate("data"), resultado.getString("observacao")));
-            }
+            retorno = x.executeQuery();
 
         } catch (SQLException ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Falha ao buscas movimentações por data.");
         }
-        return movimentacoes;
+        return retorno;
     }
     
 }

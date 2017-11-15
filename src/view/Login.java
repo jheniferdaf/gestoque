@@ -33,6 +33,49 @@ public class Login extends javax.swing.JPanel {
         senhaInvalida.setVisible(false);
         erros.setText("");
     }
+    
+    public void fazerLogin(){
+        boolean tudoCerto = true;
+        resetaTudo();
+        if (cpf.getText().replace(" ", "").length() < 14) {
+            cpfInvalido.setVisible(true);
+            tudoCerto = false;
+        }
+
+        if (senha.getPassword().length < 1) {
+            senhaInvalida.setVisible(true);
+            tudoCerto = false;
+        }
+
+        if (tudoCerto) {
+            Usuario usuario = UsuarioService.buscaUsuarioCpf(cpf.getText());
+            if (usuario == null) {
+                erros.setText("Usuário não cadastrado.");
+            } else {
+                if (new String(senha.getPassword()).equals(usuario.getSenha())) {
+                    if (usuario.isAtivo()) {
+                        frame.getContentPane().removeAll();
+
+                        if (usuario.isAdministrador()) {
+                            TelaAdministrador principal = new TelaAdministrador(usuario);
+                            frame.getContentPane().add(principal, BorderLayout.CENTER);
+                            frame.setSize(principal.getPreferredSize());
+                            frame.setLocationRelativeTo(null);
+                        } else {
+                            TelaColaborador principal = new TelaColaborador(usuario);
+                            frame.getContentPane().add(principal, BorderLayout.CENTER);
+                            frame.setSize(principal.getPreferredSize());
+                            frame.setLocationRelativeTo(null);
+                        }
+                    } else {
+                        erros.setText("Usuário não está ativo.");
+                    }
+                } else {
+                    erros.setText("Senha incorreta.");
+                }
+            }
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -183,6 +226,11 @@ public class Login extends javax.swing.JPanel {
                 senhaFocusLost(evt);
             }
         });
+        senha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                senhaKeyReleased(evt);
+            }
+        });
         add(senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, 260, 20));
 
         erros.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -197,46 +245,7 @@ public class Login extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void entrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entrarMouseClicked
-        boolean tudoCerto = true;
-        resetaTudo();
-        if (cpf.getText().replace(" ", "").length() < 14) {
-            cpfInvalido.setVisible(true);
-            tudoCerto = false;
-        }
-
-        if (senha.getPassword().length < 1) {
-            senhaInvalida.setVisible(true);
-            tudoCerto = false;
-        }
-
-        if (tudoCerto) {
-            Usuario usuario = UsuarioService.buscaUsuarioCpf(cpf.getText());
-            if (usuario == null) {
-                erros.setText("Usuário não cadastrado.");
-            } else {
-                if (new String(senha.getPassword()).equals(usuario.getSenha())) {
-                    if (usuario.isAtivo()) {
-                        frame.getContentPane().removeAll();
-
-                        if (usuario.isAdministrador()) {
-                            TelaAdministrador principal = new TelaAdministrador(usuario);
-                            frame.getContentPane().add(principal, BorderLayout.CENTER);
-                            frame.setSize(principal.getPreferredSize());
-                            frame.setLocationRelativeTo(null);
-                        } else {
-                            TelaColaborador principal = new TelaColaborador(usuario);
-                            frame.getContentPane().add(principal, BorderLayout.CENTER);
-                            frame.setSize(principal.getPreferredSize());
-                            frame.setLocationRelativeTo(null);
-                        }
-                    } else {
-                        erros.setText("Usuário não está ativo.");
-                    }
-                } else {
-                    erros.setText("Senha incorreta.");
-                }
-            }
-        }
+        fazerLogin();
     }//GEN-LAST:event_entrarMouseClicked
 
     private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
@@ -282,6 +291,12 @@ public class Login extends javax.swing.JPanel {
             senhaInvalida.setVisible(false);
         }
     }//GEN-LAST:event_senhaFocusLost
+
+    private void senhaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_senhaKeyReleased
+        if (evt.getKeyCode() == '\n') {
+            fazerLogin();
+        }
+    }//GEN-LAST:event_senhaKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
