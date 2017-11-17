@@ -24,14 +24,18 @@ public class TelaColaborador extends javax.swing.JPanel {
     java.util.List<JPanel> botoesLaterais;
     List<JLabel> labelsLaterais;
     JPanel botaoAtivo;
-    Color corPadraoBotao = new Color(102, 102, 102);
-    Color corOverBotao = new Color(204, 204, 204);
-    Color corBotaoAtivo = new Color(255, 255, 255);
+    Color corPadraoBotao = new Color(58, 124, 146);
+    Color corOverBotao = new Color(181, 212, 222);
+    Color corBotaoAtivo = new Color(244, 248, 250);
 
-    Color corPadraoLabel = new Color(249, 249, 249);
-    Color corOverLabel = new Color(204, 204, 204);
-    Color corLabelAtivo = new Color(51, 51, 51);
+    Color corPadraoLabel = new Color(255,255,255);
+    Color corOverLabel = new Color(255,255,255);
+    Color corLabelAtivo = new Color(2, 54, 72);
 
+    ConsultaProdutoAtivoColaborador consultaProdutoAtivoColaborador;
+    ConsultaFornecedorAtivoColaborador consultaFornecedorAtivoColaborador;
+    Relatorios telaRelatorios;
+    
     public TelaColaborador(Usuario usuario) {
         initComponents();
         this.usuario = usuario;
@@ -43,18 +47,18 @@ public class TelaColaborador extends javax.swing.JPanel {
         
         inicializaFornecedores();
 
-        paineis.add(new Relatorios(paineis), "relatorios");
-
-        inicializaUsuarios();
-        
+        telaRelatorios = new Relatorios(paineis);
+        paineis.add(telaRelatorios, "relatorios");
+      
         paineis.add(new Opcoes(paineis), "opcoes");
+        paineis.add(new Sobre(paineis), "sobre");
+        paineis.add(new Ajuda(paineis), "ajuda");
 
         botoesLaterais = new ArrayList<JPanel>();
         botoesLaterais.add(botaoMovimentacoes);
         botoesLaterais.add(botaoProdutos);
         botoesLaterais.add(botaoFornecedores);
         botoesLaterais.add(botaoRelatorios);
-        botoesLaterais.add(botaoPerfil);
         botoesLaterais.add(botaoOpcoes);
 
         labelsLaterais = new ArrayList<>();
@@ -62,9 +66,11 @@ public class TelaColaborador extends javax.swing.JPanel {
         labelsLaterais.add(labelProdutos);
         labelsLaterais.add(labelFornecedores);
         labelsLaterais.add(labelRelatorios);
-        labelsLaterais.add(labelPerfil);
         labelsLaterais.add(labelOpcoes);
 
+        botaoMovimentacoes.setBackground(corBotaoAtivo);
+        labelMovimentacoes.setForeground(corLabelAtivo);
+        botaoAtivo = botaoMovimentacoes;
     }
 
     public void inicializaMovimentacoes(){
@@ -79,55 +85,17 @@ public class TelaColaborador extends javax.swing.JPanel {
     }
     
     public void inicializaProdutos(){
-        EditaProduto editaProduto = new EditaProduto(paineis);
-        ConsultaProdutoAtivo consultaProdutoAtivo = new ConsultaProdutoAtivo(paineis, editaProduto);
-        ConsultaProdutoInativo consultaProdutoInativo = new ConsultaProdutoInativo(paineis, editaProduto);
-        
-        CadastroProduto cadastroProduto = new CadastroProduto(paineis);
-        ProdutosEstoqueMinimo produtosEstoqueMinimo = new ProdutosEstoqueMinimo(paineis);
-        
-        editaProduto.consultaProdutoAtivo = consultaProdutoAtivo;
-        editaProduto.consultaProdutoInativo = consultaProdutoInativo;
-        
-        paineis.add(new GerenciarProdutos(paineis, consultaProdutoAtivo, consultaProdutoInativo, cadastroProduto, produtosEstoqueMinimo), "gerenciarProdutos");
-        paineis.add(cadastroProduto, "cadastroProduto");
-        paineis.add(consultaProdutoAtivo, "consultaProdutoAtivo");
-        paineis.add(consultaProdutoInativo, "consultaProdutoInativo");
-        paineis.add(editaProduto, "editaProduto");
-        
-        paineis.add(produtosEstoqueMinimo, "produtosEstoqueMinimo");
+        consultaProdutoAtivoColaborador = new ConsultaProdutoAtivoColaborador(paineis);
+                
+        paineis.add(consultaProdutoAtivoColaborador, "consultaProdutoAtivo");
     }
     
     public void inicializaFornecedores(){
-        EditaFornecedor editaFornecedor = new EditaFornecedor(paineis);
-        ConsultaFornecedorAtivo consultaFornecedorAtivo = new ConsultaFornecedorAtivo(paineis, editaFornecedor);
-        ConsultaFornecedorInativo consultaFornecedorInativo = new ConsultaFornecedorInativo(paineis, editaFornecedor);
-        
-        editaFornecedor.consultaFornecedorAtivo = consultaFornecedorAtivo;
-        editaFornecedor.consultaFornecedorInativo = consultaFornecedorInativo;
-        
-        paineis.add(new GerenciarFornecedores(paineis, consultaFornecedorAtivo, consultaFornecedorInativo), "gerenciarFornecedores");
-        paineis.add(new CadastroFornecedor(paineis), "cadastroFornecedor");
-        paineis.add(consultaFornecedorAtivo, "consultaFornecedorAtivo");
-        paineis.add(consultaFornecedorInativo, "consultaFornecedorInativo");
-        paineis.add(editaFornecedor, "editaFornecedor");
+        consultaFornecedorAtivoColaborador = new ConsultaFornecedorAtivoColaborador(paineis);
+             
+        paineis.add(consultaFornecedorAtivoColaborador, "consultaFornecedorAtivo");
     }
-    
-    public void inicializaUsuarios(){
-        EditaUsuario editaUsuario = new EditaUsuario(paineis);
-        ConsultaUsuarioAtivo consultaUsuarioAtivo = new ConsultaUsuarioAtivo(paineis, editaUsuario);
-        ConsultaUsuarioInativo consultaUsuarioInativo = new ConsultaUsuarioInativo(paineis, editaUsuario);
-
-        editaUsuario.consultaUsuarioAtivo = consultaUsuarioAtivo;
-        editaUsuario.consultaUsuarioInativo = consultaUsuarioInativo;
-        
-        paineis.add(new GerenciarUsuarios(paineis, consultaUsuarioAtivo, consultaUsuarioInativo), "gerenciarUsuarios");
-        paineis.add(new CadastroUsuario(paineis), "cadastroUsuario");
-        paineis.add(consultaUsuarioAtivo, "consultaUsuarioAtivo");
-        paineis.add(consultaUsuarioInativo, "consultaUsuarioInativo");
-        paineis.add(editaUsuario, "editaUsuario");
-    }
-    
+       
     public void resetaBotoes() {
         for (JPanel b : botoesLaterais) {
             b.setBackground(corPadraoBotao);
@@ -158,8 +126,6 @@ public class TelaColaborador extends javax.swing.JPanel {
         labelMovimentacoes = new javax.swing.JLabel();
         botaoOpcoes = new javax.swing.JPanel();
         labelOpcoes = new javax.swing.JLabel();
-        botaoPerfil = new javax.swing.JPanel();
-        labelPerfil = new javax.swing.JLabel();
         botaoRelatorios = new javax.swing.JPanel();
         labelRelatorios = new javax.swing.JLabel();
         botaoProdutos = new javax.swing.JPanel();
@@ -170,20 +136,20 @@ public class TelaColaborador extends javax.swing.JPanel {
         labelFornecedores = new javax.swing.JLabel();
         paineis = new javax.swing.JPanel();
 
-        setBackground(new java.awt.Color(51, 51, 51));
+        setBackground(new java.awt.Color(0, 8, 10));
         setMaximumSize(new java.awt.Dimension(1080, 650));
         setMinimumSize(new java.awt.Dimension(1080, 650));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        barraLateral.setBackground(new java.awt.Color(51, 51, 51));
+        barraLateral.setBackground(new java.awt.Color(19, 90, 113));
         barraLateral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel7.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel7.setBackground(new java.awt.Color(19, 90, 113));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel17.setBackground(new java.awt.Color(231, 243, 239));
-        jLabel17.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(249, 249, 249));
+        jLabel17.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Colaborador");
         jPanel7.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
 
@@ -193,7 +159,7 @@ public class TelaColaborador extends javax.swing.JPanel {
         jScrollPane1.setEnabled(false);
 
         nomeUsuario.setEditable(false);
-        nomeUsuario.setBackground(new java.awt.Color(102, 102, 102));
+        nomeUsuario.setBackground(new java.awt.Color(19, 90, 113));
         nomeUsuario.setColumns(20);
         nomeUsuario.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         nomeUsuario.setForeground(new java.awt.Color(255, 255, 255));
@@ -203,14 +169,14 @@ public class TelaColaborador extends javax.swing.JPanel {
         nomeUsuario.setBorder(null);
         nomeUsuario.setDisabledTextColor(new java.awt.Color(255, 102, 0));
         nomeUsuario.setOpaque(false);
-        nomeUsuario.setSelectionColor(new java.awt.Color(153, 153, 153));
+        nomeUsuario.setSelectionColor(new java.awt.Color(19, 90, 113));
         jScrollPane1.setViewportView(nomeUsuario);
 
         jPanel7.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 200, 50));
 
         barraLateral.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 100));
 
-        botaoMovimentacoes.setBackground(new java.awt.Color(102, 102, 102));
+        botaoMovimentacoes.setBackground(new java.awt.Color(58, 124, 146));
         botaoMovimentacoes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoMovimentacoes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -226,63 +192,39 @@ public class TelaColaborador extends javax.swing.JPanel {
         botaoMovimentacoes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelMovimentacoes.setBackground(new java.awt.Color(231, 243, 239));
-        labelMovimentacoes.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        labelMovimentacoes.setForeground(new java.awt.Color(249, 249, 249));
+        labelMovimentacoes.setFont(new java.awt.Font("Decker", 0, 24)); // NOI18N
+        labelMovimentacoes.setForeground(new java.awt.Color(255, 255, 255));
         labelMovimentacoes.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelMovimentacoes.setText("Movimentações");
         botaoMovimentacoes.add(labelMovimentacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 200, 34));
 
         barraLateral.add(botaoMovimentacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 220, 70));
 
-        botaoOpcoes.setBackground(new java.awt.Color(102, 102, 102));
+        botaoOpcoes.setBackground(new java.awt.Color(58, 124, 146));
         botaoOpcoes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoOpcoes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoOpcoesMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 botaoOpcoesMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 botaoOpcoesMouseExited(evt);
             }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoOpcoesMouseClicked(evt);
+            }
         });
         botaoOpcoes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelOpcoes.setBackground(new java.awt.Color(231, 243, 239));
-        labelOpcoes.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        labelOpcoes.setForeground(new java.awt.Color(249, 249, 249));
+        labelOpcoes.setFont(new java.awt.Font("Decker", 0, 24)); // NOI18N
+        labelOpcoes.setForeground(new java.awt.Color(255, 255, 255));
         labelOpcoes.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelOpcoes.setText("Opções");
         botaoOpcoes.add(labelOpcoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 170, 34));
 
-        barraLateral.add(botaoOpcoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 220, 70));
+        barraLateral.add(botaoOpcoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 220, 70));
 
-        botaoPerfil.setBackground(new java.awt.Color(102, 102, 102));
-        botaoPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botaoPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoPerfilMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botaoPerfilMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                botaoPerfilMouseExited(evt);
-            }
-        });
-        botaoPerfil.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        labelPerfil.setBackground(new java.awt.Color(231, 243, 239));
-        labelPerfil.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        labelPerfil.setForeground(new java.awt.Color(249, 249, 249));
-        labelPerfil.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelPerfil.setText("Perfil");
-        botaoPerfil.add(labelPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 170, 34));
-
-        barraLateral.add(botaoPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 220, 70));
-
-        botaoRelatorios.setBackground(new java.awt.Color(102, 102, 102));
+        botaoRelatorios.setBackground(new java.awt.Color(58, 124, 146));
         botaoRelatorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoRelatorios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -298,15 +240,15 @@ public class TelaColaborador extends javax.swing.JPanel {
         botaoRelatorios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelRelatorios.setBackground(new java.awt.Color(231, 243, 239));
-        labelRelatorios.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        labelRelatorios.setForeground(new java.awt.Color(249, 249, 249));
+        labelRelatorios.setFont(new java.awt.Font("Decker", 0, 24)); // NOI18N
+        labelRelatorios.setForeground(new java.awt.Color(255, 255, 255));
         labelRelatorios.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelRelatorios.setText("Relatórios");
         botaoRelatorios.add(labelRelatorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 170, 34));
 
         barraLateral.add(botaoRelatorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 220, 70));
 
-        botaoProdutos.setBackground(new java.awt.Color(102, 102, 102));
+        botaoProdutos.setBackground(new java.awt.Color(58, 124, 146));
         botaoProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -322,15 +264,15 @@ public class TelaColaborador extends javax.swing.JPanel {
         botaoProdutos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelProdutos.setBackground(new java.awt.Color(231, 243, 239));
-        labelProdutos.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        labelProdutos.setForeground(new java.awt.Color(249, 249, 249));
+        labelProdutos.setFont(new java.awt.Font("Decker", 0, 24)); // NOI18N
+        labelProdutos.setForeground(new java.awt.Color(255, 255, 255));
         labelProdutos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelProdutos.setText("Produtos");
         botaoProdutos.add(labelProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 170, 34));
 
         barraLateral.add(botaoProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 220, 70));
 
-        botaoLogoff.setBackground(new java.awt.Color(102, 102, 102));
+        botaoLogoff.setBackground(new java.awt.Color(58, 124, 146));
         botaoLogoff.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoLogoff.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -343,8 +285,8 @@ public class TelaColaborador extends javax.swing.JPanel {
         botaoLogoff.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(231, 243, 239));
+        jLabel3.setFont(new java.awt.Font("Decker", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Fechar");
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -356,7 +298,7 @@ public class TelaColaborador extends javax.swing.JPanel {
 
         barraLateral.add(botaoLogoff, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 580, 220, 70));
 
-        botaoFornecedores.setBackground(new java.awt.Color(102, 102, 102));
+        botaoFornecedores.setBackground(new java.awt.Color(58, 124, 146));
         botaoFornecedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoFornecedores.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -372,8 +314,8 @@ public class TelaColaborador extends javax.swing.JPanel {
         botaoFornecedores.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelFornecedores.setBackground(new java.awt.Color(231, 243, 239));
-        labelFornecedores.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        labelFornecedores.setForeground(new java.awt.Color(249, 249, 249));
+        labelFornecedores.setFont(new java.awt.Font("Decker", 0, 24)); // NOI18N
+        labelFornecedores.setForeground(new java.awt.Color(255, 255, 255));
         labelFornecedores.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelFornecedores.setText("Fornecedores");
         botaoFornecedores.add(labelFornecedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 170, 34));
@@ -382,9 +324,9 @@ public class TelaColaborador extends javax.swing.JPanel {
 
         add(barraLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        paineis.setBackground(new java.awt.Color(249, 249, 249));
+        paineis.setBackground(new java.awt.Color(244, 248, 250));
         paineis.setLayout(new java.awt.CardLayout());
-        add(paineis, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 860, 620));
+        add(paineis, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 860, 650));
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoMovimentacoesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMovimentacoesMouseEntered
@@ -419,36 +361,11 @@ public class TelaColaborador extends javax.swing.JPanel {
             labelOpcoes.setForeground(corPadraoLabel);
 
         }
+
     }//GEN-LAST:event_botaoOpcoesMouseExited
 
-    private void botaoPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPerfilMouseClicked
-        CardLayout cartoes = (CardLayout) paineis.getLayout();
-        cartoes.show(paineis, "gerenciarUsuarios");
-
-        resetaBotoes();
-        botaoPerfil.setBackground(corBotaoAtivo);
-        resetaLabels();
-        labelPerfil.setForeground(corLabelAtivo);
-        botaoAtivo = botaoPerfil;
-    }//GEN-LAST:event_botaoPerfilMouseClicked
-
-    private void botaoPerfilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPerfilMouseEntered
-        botaoPerfil.setBackground(corOverBotao);
-    }//GEN-LAST:event_botaoPerfilMouseEntered
-
-    private void botaoPerfilMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPerfilMouseExited
-        if (botaoPerfil == botaoAtivo) {
-            botaoPerfil.setBackground(corBotaoAtivo);
-            labelPerfil.setForeground(corLabelAtivo);
-
-        } else {
-            botaoPerfil.setBackground(corPadraoBotao);
-            labelPerfil.setForeground(corPadraoLabel);
-
-        }
-    }//GEN-LAST:event_botaoPerfilMouseExited
-
     private void botaoRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoRelatoriosMouseClicked
+        telaRelatorios.atualizarFornecedores();
         CardLayout cartoes = (CardLayout) paineis.getLayout();
         cartoes.show(paineis, "relatorios");
 
@@ -521,9 +438,12 @@ public class TelaColaborador extends javax.swing.JPanel {
     }//GEN-LAST:event_botaoMovimentacoesMouseClicked
 
     private void botaoProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoProdutosMouseClicked
+        consultaProdutoAtivoColaborador.atualizarProdutos();
+        consultaProdutoAtivoColaborador.atualizarInformacoes();
+        
         CardLayout cartoes = (CardLayout) paineis.getLayout();
-        cartoes.show(paineis, "gerenciarProdutos");
-
+        cartoes.show(paineis, "consultaProdutoAtivo");
+        
         resetaBotoes();
         botaoProdutos.setBackground(corBotaoAtivo);
         resetaLabels();
@@ -532,8 +452,11 @@ public class TelaColaborador extends javax.swing.JPanel {
     }//GEN-LAST:event_botaoProdutosMouseClicked
 
     private void botaoFornecedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoFornecedoresMouseClicked
+        consultaFornecedorAtivoColaborador.atualizarFornecedores();
+        consultaFornecedorAtivoColaborador.atualizarInformacoes();
+        
         CardLayout cartoes = (CardLayout) paineis.getLayout();
-        cartoes.show(paineis, "gerenciarFornecedores");
+        cartoes.show(paineis, "consultaFornecedorAtivo");
 
         resetaBotoes();
         botaoFornecedores.setBackground(corBotaoAtivo);
@@ -564,7 +487,6 @@ public class TelaColaborador extends javax.swing.JPanel {
     private javax.swing.JPanel botaoLogoff;
     private javax.swing.JPanel botaoMovimentacoes;
     private javax.swing.JPanel botaoOpcoes;
-    private javax.swing.JPanel botaoPerfil;
     private javax.swing.JPanel botaoProdutos;
     private javax.swing.JPanel botaoRelatorios;
     private javax.swing.JLabel jLabel17;
@@ -574,7 +496,6 @@ public class TelaColaborador extends javax.swing.JPanel {
     private javax.swing.JLabel labelFornecedores;
     private javax.swing.JLabel labelMovimentacoes;
     private javax.swing.JLabel labelOpcoes;
-    private javax.swing.JLabel labelPerfil;
     private javax.swing.JLabel labelProdutos;
     private javax.swing.JLabel labelRelatorios;
     private javax.swing.JTextArea nomeUsuario;

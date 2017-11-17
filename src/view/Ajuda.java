@@ -12,10 +12,10 @@ import javax.swing.JPanel;
  *
  * @author Jheni
  */
-public class Sobre extends javax.swing.JPanel {
+public class Ajuda extends javax.swing.JPanel {
     JPanel paineis;
 
-    public Sobre(JPanel paineis) {
+    public Ajuda(JPanel paineis) {
         initComponents();
         this.paineis = paineis;
     }
@@ -35,7 +35,7 @@ public class Sobre extends javax.swing.JPanel {
         setBackground(new java.awt.Color(244, 248, 250));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("sobre");
+        jLabel1.setText("Ajuda");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, -1, -1));
 
         voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Return_32px.png"))); // NOI18N

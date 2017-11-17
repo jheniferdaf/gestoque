@@ -49,6 +49,7 @@ public class Opcoes extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Info_100px.png"))); // NOI18N
         jLabel2.setText("Sobre");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -72,6 +73,7 @@ public class Opcoes extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Help_100px.png"))); // NOI18N
         jLabel3.setText("Ajuda");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

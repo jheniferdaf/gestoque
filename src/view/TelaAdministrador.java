@@ -51,7 +51,9 @@ public class TelaAdministrador extends javax.swing.JPanel {
         inicializaUsuarios();
         
         paineis.add(new Opcoes(paineis), "opcoes");
-
+        paineis.add(new Sobre(paineis), "sobre");
+        paineis.add(new Ajuda(paineis), "ajuda");
+        
         botoesLaterais = new ArrayList<JPanel>();
         botoesLaterais.add(botaoMovimentacoes);
         botoesLaterais.add(botaoProdutos);

@@ -244,6 +244,7 @@ public class CadastroFornecedor extends javax.swing.JPanel {
 
         emailInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         emailInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
+        emailInvalido.setToolTipText("E-mail inválido");
         add(emailInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 510, 30, 30));
 
         telefoneInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
