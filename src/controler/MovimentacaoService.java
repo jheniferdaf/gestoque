@@ -21,4 +21,7 @@ public class MovimentacaoService {
         return MovimentacaoDAO.buscarMovimentacaoData(data1, data2);
     }
     
+    public static ResultSet buscaMovimentacaoFornecedor(String cnpj){
+        return MovimentacaoDAO.buscarMovimentacaoFornecedor(cnpj);
+    }
 }

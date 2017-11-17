@@ -273,8 +273,8 @@ public class Relatorios extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Nenhuma opção selecionada.");
         } else {
             if (pesquisarData.isSelected()){
-                JRResultSetDataSource resultSet = new JRResultSetDataSource(MovimentacaoService.buscarMovimentacaoData(data1.getDate(), data2.getDate()));
                 try {
+                    JRResultSetDataSource resultSet = new JRResultSetDataSource(MovimentacaoService.buscarMovimentacaoData(data1.getDate(), data2.getDate()));
                     JasperPrint jpPrint = JasperFillManager.fillReport("Relatorios/relatorioPorData.jasper", new HashMap<>(), resultSet);
                     JasperViewer jv = new JasperViewer(jpPrint, false);
                     jv.setVisible(true);
@@ -283,11 +283,20 @@ public class Relatorios extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "Problema ao gerar relatório.");
                     ex.printStackTrace();
                 }
-                System.out.println(data1.getDate());
+                System.out.println("Data1: " + data1.getDate());
+                System.out.println("Data2: " + data2.getDate());
             } else {
-                
-                
-                
+                try{        
+                    JRResultSetDataSource resultSet = new JRResultSetDataSource(MovimentacaoService.buscaMovimentacaoFornecedor(listaFornecedores.get(fornecedores.getSelectedIndex()).getCnpj()));
+
+                        JasperPrint jpPrint = JasperFillManager.fillReport("Relatorios/relatorioPorFornecedor.jasper", new HashMap<>(), resultSet);
+                        JasperViewer jv = new JasperViewer(jpPrint, false);
+                        jv.setVisible(true);
+                        jv.toFront();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Problema ao gerar relatório.");
+                    ex.printStackTrace();
+                }
             }
         }
     }//GEN-LAST:event_botaoConfirmarMouseClicked

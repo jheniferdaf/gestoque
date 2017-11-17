@@ -7,6 +7,7 @@ package view;
 
 import controler.UsuarioService;
 import java.awt.BorderLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Usuario;
@@ -195,7 +196,7 @@ public class Login extends javax.swing.JPanel {
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        fechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Fechar.png"))); // NOI18N
+        fechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Close Window_32px.png"))); // NOI18N
         fechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         fechar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -208,7 +209,7 @@ public class Login extends javax.swing.JPanel {
                 fecharMouseExited(evt);
             }
         });
-        add(fechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(652, 0, -1, -1));
+        add(fechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 30, 30));
 
         senhaInvalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
         senhaInvalida.setToolTipText("Senha não informada");
@@ -265,15 +266,18 @@ public class Login extends javax.swing.JPanel {
     }//GEN-LAST:event_jPanel2MouseReleased
 
     private void fecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fecharMouseEntered
+        ImageIcon imagem = new ImageIcon(getClass().getResource("/imagens/Close Window_32px-over.png"));
+        fechar.setIcon(imagem);
 
     }//GEN-LAST:event_fecharMouseEntered
 
     private void fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fecharMouseClicked
-
+        System.exit(0);
     }//GEN-LAST:event_fecharMouseClicked
 
     private void fecharMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fecharMouseExited
-        // TODO add your handling code here:
+        ImageIcon imagem = new ImageIcon(getClass().getResource("/imagens/Close Window_32px.png"));
+        fechar.setIcon(imagem);
     }//GEN-LAST:event_fecharMouseExited
 
     private void cpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cpfFocusLost

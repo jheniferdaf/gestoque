@@ -40,6 +40,8 @@ public class EditaUsuario extends javax.swing.JPanel {
         this.paineis = paineis;
 
         labelsInvalidas = new ArrayList<>();
+        
+        labelsInvalidas.add(nomeInvalido);
         labelsInvalidas.add(senhaInvalida);
         labelsInvalidas.add(emailInvalido);
         labelsInvalidas.add(telefoneInvalido);
@@ -106,6 +108,7 @@ public class EditaUsuario extends javax.swing.JPanel {
         senhaInvalida = new javax.swing.JLabel();
         emailInvalido = new javax.swing.JLabel();
         telefoneInvalido = new javax.swing.JLabel();
+        nomeInvalido = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(244, 248, 250));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -115,7 +118,6 @@ public class EditaUsuario extends javax.swing.JPanel {
         jLabel5.setText("Nome:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, -1, -1));
 
-        nome.setEditable(false);
         nome.setBackground(new java.awt.Color(244, 248, 250));
         nome.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
         nome.setForeground(new java.awt.Color(0, 8, 10));
@@ -134,7 +136,8 @@ public class EditaUsuario extends javax.swing.JPanel {
         add(separadorCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 300, 10));
 
         cpf.setEditable(false);
-        cpf.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        cpf.setBackground(new java.awt.Color(244, 248, 250));
+        cpf.setBorder(null);
         cpf.setForeground(new java.awt.Color(0, 8, 10));
         try {
             cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -150,7 +153,7 @@ public class EditaUsuario extends javax.swing.JPanel {
                 cpfActionPerformed(evt);
             }
         });
-        add(cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 300, -1));
+        add(cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 300, 20));
 
         jLabel2.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 8, 10));
@@ -280,6 +283,11 @@ public class EditaUsuario extends javax.swing.JPanel {
         telefoneInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         telefoneInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
         add(telefoneInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 30, 30));
+
+        nomeInvalido.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        nomeInvalido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Attention_32px.png"))); // NOI18N
+        nomeInvalido.setToolTipText("");
+        add(nomeInvalido, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 30, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void cpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfActionPerformed
@@ -307,6 +315,11 @@ public class EditaUsuario extends javax.swing.JPanel {
     private void labelConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseClicked
         resetaCamposInvalidos();
         boolean tudoCerto = true;
+        
+        if (nome.getText().isEmpty()){
+            tudoCerto = false;
+            nomeInvalido.setVisible(true);
+        }
 
         if (senha.getPassword().length < 1) {
             tudoCerto = false;
@@ -392,6 +405,7 @@ public class EditaUsuario extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel labelConfirmar;
     private javax.swing.JTextField nome;
+    private javax.swing.JLabel nomeInvalido;
     private javax.swing.JPasswordField senha;
     private javax.swing.JLabel senhaInvalida;
     private javax.swing.JSeparator separadorCpf;

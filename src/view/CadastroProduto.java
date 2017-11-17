@@ -241,14 +241,14 @@ public class CadastroProduto extends javax.swing.JPanel {
         precoVenda.setForeground(new java.awt.Color(0, 8, 10));
         precoVenda.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         precoVenda.setFont(new java.awt.Font("Decker", 0, 11)); // NOI18N
-        add(precoVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, 280, 20));
+        add(precoVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, 260, 20));
 
         precoCusto.setBackground(new java.awt.Color(244, 248, 250));
         precoCusto.setBorder(null);
         precoCusto.setForeground(new java.awt.Color(0, 8, 10));
         precoCusto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         precoCusto.setFont(new java.awt.Font("Decker", 0, 11)); // NOI18N
-        add(precoCusto, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 280, 20));
+        add(precoCusto, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 260, 20));
 
         jLabel7.setFont(new java.awt.Font("Decker", 0, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 8, 10));
