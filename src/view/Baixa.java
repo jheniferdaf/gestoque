@@ -9,7 +9,6 @@ import controler.FornecedorService;
 import controler.MovimentacaoService;
 import controler.ProdutoService;
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -245,6 +244,7 @@ public class Baixa extends javax.swing.JPanel {
         jLabel5.setText("Estoque atual:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 110, -1));
 
+        estoqueAtual.setEditable(false);
         estoqueAtual.setBackground(new java.awt.Color(244, 248, 250));
         estoqueAtual.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         estoqueAtual.setForeground(new java.awt.Color(0, 8, 10));
@@ -302,18 +302,12 @@ public class Baixa extends javax.swing.JPanel {
     }//GEN-LAST:event_labelConfirmarMouseClicked
 
     private void labelConfirmarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseEntered
-        confirmar.setBackground(Color.gray);
-        labelConfirmar.setForeground(Color.white);
     }//GEN-LAST:event_labelConfirmarMouseEntered
 
     private void labelConfirmarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseExited
-        confirmar.setBackground(new Color(240, 240, 240));
-        labelConfirmar.setForeground(Color.black);
     }//GEN-LAST:event_labelConfirmarMouseExited
 
     private void labelConfirmarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMousePressed
-        confirmar.setBackground(Color.white);
-        labelConfirmar.setForeground(Color.black);
     }//GEN-LAST:event_labelConfirmarMousePressed
 
     private void confirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmarMouseClicked
@@ -321,13 +315,9 @@ public class Baixa extends javax.swing.JPanel {
     }//GEN-LAST:event_confirmarMouseClicked
 
     private void confirmarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmarMouseEntered
-        confirmar.setBackground(Color.gray);
-        labelConfirmar.setForeground(Color.white);
     }//GEN-LAST:event_confirmarMouseEntered
 
     private void confirmarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmarMouseExited
-        confirmar.setBackground(new Color(240, 240, 240));
-        labelConfirmar.setForeground(Color.black);
     }//GEN-LAST:event_confirmarMouseExited
 
     private void valorMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorMovimentacaoActionPerformed

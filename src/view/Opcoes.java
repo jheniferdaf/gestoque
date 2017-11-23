@@ -31,18 +31,18 @@ public class Opcoes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        sobre = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        ajuda = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(244, 248, 250));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(244, 248, 250));
-        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        sobre.setBackground(new java.awt.Color(244, 248, 250));
+        sobre.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel1MouseClicked(evt);
+                sobreMouseClicked(evt);
             }
         });
 
@@ -51,59 +51,70 @@ public class Opcoes extends javax.swing.JPanel {
         jLabel2.setText("Sobre");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout sobreLayout = new javax.swing.GroupLayout(sobre);
+        sobre.setLayout(sobreLayout);
+        sobreLayout.setHorizontalGroup(
+            sobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sobreLayout.createSequentialGroup()
                 .addComponent(jLabel2)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        sobreLayout.setVerticalGroup(
+            sobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sobreLayout.createSequentialGroup()
                 .addComponent(jLabel2)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, 200, 100));
+        add(sobre, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, 200, 100));
 
-        jPanel2.setBackground(new java.awt.Color(244, 248, 250));
+        ajuda.setBackground(new java.awt.Color(244, 248, 250));
+        ajuda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ajudaMouseClicked(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Help_100px.png"))); // NOI18N
         jLabel3.setText("Ajuda");
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout ajudaLayout = new javax.swing.GroupLayout(ajuda);
+        ajuda.setLayout(ajudaLayout);
+        ajudaLayout.setHorizontalGroup(
+            ajudaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ajudaLayout.createSequentialGroup()
                 .addComponent(jLabel3)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        ajudaLayout.setVerticalGroup(
+            ajudaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ajudaLayout.createSequentialGroup()
                 .addComponent(jLabel3)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 200, 100));
+        add(ajuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 200, 100));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+    private void sobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sobreMouseClicked
         CardLayout cartoes = (CardLayout) paineis.getLayout();
         cartoes.show(paineis, "sobre");
 
-    }//GEN-LAST:event_jPanel1MouseClicked
+    }//GEN-LAST:event_sobreMouseClicked
+
+    private void ajudaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ajudaMouseClicked
+        CardLayout cartoes = (CardLayout) paineis.getLayout();
+        cartoes.show(paineis, "ajuda");
+
+    }//GEN-LAST:event_ajudaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ajuda;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel sobre;
     // End of variables declaration//GEN-END:variables
 }

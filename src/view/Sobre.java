@@ -35,8 +35,8 @@ public class Sobre extends javax.swing.JPanel {
         setBackground(new java.awt.Color(244, 248, 250));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("sobre");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/sobre.jpg"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
 
         voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Return_32px.png"))); // NOI18N
         voltar.setToolTipText("Voltar");

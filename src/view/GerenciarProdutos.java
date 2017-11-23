@@ -39,7 +39,7 @@ public class GerenciarProdutos extends javax.swing.JPanel {
     private void initComponents() {
 
         produtosEstoqueMinimoAtingido = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         consultarProdutoAtivo = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         consultarProdutoInativo = new javax.swing.JPanel();
@@ -59,13 +59,13 @@ public class GerenciarProdutos extends javax.swing.JPanel {
         });
         produtosEstoqueMinimoAtingido.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 8, 10));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Clear Shopping Cart_100px.png"))); // NOI18N
-        jLabel3.setText("Estoque Mínimo");
-        produtosEstoqueMinimoAtingido.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 90));
+        jLabel5.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 8, 10));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Clear Shopping Cart_100px.png"))); // NOI18N
+        jLabel5.setText("Produtos com Estoque Mínimo");
+        produtosEstoqueMinimoAtingido.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 90));
 
-        add(produtosEstoqueMinimoAtingido, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, 410, 90));
+        add(produtosEstoqueMinimoAtingido, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, 610, 90));
 
         consultarProdutoAtivo.setBackground(new java.awt.Color(244, 248, 250));
         consultarProdutoAtivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -160,8 +160,8 @@ public class GerenciarProdutos extends javax.swing.JPanel {
     private javax.swing.JPanel consultarProdutoInativo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel produtosEstoqueMinimoAtingido;
     // End of variables declaration//GEN-END:variables
 }

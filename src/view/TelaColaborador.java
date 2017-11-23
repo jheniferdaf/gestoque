@@ -9,6 +9,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,6 +20,9 @@ import model.Usuario;
  * @author Jheni
  */
 public class TelaColaborador extends javax.swing.JPanel {
+    int xx;
+    int yy;
+    JFrame frame;
 
     Usuario usuario;
     java.util.List<JPanel> botoesLaterais;
@@ -36,9 +40,10 @@ public class TelaColaborador extends javax.swing.JPanel {
     ConsultaFornecedorAtivoColaborador consultaFornecedorAtivoColaborador;
     Relatorios telaRelatorios;
     
-    public TelaColaborador(Usuario usuario) {
+    public TelaColaborador(Usuario usuario, JFrame frame) {
         initComponents();
         this.usuario = usuario;
+        this.frame = frame;
         nomeUsuario.setText(usuario.getNome());
         
         inicializaMovimentacoes();
@@ -142,6 +147,19 @@ public class TelaColaborador extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         barraLateral.setBackground(new java.awt.Color(19, 90, 113));
+        barraLateral.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                barraLateralMouseDragged(evt);
+            }
+        });
+        barraLateral.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                barraLateralMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                barraLateralMouseReleased(evt);
+            }
+        });
         barraLateral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel7.setBackground(new java.awt.Color(19, 90, 113));
@@ -251,14 +269,14 @@ public class TelaColaborador extends javax.swing.JPanel {
         botaoProdutos.setBackground(new java.awt.Color(58, 124, 146));
         botaoProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoProdutosMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 botaoProdutosMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 botaoProdutosMouseExited(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoProdutosMouseClicked(evt);
             }
         });
         botaoProdutos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -479,6 +497,22 @@ public class TelaColaborador extends javax.swing.JPanel {
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void barraLateralMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barraLateralMouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        frame.setLocation(x - xx, y - yy);
+    }//GEN-LAST:event_barraLateralMouseDragged
+
+    private void barraLateralMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barraLateralMousePressed
+        frame.setOpacity((float) 0.8);
+        xx = evt.getX();
+        yy = evt.getY();
+    }//GEN-LAST:event_barraLateralMousePressed
+
+    private void barraLateralMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barraLateralMouseReleased
+        frame.setOpacity((float) 1.0);
+    }//GEN-LAST:event_barraLateralMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

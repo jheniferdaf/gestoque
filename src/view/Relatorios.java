@@ -7,7 +7,6 @@ package view;
 
 import controler.FornecedorService;
 import controler.MovimentacaoService;
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -274,7 +273,12 @@ public class Relatorios extends javax.swing.JPanel {
         } else {
             if (pesquisarData.isSelected()){
                 try {
-                    JRResultSetDataSource resultSet = new JRResultSetDataSource(MovimentacaoService.buscarMovimentacaoData(data1.getDate(), data2.getDate()));
+                    JRResultSetDataSource resultSet;
+                    if (data1.getDate().getTime() < data2.getDate().getTime()){
+                        resultSet = new JRResultSetDataSource(MovimentacaoService.buscarMovimentacaoData(data1.getDate(), data2.getDate()));
+                    } else {
+                        resultSet = new JRResultSetDataSource(MovimentacaoService.buscarMovimentacaoData(data2.getDate(), data1.getDate()));
+                    }
                     JasperPrint jpPrint = JasperFillManager.fillReport("Relatorios/relatorioPorData.jasper", new HashMap<>(), resultSet);
                     JasperViewer jv = new JasperViewer(jpPrint, false);
                     jv.setVisible(true);
@@ -302,13 +306,9 @@ public class Relatorios extends javax.swing.JPanel {
     }//GEN-LAST:event_botaoConfirmarMouseClicked
 
     private void botaoConfirmarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoConfirmarMouseEntered
-        botaoConfirmar.setBackground(Color.gray);
-        labelConfirmar.setForeground(Color.white);
     }//GEN-LAST:event_botaoConfirmarMouseEntered
 
     private void botaoConfirmarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoConfirmarMouseExited
-        botaoConfirmar.setBackground(new Color(240,240,240));
-        labelConfirmar.setForeground(Color.black);
     }//GEN-LAST:event_botaoConfirmarMouseExited
 
 

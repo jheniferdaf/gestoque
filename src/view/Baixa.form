@@ -292,6 +292,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="estoqueAtual">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fa" green="f8" red="f4" type="rgb"/>
         </Property>

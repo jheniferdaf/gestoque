@@ -9,7 +9,6 @@ import controler.UsuarioService;
 import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import model.Usuario;
 
 /**
@@ -58,12 +57,12 @@ public class Login extends javax.swing.JPanel {
                         frame.getContentPane().removeAll();
 
                         if (usuario.isAdministrador()) {
-                            TelaAdministrador principal = new TelaAdministrador(usuario);
+                            TelaAdministrador principal = new TelaAdministrador(usuario, frame);
                             frame.getContentPane().add(principal, BorderLayout.CENTER);
                             frame.setSize(principal.getPreferredSize());
                             frame.setLocationRelativeTo(null);
                         } else {
-                            TelaColaborador principal = new TelaColaborador(usuario);
+                            TelaColaborador principal = new TelaColaborador(usuario, frame);
                             frame.getContentPane().add(principal, BorderLayout.CENTER);
                             frame.setSize(principal.getPreferredSize());
                             frame.setLocationRelativeTo(null);

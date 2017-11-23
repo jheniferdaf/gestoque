@@ -7,7 +7,6 @@ package view;
 
 import controler.FornecedorService;
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
@@ -374,18 +373,12 @@ public class EditaFornecedor extends javax.swing.JPanel {
     }//GEN-LAST:event_labelConfirmarMouseClicked
 
     private void labelConfirmarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseEntered
-        botaoConfirmar.setBackground(Color.gray);
-        labelConfirmar.setForeground(Color.white);
     }//GEN-LAST:event_labelConfirmarMouseEntered
 
     private void labelConfirmarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMouseExited
-        botaoConfirmar.setBackground(new Color(240, 240, 240));
-        labelConfirmar.setForeground(Color.black);
     }//GEN-LAST:event_labelConfirmarMouseExited
 
     private void labelConfirmarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelConfirmarMousePressed
-        botaoConfirmar.setBackground(Color.white);
-        labelConfirmar.setForeground(Color.black);
     }//GEN-LAST:event_labelConfirmarMousePressed
 
     private void botaoConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoConfirmarMouseClicked
@@ -393,13 +386,9 @@ public class EditaFornecedor extends javax.swing.JPanel {
     }//GEN-LAST:event_botaoConfirmarMouseClicked
 
     private void botaoConfirmarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoConfirmarMouseEntered
-        botaoConfirmar.setBackground(Color.gray);
-        labelConfirmar.setForeground(Color.white);
     }//GEN-LAST:event_botaoConfirmarMouseEntered
 
     private void botaoConfirmarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoConfirmarMouseExited
-        botaoConfirmar.setBackground(new Color(240, 240, 240));
-        labelConfirmar.setForeground(Color.black);
     }//GEN-LAST:event_botaoConfirmarMouseExited
 
     private void inscricaoEstadualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inscricaoEstadualActionPerformed

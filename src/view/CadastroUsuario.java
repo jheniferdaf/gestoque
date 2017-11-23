@@ -7,7 +7,6 @@ package view;
 
 import controler.UsuarioService;
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ButtonGroup;
@@ -370,11 +369,9 @@ public class CadastroUsuario extends javax.swing.JPanel {
     }//GEN-LAST:event_botaoConfirmarMouseClicked
 
     private void botaoConfirmarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoConfirmarMouseEntered
-        labelConfirmar.setForeground(Color.white);
     }//GEN-LAST:event_botaoConfirmarMouseEntered
 
     private void botaoConfirmarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoConfirmarMouseExited
-        labelConfirmar.setForeground(Color.black);
     }//GEN-LAST:event_botaoConfirmarMouseExited
 
     private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed

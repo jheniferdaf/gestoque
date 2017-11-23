@@ -8,7 +8,6 @@ package view;
 import controler.FornecedorService;
 import controler.ProdutoService;
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -390,11 +389,9 @@ public class ConsultaProdutoInativo extends javax.swing.JPanel {
     }//GEN-LAST:event_editarLabelMouseClicked
 
     private void editarLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarLabelMouseEntered
-        editarLabel.setForeground(Color.white);
     }//GEN-LAST:event_editarLabelMouseEntered
 
     private void editarLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarLabelMouseExited
-        editarLabel.setForeground(Color.black);
     }//GEN-LAST:event_editarLabelMouseExited
 
     private void ativarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ativarLabelMouseClicked
@@ -417,11 +414,9 @@ public class ConsultaProdutoInativo extends javax.swing.JPanel {
     }//GEN-LAST:event_ativarLabelMouseClicked
 
     private void ativarLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ativarLabelMouseEntered
-        ativarLabel.setForeground(Color.white);
     }//GEN-LAST:event_ativarLabelMouseEntered
 
     private void ativarLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ativarLabelMouseExited
-        ativarLabel.setForeground(Color.black);
     }//GEN-LAST:event_ativarLabelMouseExited
 
 

@@ -29,14 +29,13 @@ public class Ajuda extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         voltar = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        descricao = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(244, 248, 250));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setText("Ajuda");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, -1, -1));
 
         voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Return_32px.png"))); // NOI18N
         voltar.setToolTipText("Voltar");
@@ -46,6 +45,29 @@ public class Ajuda extends javax.swing.JPanel {
             }
         });
         add(voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Decker", 0, 45)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 8, 10));
+        jLabel3.setText("Entre em contato com nosso suporte:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 770, 50));
+
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        descricao.setEditable(false);
+        descricao.setBackground(new java.awt.Color(244, 248, 250));
+        descricao.setColumns(20);
+        descricao.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
+        descricao.setForeground(new java.awt.Color(0, 8, 10));
+        descricao.setLineWrap(true);
+        descricao.setRows(5);
+        descricao.setText("Michel Machado\n  michelmachadovlo@hotmail.com\n\nMaria da Anunciação Gonçalves\n  saozinhagoncalves@yahoo.com.br");
+        descricao.setWrapStyleWord(true);
+        descricao.setBorder(null);
+        jScrollPane1.setViewportView(descricao);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 610, 280));
     }// </editor-fold>//GEN-END:initComponents
 
     private void voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarMouseClicked
@@ -55,7 +77,9 @@ public class Ajuda extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextArea descricao;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel voltar;
     // End of variables declaration//GEN-END:variables
 }
